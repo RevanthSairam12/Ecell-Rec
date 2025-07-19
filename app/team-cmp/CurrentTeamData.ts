@@ -53,7 +53,7 @@ const CurrentTeamMembers = [
       { platform: 'Twitter', url: 'https://x.com/pawan28016' },
       { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/ponugupati-sai-pawan/' },
     ],
-    imageUrl: "/pavan.png",
+    imageUrl: "/Pawan2.jpg",
   },
   {
     role: "Alumni & Community Relations Head",
