@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 
 const startupGuides = [
   {
@@ -190,7 +189,7 @@ const page = () => {
             <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full"></div>
           </div>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-            Your comprehensive roadmap from idea to successful startup. Whether you're a first-time founder, 
+            Your comprehensive roadmap from idea to successful startup. Whether you&apos;re a first-time founder, 
             solo entrepreneur, or early-stage startup, these guides will help you navigate every phase of 
             your entrepreneurial journey with confidence and clarity.
           </p>

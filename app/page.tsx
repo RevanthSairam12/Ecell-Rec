@@ -51,7 +51,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black">
-        <img src="/loadingpage.gif" alt="Loading..." className="w-48 h-48" />
+        <Image src="/loadingpage.gif" alt="Loading..." width={192} height={192} className="w-48 h-48" />
       </div>
     );
   }
