@@ -45,6 +45,28 @@ body {
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+
+    /* Custom E-Cell colors */
+    --hero-gradient-start: 240 76% 56%;
+    --hero-gradient-end: 280 85% 60%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --innovation: 33 95% 54%;
+    --innovation-foreground: 222.2 47.4% 11.2%;
+
+    /* Shadows and effects */
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
     --background: 224 71.4% 4.1%;
@@ -76,6 +98,14 @@ body {
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -125,6 +155,7 @@ body {
 }
 
 /* Custom Scrollbar Styles */
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -158,20 +189,28 @@ body {
 /* Hide scrollbar arrows completely */
 ::-webkit-scrollbar-button {
   display: none !important;
+} 
+::-webkit-scrollbar-button {
+  display: none !important;
 }
 
 /* Firefox scrollbar */
+
 html, body {
   scrollbar-width: thin;
   scrollbar-color: #1a232e #f1f5f9;
 }
 
 /* Smooth scrolling for all elements */
+
 html {
   scroll-behavior: smooth;
 }
 
+
+
 /* Custom scrollbar for specific containers */
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
@@ -188,4 +227,6 @@ html {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-}
+} 
+
+

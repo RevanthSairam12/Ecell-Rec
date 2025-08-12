@@ -14,8 +14,8 @@ import {
   CalendarDays,
   X
 } from "lucide-react";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+// import { db } from "@/lib/firebase";
+// import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { useRef } from "react";
 
 interface Event {
@@ -94,27 +94,13 @@ const Calendar = () => {
   // State for public holidays
   const [publicHolidays, setPublicHolidays] = useState<Array<{ date: string; name: string; color: string }>>([]);
 
-  // Fetch events from Firestore
+  // Fetch events from Firestore (temporarily disabled)
   const fetchEvents = async () => {
     try {
-      if (!db) {
-        console.error('Firestore not initialized');
-        setIsLoading(false);
-        return;
-      }
-
-      const eventsRef = collection(db, 'events');
-      const q = query(eventsRef, orderBy('date'));
-      const querySnapshot = await getDocs(q);
-      const eventsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        createdAt: doc.data().createdAt?.toDate() || new Date()
-      })) as Event[];
-      setEvents(eventsData);
+      // Firebase integration temporarily disabled for build
+      setEvents([]); // Temporary: set empty events array
     } catch (error) {
-      console.error('Error fetching events from Firebase:', error);
-      setEvents([]);
+      console.error('Error fetching events:', error);
     } finally {
       setIsLoading(false);
     }

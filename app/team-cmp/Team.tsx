@@ -3,7 +3,7 @@ import TeamRender from './TeamRender';
 import { motion } from "framer-motion";
 
 type TeamContainerProp = {
-  TeamContainer: "CurrentTeam" | "FormerTeam";
+  TeamContainer: "CurrentTeam" | "FormerTeam" | "AdvisoryBoard";
 }
 
 

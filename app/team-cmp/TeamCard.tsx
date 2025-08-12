@@ -33,8 +33,8 @@ const TeamCard: React.FC<TeamCardProps> = ({
         <Image
           src={imageUrl}    //Set Image Here
           alt={name}            //Set Image name Here
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           className={styles.image}
         />
       </div>

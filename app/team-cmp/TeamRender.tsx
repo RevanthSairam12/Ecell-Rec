@@ -1,13 +1,29 @@
 "use client";
 import CurrentTeamMembers from './CurrentTeamData';
 import FormerTeamMembers from './FormerTeamData';
+import AdvisoryBoardMembers from './AdvisoryBoardData';
 import TeamCard from './TeamCard';
 import { motion } from "framer-motion";
 type TeamContainerProp = {
-    TeamContainer: "CurrentTeam" | "FormerTeam";
+    TeamContainer: "CurrentTeam" | "FormerTeam" | "AdvisoryBoard";
 }
 const TeamRender = ({ TeamContainer }: TeamContainerProp) => {
-    const TeamData = TeamContainer === "CurrentTeam" ? CurrentTeamMembers : FormerTeamMembers
+    const TeamData = TeamContainer === "CurrentTeam" ? CurrentTeamMembers :
+                     TeamContainer === "FormerTeam" ? FormerTeamMembers :
+                     AdvisoryBoardMembers
+
+    const getTitle = () => {
+        switch (TeamContainer) {
+            case "CurrentTeam":
+                return "Meet Our Team";
+            case "FormerTeam":
+                return "Former Team";
+            case "AdvisoryBoard":
+                return "Advisory Board";
+            default:
+                return "Team";
+        }
+    }
     return (
 
 
@@ -32,7 +48,7 @@ const TeamRender = ({ TeamContainer }: TeamContainerProp) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                {TeamContainer === "CurrentTeam" ? "Our Team" : "Former Team"}
+                {getTitle()}
             </motion.h1>
 
             <div className="flex flex-wrap justify-center sm:gap-20 gap-6">

@@ -8,10 +8,10 @@ import React, {
   useCallback,
 } from "react";
 import {
-  IconArrowNarrowLeft,
-  IconArrowNarrowRight,
-  IconX,
-} from "@tabler/icons-react";
+  ChevronLeft as IconArrowNarrowLeft,
+  ChevronRight as IconArrowNarrowRight,
+  X as IconX,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
