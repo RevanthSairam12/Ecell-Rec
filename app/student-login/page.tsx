@@ -81,6 +81,7 @@ export default function StudentLoginPage() {
       ...prev,
       [e.target.name]: e.target.value
     }))
+  }
 
   const handleGoogleLogin = async () => {
     try {
@@ -103,10 +104,6 @@ export default function StudentLoginPage() {
       })
     }
   }
-
-  }
-
-
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useStudentAuth } from '@/contexts/AuthContext'
-import { DatabaseService } from '@/lib/supabase'
+import { DatabaseService, RealtimeService } from '@/lib/supabase'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -689,7 +689,7 @@ export function RoleBasedContent({
       setIsSearching(true)
       try {
         // Use fuzzy search for partial matches on name, email, or roll number
-        const searchRes = await DatabaseService.searchStudents(searchTerm, 10)
+        const searchRes = await RealtimeService.searchStudents(searchTerm, 10)
         if (searchRes.error) {
           throw searchRes.error
         }

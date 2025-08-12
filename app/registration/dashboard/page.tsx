@@ -45,12 +45,12 @@ interface SubmissionForm {
 }
 
 interface User {
-  name: string;
-  rollNumber: string;
+  full_name: string;
+  roll_number: string;
   email: string;
   branch: string;
   year: string;
-  phone: string;
+  phone_number: string;
 }
 
 export default function DashboardPage() {
@@ -408,7 +408,7 @@ export default function DashboardPage() {
               <ECellLogo size="md" className="text-primary" />
               <div>
                 <h1 className="text-xl font-bold">Startup Portal</h1>
-                <p className="text-sm text-muted-foreground">Welcome, {user.name}</p>
+                <p className="text-sm text-muted-foreground">Welcome, {user.full_name}</p>
               </div>
             </div>
             <Button variant="outline" onClick={handleLogout} className="gap-2">
@@ -552,7 +552,7 @@ export default function DashboardPage() {
             <ECellLogo size="md" className="text-primary" />
             <div>
               <h1 className="text-xl font-bold">Startup Submission Portal</h1>
-              <p className="text-sm text-muted-foreground">Logged in as: <span className="font-medium">{user.name}</span> ({user.rollNumber})</p>
+              <p className="text-sm text-muted-foreground">Logged in as: <span className="font-medium">{user.full_name}</span> ({user.roll_number})</p>
             </div>
           </div>
           <Button variant="outline" onClick={handleLogout} className="gap-2">
@@ -655,14 +655,14 @@ export default function DashboardPage() {
                   <Lock className="w-3 h-3 text-muted-foreground" />
                   Full Name
                 </Label>
-                <Input value={user.name} disabled className="bg-muted/50 border-muted" />
+                <Input value={user.full_name} disabled className="bg-muted/50 border-muted" />
               </div>
               <div className="space-y-2">
                 <Label className="flex items-center gap-2">
                   <Lock className="w-3 h-3 text-muted-foreground" />
                   Roll Number
                 </Label>
-                <Input value={user.rollNumber} disabled className="bg-muted/50 border-muted" />
+                <Input value={user.roll_number} disabled className="bg-muted/50 border-muted" />
               </div>
               <div className="space-y-2">
                 <Label className="flex items-center gap-2">
@@ -699,7 +699,7 @@ export default function DashboardPage() {
                       message: "Please enter a valid 10-digit phone number"
                     }
                   })}
-                  defaultValue={user.phone}
+                  defaultValue={user.phone_number}
                   placeholder="Update your phone number"
                   className="border-primary/20 focus:border-primary"
                 />
@@ -961,11 +961,11 @@ export default function DashboardPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                         <div className="space-y-1">
                           <Label className="text-xs text-muted-foreground">Full Name</Label>
-                          <Input value={user?.name || ""} disabled className="bg-muted/50 text-sm" />
+                          <Input value={user?.full_name || ""} disabled className="bg-muted/50 text-sm" />
                         </div>
                         <div className="space-y-1">
                           <Label className="text-xs text-muted-foreground">Roll Number</Label>
-                          <Input value={user?.rollNumber || ""} disabled className="bg-muted/50 text-sm" />
+                          <Input value={user?.roll_number || ""} disabled className="bg-muted/50 text-sm" />
                         </div>
                         <div className="space-y-1">
                           <Label className="text-xs text-muted-foreground">Branch</Label>
@@ -977,7 +977,7 @@ export default function DashboardPage() {
                         </div>
                         <div className="space-y-1">
                           <Label className="text-xs text-muted-foreground">Phone</Label>
-                          <Input value={user?.phone || ""} disabled className="bg-muted/50 text-sm" />
+                          <Input value={user?.phone_number || ""} disabled className="bg-muted/50 text-sm" />
                         </div>
                       </div>
                     </div>
