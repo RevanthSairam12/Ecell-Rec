@@ -286,8 +286,11 @@ export default function DashboardPage() {
 
     try {
       // Create student record for the leader
+      if (!user) {
+        throw new Error('User not found');
+      }
       const studentResult = await MockDataService.createStudent({
-        name: user.full_name,
+        name: user.name,
         roll_number: user.roll_number,
         email: user.email,
         role: 'leader',
