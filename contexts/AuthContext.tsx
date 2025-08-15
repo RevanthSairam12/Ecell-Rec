@@ -368,7 +368,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         team_id: newStudent.team_id
       })
 
-      const studentToStore = {
+      const studentData = {
         id: newStudent.id,
         name: newStudent.name,
         roll_number: newStudent.roll_number,
@@ -377,10 +377,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         team_id: newStudent.team_id
       }
 
-      localStorage.setItem('student', JSON.stringify(studentToStore))
+      localStorage.setItem('student', JSON.stringify(studentData))
 
       // Set cookie for middleware authentication
-      const cookieValue = encodeURIComponent(JSON.stringify(studentToStore))
+      const cookieValue = encodeURIComponent(JSON.stringify(studentData))
       document.cookie = `student-auth=${cookieValue}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`
 
       return { success: true }

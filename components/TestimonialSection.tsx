@@ -70,12 +70,12 @@ const TestimonialSection = () => {
               {/* Text content - exact match */}
               <div className="flex-1">
                 <p className="text-white text-lg leading-relaxed mb-6 font-light">
-                  I've been there—the late nights, the doubts, the grind. But being part of E-Cell REC has been a game-changer. It's not just about networking. It's about real growth, learning, and thriving alongside like-minded entrepreneurs. Through workshops, inspiring events, and a vibrant community of peers, E-Cell REC helps us push boundaries, innovate, and elevate our ventures.
+                  E-Cell REC is more than just an entrepreneurship club—it's a community where innovation meets opportunity. Through our workshops, events, and collaborative environment, we empower students to transform their ideas into impactful ventures and build the future of entrepreneurship.
                 </p>
 
                 <div className="text-white">
-                  <span className="font-bold">Sriram Vishal Epu</span>
-                  <span className="font-light">, E-Cell REC President</span>
+                  <span className="font-bold">E-Cell REC Team</span>
+                  <span className="font-light">, Entrepreneurship Cell</span>
                 </div>
               </div>
 
@@ -91,8 +91,8 @@ const TestimonialSection = () => {
                   {/* Profile photo */}
                   <div className="absolute inset-4 w-24 h-24 rounded-full overflow-hidden bg-blue-400">
                     <Image
-                      src="/group/group3.jpg"
-                      alt="Sriram Vishal Epu"
+                      src="/group/group1.jpg"
+                      alt="E-Cell REC Team"
                       fill
                       className="object-cover"
                     />

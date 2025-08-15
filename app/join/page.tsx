@@ -1,29 +1,32 @@
 'use client'
 
-import { useState } from "react";
+// import { useState } from "react"; // Commented out - not needed when registrations are closed
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+// import { Button } from "@/components/ui/button"; // Commented out - no buttons needed when registrations are closed
+// import { Input } from "@/components/ui/input"; // Commented out - form components not needed
+// import { Label } from "@/components/ui/label";
+// import { Textarea } from "@/components/ui/textarea";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Users, Heart, Building, CheckCircle, ArrowRight, Zap } from "lucide-react";
+import { Users, Heart, Building, Zap, XCircle, Clock } from "lucide-react";
 
 export default function JoinUs() {
-  const [membershipType, setMembershipType] = useState("member");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    domain: "",
-    year: "",
-    experience: "",
-    motivation: ""
-  });
+  // Commented out - state not needed when registrations are closed
+  // const [membershipType, setMembershipType] = useState("member");
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  //   domain: "",
+  //   year: "",
+  //   experience: "",
+  //   motivation: ""
+  // });
 
+  // Commented out - not needed when registrations are closed
+  /*
   const membershipOptions = [
     {
       id: "member",
@@ -41,7 +44,7 @@ export default function JoinUs() {
     },
     {
       id: "volunteer",
-      title: "Core Team Volunteer", 
+      title: "Core Team Volunteer",
       description: "For dedicated students ready to lead and organize",
       icon: Heart,
       color: "text-innovation bg-innovation/10",
@@ -91,6 +94,7 @@ export default function JoinUs() {
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+  */
 
   return (
     <div className="min-h-screen bg-background">
@@ -100,23 +104,29 @@ export default function JoinUs() {
       <section className="pt-24 pb-16 bg-hero-gradient">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto text-white">
+            {/* Registration Closed Notice */}
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-500/20 border border-red-400/30 backdrop-blur-sm mb-6">
+              <XCircle className="w-4 h-4 mr-2 text-red-400" />
+              <span className="text-red-300 text-sm font-medium">Registrations Currently Closed</span>
+            </div>
+
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">
-              Join Our Community
+              Join Our Team
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-              Build startups. Build your network. Build yourself.
+              Registrations are currently closed. Stay tuned for future opportunities!
             </p>
             <div className="flex items-center justify-center space-x-8 text-lg animate-fade-up" style={{ animationDelay: '0.4s' }}>
               <div className="text-center">
-                <div className="text-2xl font-bold">500+</div>
-                <div className="opacity-80">Active Members</div>
+                <div className="text-2xl font-bold">18+</div>
+                <div className="opacity-80">Active Team Members</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">50+</div>
                 <div className="opacity-80">Events Yearly</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">15+</div>
+                <div className="text-2xl font-bold">5+</div>
                 <div className="opacity-80">Startups Launched</div>
               </div>
             </div>
@@ -124,7 +134,27 @@ export default function JoinUs() {
         </div>
       </section>
 
-      {/* Membership Options */}
+      {/* Registration Closed Notice */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <Card className="p-8 border-2 border-red-200 bg-red-50/50">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Clock className="w-8 h-8 text-red-600" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Registrations Are Currently Closed
+              </h2>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                Thank you for your interest in joining E-Cell REC! We are not currently accepting new applications,
+                but we encourage you to stay connected with us for future opportunities.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* COMMENTED OUT - Membership Options (Available when registrations reopen)
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -138,11 +168,11 @@ export default function JoinUs() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {membershipOptions.map((option) => (
-              <Card 
-                key={option.id} 
+              <Card
+                key={option.id}
                 className={`p-8 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                  membershipType === option.id 
-                    ? 'ring-2 ring-primary shadow-lg scale-105' 
+                  membershipType === option.id
+                    ? 'ring-2 ring-primary shadow-lg scale-105'
                     : 'hover:scale-105'
                 }`}
                 onClick={() => setMembershipType(option.id)}
@@ -165,8 +195,8 @@ export default function JoinUs() {
 
                 <div className="flex items-center justify-center">
                   <div className={`w-6 h-6 rounded-full border-2 ${
-                    membershipType === option.id 
-                      ? 'border-primary bg-primary' 
+                    membershipType === option.id
+                      ? 'border-primary bg-primary'
                       : 'border-muted-foreground'
                   } flex items-center justify-center`}>
                     {membershipType === option.id && (
@@ -179,8 +209,9 @@ export default function JoinUs() {
           </div>
         </div>
       </section>
+      */}
 
-      {/* Application Form */}
+      {/* COMMENTED OUT - Application Form (Available when registrations reopen)
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
@@ -195,7 +226,6 @@ export default function JoinUs() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Basic Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name">Full Name *</Label>
@@ -289,7 +319,7 @@ export default function JoinUs() {
                   />
                 </div>
 
-                <Button 
+                <Button
                   type="submit"
                   className="w-full bg-hero-gradient hover:opacity-90 text-lg py-6"
                 >
@@ -301,6 +331,7 @@ export default function JoinUs() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Benefits Section */}
       <section className="py-20">

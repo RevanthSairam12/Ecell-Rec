@@ -272,51 +272,7 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* Suggestion Box - Matching home page blue section style */}
-      <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative bg-blue-600 rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden">
 
-            {/* Header Section */}
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                Suggest a Resource
-              </h2>
-              <p className="text-base md:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-                Can't find what you're looking for? Let us know what resources would be helpful for your entrepreneurial journey.
-              </p>
-            </div>
-
-            {/* Suggestion Form */}
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-white mb-2 block">
-                      Resource Suggestion
-                    </label>
-                    <Textarea
-                      placeholder="Describe the resource you'd like to see (e.g., 'Legal checklist for startups', 'Marketing strategy template')"
-                      value={suggestion}
-                      onChange={(e) => setSuggestion(e.target.value)}
-                      className="min-h-[120px] bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:bg-white/30"
-                    />
-                  </div>
-
-                  <Button
-                    onClick={handleSuggestion}
-                    className="w-full bg-white text-blue-600 hover:bg-white/90 px-8 py-3 rounded-lg font-semibold text-base transition-all duration-300"
-                    disabled={!suggestion.trim()}
-                  >
-                    Submit Suggestion
-                    <Send className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Quick Access Section - Matching home page gray section style */}
       <section className="relative py-16 px-6 overflow-hidden bg-gray-50">

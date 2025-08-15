@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -12,7 +13,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Team", href: "/team" },
-    { name: "Past Events", href: "/events" },
+    { name: "Events", href: "/events" },
     { name: "Resources", href: "/resources" },
     { name: "Startups", href: "/startups" },
     { name: "Advisory Board", href: "/advisory-board" },
@@ -47,15 +48,16 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
-              <div className={`w-8 h-8 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 rounded-full flex items-center justify-center transition-all duration-300 ${
-                isScrolled ? 'shadow-md' : ''
-              }`}>
-                <span className="text-white font-bold text-sm">EC</span>
+            <Link href="/" className="transition-transform duration-200 hover:scale-105">
+              <div className="relative w-32 h-12">
+                <Image
+                  src="/icons/ecellverynew.png"
+                  alt="E-Cell REC"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <span className={`text-base font-medium transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-gray-900'
-              }`}>E-Cell REC</span>
             </Link>
           </div>
 

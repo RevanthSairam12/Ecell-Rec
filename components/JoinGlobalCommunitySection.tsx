@@ -64,12 +64,16 @@ const JoinECellCommunitySection = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
-            Join E-Cell REC
-          </Button>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
-            Explore Resources
-          </Button>
+          <a href="/join">
+            <Button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
+              Join as Volunteer
+            </Button>
+          </a>
+          <a href="/resources">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
+              Explore Resources
+            </Button>
+          </a>
         </div>
       </div>
     </section>

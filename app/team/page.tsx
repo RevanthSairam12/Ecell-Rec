@@ -3,119 +3,35 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurrentTeamMembers from "@/app/team-cmp/CurrentTeamData";
 
 export default function Team() {
-  // Current Team Data - Keeping your existing team members
-  const currentTeam = [
-    {
-      name: "Sriram Vishal Epu",
-      role: "President",
-      subtitle: "Leading the entrepreneurial revolution at REC",
-      image: "/vishal.jpg"
-    },
-    {
-      name: "I.Sree Venkat Nadh",
-      role: "Vice President",
-      subtitle: "Driving strategic initiatives and startup culture",
-      image: "/venky.jpg"
-    },
-    {
-      name: "Aamuktha Malyadha",
-      role: "Vice President",
-      subtitle: "Empowering students to transform ideas into ventures",
-      image: "/aamukta.jpg"
-    },
-    {
-      name: "G.V Santosh",
-      role: "Startup Assistance & Program Head",
-      subtitle: "Guiding startups from ideation to execution",
-      image: "/santosh.jpg"
-    },
-    {
-      name: "Tappiti Ganesh",
-      role: "Startup Assistance & Program Head",
-      subtitle: "Building bridges between innovation and implementation",
-      image: "/ganesh.jpg"
-    },
-    {
-      name: "Ponugupati Sai Pawan",
-      role: "Startup Assistance & Program Head",
-      subtitle: "Nurturing entrepreneurial talent and innovation",
-      image: "/Pawan2.jpg"
-    },
-    {
-      name: "Ujjesha Nitya Routhu",
-      role: "Alumni & Community Relations Head",
-      subtitle: "Connecting past, present, and future entrepreneurs",
-      image: "/nitya.jpg"
-    },
-    {
-      name: "Jeevan Sai Eddipilli",
-      role: "Web Tech Head",
-      subtitle: "Building digital solutions for entrepreneurs",
-      image: "/EJeevan.jpg"
-    },
-    {
-      name: "Revanth Sai Ram",
-      role: "Web Tech Head",
-      subtitle: "Creating innovative web experiences",
-      image: "/Revanth.jpg"
-    },
-    {
-      name: "Sai Sashank Nath",
-      role: "Designing & Branding Head",
-      subtitle: "Crafting visual identities that inspire",
-      image: "/sashank.jpg"
-    },
-    {
-      name: "Vineela Vadrevu",
-      role: "Marketing & Outreach Head",
-      subtitle: "Amplifying entrepreneurial voices",
-      image: "/vineela.jpg"
-    },
-    {
-      name: "Sagi Sanvitha",
-      role: "Marketing & Outreach Head",
-      subtitle: "Spreading the entrepreneurial spirit",
-      image: "/sanvitha.jpg"
-    },
-    {
-      name: "Mohammad Shahidulla",
-      role: "Events & Management Head",
-      subtitle: "Orchestrating memorable events",
-      image: "/shahid.jpg"
-    },
-    {
-      name: "Shazia Sadaf",
-      role: "Events & Management Head",
-      subtitle: "Creating impactful experiences",
-      image: "/shazia.jpg"
-    },
-    {
-      name: "Enduga Ramya",
-      role: "Events & Management Head",
-      subtitle: "Bringing creative vision to life",
-      image: "/ramya.jpg"
-    },
-    {
-      name: "Jeevan Kurmadasu",
-      role: "Events & Management Head",
-      subtitle: "Ensuring seamless execution",
-      image: "/KJeevan.jpg"
-    },
-    {
-      name: "Renitha Ashwa",
-      role: "Club Chronicles Head",
-      subtitle: "Documenting the entrepreneurial journey",
-      image: "/renitha.jpeg"
-    },
-    {
-      name: "Shaik Karishma",
-      role: "Club Chronicles Head",
-      subtitle: "Capturing moments that inspire future entrepreneurs",
-      image: "/karishma.jpg"
-    }
-  ];
+  // Transform the imported team data to match the expected format
+  const currentTeam = CurrentTeamMembers.map(member => ({
+    name: member.name,
+    role: member.role,
+    subtitle: getSubtitleForRole(member.role),
+    image: member.imageUrl,
+    socialLinks: member.socialLinks
+  }));
+
+  // Helper function to get subtitle based on role
+  function getSubtitleForRole(role: string): string {
+    const subtitles: { [key: string]: string } = {
+      "President": "Leading the entrepreneurial revolution at REC",
+      "Vice President": "Driving strategic initiatives and startup culture",
+      "Startup Assistance & program Head": "Guiding startups from ideation to execution",
+      "Alumni & Community Relations Head": "Connecting past, present, and future entrepreneurs",
+      "Web Tech Head": "Building digital solutions for entrepreneurs",
+      "Designing & Branding Head": "Crafting visual identities that inspire",
+      "Marketing & Outreach Head": "Amplifying entrepreneurial voices",
+      "Events & Management Head": "Orchestrating memorable events",
+      "Content & Social Media Head": "Creating engaging content and managing social presence",
+      "Finance & Operations Head": "Managing resources and operational excellence",
+      "Research & Development Head": "Exploring new frontiers in entrepreneurship"
+    };
+    return subtitles[role] || "Contributing to entrepreneurial excellence";
+  }
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -188,8 +104,49 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Meet Our Team Section - Exact same design as Global Board */}
+      {/* Faculty Coordinator Section */}
       <section className="py-16 px-6 bg-slate-900 pt-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Faculty Coordinator
+            </h1>
+          </div>
+
+          {/* Faculty Coordinator - Single member centered */}
+          <div className="flex justify-center mb-16">
+            <div className="text-center max-w-xs">
+              {/* Profile Image with rounded corners */}
+              <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
+                <Image
+                  src="/kirankumar.png"
+                  alt="Dr. G. Kiran Kumar"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+
+              {/* Member Info */}
+              <div className="text-white">
+                <h3 className="text-lg font-bold mb-1">
+                  Dr. G. Kiran Kumar
+                </h3>
+                <p className="text-yellow-400 text-sm font-medium mb-1">
+                  Faculty Coordinator
+                </p>
+                <p className="text-gray-300 text-xs">
+                  Mentoring students in entrepreneurship and innovation
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Our Team Section - Exact same design as Global Board */}
+      <section className="py-16 px-6 bg-slate-900 pt-0">
         <div className="max-w-7xl mx-auto">
 
           {/* Header - Exact same styling */}
@@ -202,16 +159,43 @@ export default function Team() {
           {/* Team Members Grid - 4 columns layout exactly as shown */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {currentTeam.map((member, index) => (
-              <div key={member.name} className="text-center">
-                {/* Profile Image with rounded corners - exact same styling */}
+              <div key={member.name} className="text-center group">
+                {/* Profile Image with rounded corners and hover overlay */}
                 <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
                   <Image
                     src={member.image}
                     alt={member.name}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                     priority={index < 8}
                   />
+
+                  {/* Social Links Overlay - appears on hover */}
+                  {member.socialLinks && (
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="flex space-x-4">
+                        {member.socialLinks.map((link, linkIndex) => (
+                          <a
+                            key={linkIndex}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors duration-200"
+                          >
+                            {link.platform === 'Twitter' ? (
+                              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                              </svg>
+                            ) : link.platform === 'LinkedIn' ? (
+                              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                            ) : null}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Member Info - exact same styling */}

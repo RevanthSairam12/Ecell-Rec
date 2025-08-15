@@ -29,6 +29,32 @@ export default function StudentLoginPage() {
     }
   }, [isStudentAuthenticated, student, router])
 
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`
+        }
+      })
+
+      if (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to sign in with Google',
+          variant: 'destructive'
+        })
+      }
+    } catch (error) {
+      console.error('Google login error:', error)
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred',
+        variant: 'destructive'
+      })
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -83,27 +109,7 @@ export default function StudentLoginPage() {
     }))
   }
 
-  const handleGoogleLogin = async () => {
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-          queryParams: {
-            hd: 'raghuenggcollege.in'
-          }
-        }
-      })
-      if (error) throw error
-    } catch (e) {
-      console.error('Google OAuth error:', e)
-      toast({
-        title: 'Google Sign-in Failed',
-        description: 'Please try again.',
-        variant: 'destructive'
-      })
-    }
-  }
+
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{

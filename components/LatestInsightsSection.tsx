@@ -9,15 +9,15 @@ const LatestInsightsSection = () => {
     {
       id: 1,
       image: "/group/group1.jpg",
-      title: "E-Cell REC Student Selected as Outstanding Entrepreneur of the Year 2025",
-      description: "Student entrepreneur Sriram Vishal Epu, a dedicated E-Cell REC member, is recognized for exceptional leadership and innovation in the entrepreneurial ecosystem.",
+      title: "E-Cell REC Hosts Successful Innovation Workshop Series",
+      description: "E-Cell REC organized a comprehensive workshop series focusing on startup fundamentals, innovation methodologies, and entrepreneurial skill development for aspiring student entrepreneurs.",
       date: "July 19, 2025"
     },
     {
       id: 2,
-      image: "/group/group2.jpg", 
-      title: "REC Student Named Champion in National Student Entrepreneur Awards",
-      description: "E-Cell REC member Aamuktha Malyadha earned the top spot in the national student entrepreneur competition, showcasing innovative solutions and leadership skills.",
+      image: "/group/group2.jpg",
+      title: "E-Cell REC Launches New Startup Incubation Program",
+      description: "The entrepreneurship cell introduces an innovative incubation program designed to support student startups with mentorship, resources, and networking opportunities.",
       date: "July 17, 2025"
     },
     {
@@ -78,12 +78,14 @@ const LatestInsightsSection = () => {
           ))}
         </div>
 
-        {/* Explore All Resources Button */}
+        {/* Explore All Events Button */}
         <div className="text-center">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium text-sm flex items-center space-x-2 mx-auto">
-            <span>Explore All Resources</span>
-            <ArrowRight className="w-4 h-4" />
-          </Button>
+          <a href="/events">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium text-sm flex items-center space-x-2 mx-auto">
+              <span>Explore All Events</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

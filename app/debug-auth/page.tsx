@@ -22,10 +22,8 @@ export default function DebugAuth() {
   }
 
   const handleClearStorage = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.clear()
-      window.location.reload()
-    }
+    localStorage.clear()
+    window.location.reload()
   }
 
   return (
@@ -88,11 +86,11 @@ export default function DebugAuth() {
         <div className="bg-gray-800 p-6 rounded-lg md:col-span-2">
           <h2 className="text-xl font-bold mb-4">LocalStorage Contents</h2>
           <pre className="bg-gray-700 p-3 rounded text-sm overflow-auto">
-            {typeof window !== 'undefined' ? JSON.stringify({
+            {JSON.stringify({
               student: localStorage.getItem('student'),
               user: localStorage.getItem('user'),
               admin: localStorage.getItem('admin')
-            }, null, 2) : 'LocalStorage not available during SSR'}
+            }, null, 2)}
           </pre>
         </div>
       </div>

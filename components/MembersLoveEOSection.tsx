@@ -9,20 +9,6 @@ const MembersLoveECellSection = () => {
 
   const testimonials = [
     {
-      text: "Being a member of E-Cell REC is such a special gift! We come from different departments, backgrounds, and experiences, and yet we're all aspiring entrepreneurs. It's this mix of diverse perspectives and shared passions that makes E-Cell membership so enriching and magical.",
-      name: "Sriram Vishal Epu",
-      location: "E-Cell REC President",
-      image: "/group/group2.jpg",
-      circleColor: "border-pink-500"
-    },
-    {
-      text: "E-Cell REC provided a platform where vulnerability met experience. Through workshops and collective learning, I found a structured space to address challenges, gaining insights crucial for personal and entrepreneurial growth.",
-      name: "Aamuktha Malyadha",
-      location: "E-Cell REC Vice President",
-      image: "/group/group4.jpg",
-      circleColor: "border-teal-500"
-    },
-    {
       text: "The focus on innovation inspired individual to think beyond traditional approaches and create solutions that effectively address real-world needs. This experience not only enhanced their perspective but also helped them to grow into a more confident and resourceful individual.",
       name: "Dr. R.Shivaranjani",
       location: "Head of the department CSC&CSO",
@@ -254,9 +240,7 @@ const MembersLoveECellSection = () => {
           </div>
 
           {/* Debug info - remove this after testing */}
-          <div className="text-center mt-4 text-sm text-gray-500">
-            Current testimonial: {currentTestimonial + 1} of {testimonials.length}
-          </div>
+
         </div>
       </div>
     </section>

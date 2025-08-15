@@ -127,9 +127,9 @@ export default function AdvisoryBoard() {
             </h1>
           </div>
 
-          {/* Advisory Board Members Grid - 4 columns layout exactly as shown */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {advisoryBoardMembers.map((member, index) => (
+          {/* Advisory Board Members Grid - First row with 4 members */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
+            {advisoryBoardMembers.slice(0, 4).map((member, index) => (
               <div key={member.name} className="text-center">
                 {/* Profile Image with rounded corners - exact same styling */}
                 <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
@@ -156,6 +156,39 @@ export default function AdvisoryBoard() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Second row with 2 members centered */}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8" style={{width: 'calc(50% + 1rem)'}}>
+              {advisoryBoardMembers.slice(4, 6).map((member, index) => (
+                <div key={member.name} className="text-center">
+                  {/* Profile Image with rounded corners - exact same styling */}
+                  <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                      priority={index < 8}
+                    />
+                  </div>
+
+                  {/* Member Info - exact same styling */}
+                  <div className="text-white">
+                    <h3 className="text-lg font-bold mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-yellow-400 text-sm font-medium mb-1">
+                      {member.role}
+                    </p>
+                    <p className="text-gray-300 text-xs">
+                      {member.subtitle}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

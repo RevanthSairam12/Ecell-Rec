@@ -13,12 +13,14 @@ const VideoSection = () => {
           In E-Cell, we belong, so we can become even more.
         </h2>
 
-        {/* Explore Button */}
+        {/* Advisory Team Button */}
         <div className="mb-12">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium text-base flex items-center space-x-2 mx-auto">
-            <span>Explore E-Cell</span>
-            <ArrowRight className="w-4 h-4" />
-          </Button>
+          <a href="/advisory-board">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium text-base flex items-center space-x-2 mx-auto">
+              <span>Explore E-Cell</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </a>
         </div>
 
         {/* Video Container */}

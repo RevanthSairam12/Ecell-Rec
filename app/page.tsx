@@ -12,6 +12,7 @@ import ECellByTheNumbers from "@/components/EOByTheNumbers";
 import LatestInsightsSection from "@/components/LatestInsightsSection";
 import JoinECellCommunitySection from "@/components/JoinGlobalCommunitySection";
 import Footer from "@/components/Footer";
+import EurekaPopup from "@/components/EurekaPopup";
 
 export default function NewDesignHome() {
   return (
@@ -27,6 +28,9 @@ export default function NewDesignHome() {
       <LatestInsightsSection />
       <JoinECellCommunitySection />
       <Footer />
+
+      {/* Eureka Popup */}
+      <EurekaPopup />
     </div>
   );
 }
