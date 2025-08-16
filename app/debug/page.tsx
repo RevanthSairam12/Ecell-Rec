@@ -30,7 +30,9 @@ export default function DebugPage() {
         })
       } catch (error) {
         console.error('Error loading data:', error)
-        setData({ error: error.message })
+        setData({
+          error: error instanceof Error ? error.message : 'An error occurred'
+        })
       } finally {
         setLoading(false)
       }
