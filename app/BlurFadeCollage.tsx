@@ -16,9 +16,9 @@ export default function BlurFadeCollage() {
               className="mb-4 size-full rounded-lg object-contain"
               src={imageUrl}
               alt={`Image ${idx + 1}`}
-              width={800} // Adjust based on your image size
-              height={600} // Adjust based on your image size
-              layout="responsive" // Use responsive layout
+              width={800}
+              height={600}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </BlurFade>
         ))}

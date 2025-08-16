@@ -1,5 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
+// Supabase configuration
+// Prefer environment variables; fall back to provided project values for convenience during development
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xnedeeqfypkrvzcvxzzd.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhuZWRlZXFmeXBrcnZ6Y3Z4enpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxMTY5OTcsImV4cCI6MjA2OTY5Mjk5N30.U5H1x4NrzmKfxzyW9PzI5L3GEVCNbhm4MK5XOag6I8E'
 
@@ -771,6 +773,7 @@ export class DatabaseService {
       return { data: null, error }
     }
   }
+}
 
 // Real-time subscription helpers
 export class RealtimeService {
@@ -823,5 +826,7 @@ export class RealtimeService {
       console.error('Error searching students:', error)
       return { data: null, error }
     }
-
   }
+}
+
+export default supabase
