@@ -218,7 +218,8 @@ export function RoleBasedContent({
             subtitle: hasTeam ? `Member of ${team?.leader?.name}'s team` : 'Ready to start your journey?',
             icon: hasTeam ? Users : User,
             color: hasTeam ? 'text-blue-400' : 'text-muted-foreground',
-            bgColor: hasTeam ? 'bg-blue-500/20' : 'bg-muted/20'
+            bgColor: hasTeam ? 'bg-blue-500/20' : 'bg-muted/20',
+            trend: null
           },
           {
             title: 'Team Status',
@@ -226,7 +227,8 @@ export function RoleBasedContent({
             subtitle: hasTeam ? 'Contributing to team success' : 'Submit an idea to create your team',
             icon: hasTeam ? CheckCircle : AlertCircle,
             color: hasTeam ? 'text-green-400' : 'text-yellow-400',
-            bgColor: hasTeam ? 'bg-green-500/20' : 'bg-yellow-500/20'
+            bgColor: hasTeam ? 'bg-green-500/20' : 'bg-yellow-500/20',
+            trend: null
           },
           {
             title: 'Idea Status',
@@ -234,7 +236,8 @@ export function RoleBasedContent({
             subtitle: hasIdea ? `Team idea: ${idea.title}` : 'No team idea yet',
             icon: hasIdea ? Lightbulb : AlertCircle,
             color: hasIdea ? 'text-purple-400' : 'text-muted-foreground',
-            bgColor: hasIdea ? 'bg-purple-500/20' : 'bg-muted/20'
+            bgColor: hasIdea ? 'bg-purple-500/20' : 'bg-muted/20',
+            trend: null
           }
         ]
       }
@@ -701,7 +704,7 @@ export function RoleBasedContent({
       setIsSearching(true)
       try {
         // Use fuzzy search for partial matches on name, email, or roll number
-        const searchRes = await DatabaseService.searchStudents(searchTerm, 10)
+        const searchRes = await (DatabaseService as any).searchStudents(searchTerm, 10)
         if (searchRes.error) {
           throw searchRes.error
         }
@@ -745,7 +748,11 @@ export function RoleBasedContent({
         // Add team member in backend
         const addRes = await DatabaseService.addTeamMember(team.id, studentToAdd.id)
         if (addRes.error) {
-          throw new Error(addRes.error.message || 'Failed to add member')
+          throw new Error(
+            addRes.error instanceof Error
+              ? addRes.error.message
+              : 'Failed to add member'
+          )
         }
 
         // Refresh data

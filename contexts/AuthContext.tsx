@@ -355,7 +355,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Create a student in DB
       const result = await DatabaseService.createStudent(studentData)
       if (result.error || !result.data) {
-        throw new Error(result.error?.message || 'Failed to create student account')
+        throw new Error(
+          result.error instanceof Error
+            ? result.error.message
+            : 'Failed to create student account'
+        )
       }
 
       const newStudent = result.data
@@ -368,7 +372,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         team_id: newStudent.team_id
       })
 
-      const studentData = {
+      const studentForStorage = {
         id: newStudent.id,
         name: newStudent.name,
         roll_number: newStudent.roll_number,
@@ -377,7 +381,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         team_id: newStudent.team_id
       }
 
-      localStorage.setItem('student', JSON.stringify(studentData))
+      localStorage.setItem('student', JSON.stringify(studentForStorage))
 
       // Set cookie for middleware authentication
       const cookieValue = encodeURIComponent(JSON.stringify(studentData))
@@ -411,7 +415,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       })
 
       if (result.error) {
-        throw new Error(result.error.message || 'Failed to update student role')
+        throw new Error(
+          result.error instanceof Error
+            ? result.error.message
+            : 'Failed to update student role'
+        )
       }
 
       const updatedStudent = {

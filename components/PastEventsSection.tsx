@@ -1,6 +1,6 @@
 'use client'
 
-import { EventsCard } from "../app/EventsCard";
+// import { EventsCard } from "../app/EventsCard"; // TODO: Create EventsCard component
 
 const PastEventsSection = () => {
   return (
@@ -18,7 +18,10 @@ const PastEventsSection = () => {
 
         {/* Events Card Component with Old UI */}
         <div className="relative">
-          <EventsCard />
+          {/* <EventsCard /> */}
+          <div className="text-center text-gray-400">
+            Events component coming soon...
+          </div>
         </div>
       </div>
     </section>
