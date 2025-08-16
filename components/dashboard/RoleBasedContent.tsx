@@ -128,7 +128,11 @@ export function RoleBasedContent({
       // Create team for the student (leader)
       const teamResult = await DatabaseService.createTeam(student.id)
       if (teamResult.error || !teamResult.data) {
-        throw new Error(teamResult.error?.message || 'Failed to create team')
+        throw new Error(
+          teamResult.error instanceof Error
+            ? teamResult.error.message
+            : 'Failed to create team'
+        )
       }
 
       // Update student role to leader
@@ -451,7 +455,11 @@ export function RoleBasedContent({
             status: 'submitted' as const
           })
           if (updateRes.error || !updateRes.data) {
-            throw new Error(updateRes.error?.message || 'Failed to update idea')
+            throw new Error(
+              updateRes.error instanceof Error
+                ? updateRes.error.message
+                : 'Failed to update idea'
+            )
           }
           savedIdea = updateRes.data
         } else {
@@ -462,7 +470,11 @@ export function RoleBasedContent({
             status: 'submitted' as const
           })
           if (createRes.error || !createRes.data) {
-            throw new Error(createRes.error?.message || 'Failed to submit idea')
+            throw new Error(
+              createRes.error instanceof Error
+                ? createRes.error.message
+                : 'Failed to submit idea'
+            )
           }
           savedIdea = createRes.data
         }
