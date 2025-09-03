@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+// iic.png should be placed in public/images/iic.png and referenced by a public URL
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -45,9 +46,9 @@ const Header = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 relative">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center space-x-3">
             <Link href="/" className="transition-transform duration-200 hover:scale-105">
               <div className="relative w-32 h-12">
                 <Image
@@ -59,10 +60,21 @@ const Header = () => {
                 />
               </div>
             </Link>
+
+            <Link href="/" className="transition-transform duration-200 hover:scale-105">
+              <div className="relative w-32 h-12">
+                <Image
+                  src="/icons/iic.png"
+                  alt="IIC"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </Link>
           </div>
 
-          {/* Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Navigation (centered) */}
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 z-10">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -77,18 +89,6 @@ const Header = () => {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
-            <Link href="/registration" className="hidden sm:inline-block">
-              <Button variant="outline" className="text-sm transition-all duration-200 hover:scale-105 hover:shadow-md">
-                Login
-              </Button>
-            </Link>
-
-            <Link href="/join-ecell" className="hidden sm:inline-block">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                Apply Today
-              </Button>
-            </Link>
-
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button
@@ -123,18 +123,6 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="px-3 py-2 space-y-2">
-                <Link href="/registration">
-                  <Button variant="outline" className="w-full">
-                    Login
-                  </Button>
-                </Link>
-                <Link href="/join-ecell">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                    Apply Today
-                  </Button>
-                </Link>
-              </div>
             </div>
           </div>
         )}

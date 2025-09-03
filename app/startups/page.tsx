@@ -38,44 +38,34 @@ export default function Startups() {
 
   const startupStories = [
     {
-      name: "AvatAQ",
-      founder: "Rahul Sharma",
-      description: "AI-powered water quality monitoring system for smart cities",
-      status: "Incubated",
+      name: "AVATAQ.AI",
+      founder: "Vishal & Santosh",
+      description: "AI-powered Agentic AI",
+      status: "MVP Ready",
       badge: "NSIC Shortlisted",
-      funding: "₹15L Raised",
+      funding: "Looking for VCS",
       logo: "AQ",
       achievements: ["50+ Installations", "3 City Partnerships", "IoT Innovation Award"]
     },
     {
-      name: "EduTech Solutions",
-      founder: "Priya Patel",
-      description: "Personalized learning platform for rural education",
+      name: "PromptCraft",
+      founder: "Vishal & Santosh",
+      description: "Prompt tool for students for perfect JSON prompts",
       status: "Prototype Ready",
       badge: "Prototype Ready",
-      funding: "₹5L Seeking",
-      logo: "ES",
+      funding: "Looking for VCS",
+      logo: "PC",
       achievements: ["1000+ Students", "5 Schools", "Education Excellence Award"]
     },
     {
-      name: "GreenTech Innovations",
-      founder: "Arjun Kumar",
-      description: "Sustainable packaging solutions for e-commerce",
+      name: "Buildtrix",
+      founder: "Ganesh Tappiti",
+      description: "Easy platform to generate MVP's",
       status: "Early Stage",
-      badge: "Incubated",
-      funding: "₹8L Raised",
-      logo: "GT",
+      badge: "MVP Ready",
+      funding: "Looking for VCS",
+      logo: "BT",
       achievements: ["Zero Waste Goal", "B2B Partnerships", "Sustainability Award"]
-    },
-    {
-      name: "HealthAI",
-      founder: "Sneha Reddy",
-      description: "AI-driven diagnostic tool for remote healthcare",
-      status: "Growth Stage",
-      badge: "NSIC Shortlisted",
-      funding: "₹25L Raised",
-      logo: "HA",
-      achievements: ["FDA Approved", "10K+ Diagnoses", "Healthcare Innovation"]
     }
   ];
 

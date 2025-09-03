@@ -6,28 +6,29 @@ import { ArrowRight } from "lucide-react";
 
 const LatestInsightsSection = () => {
   const insights = [
-    {
-      id: 1,
-      image: "/group/group1.jpg",
-      title: "E-Cell REC Hosts Successful Innovation Workshop Series",
-      description: "E-Cell REC organized a comprehensive workshop series focusing on startup fundamentals, innovation methodologies, and entrepreneurial skill development for aspiring student entrepreneurs.",
-      date: "July 19, 2025"
-    },
-    {
-      id: 2,
-      image: "/group/group2.jpg",
-      title: "E-Cell REC Launches New Startup Incubation Program",
-      description: "The entrepreneurship cell introduces an innovative incubation program designed to support student startups with mentorship, resources, and networking opportunities.",
-      date: "July 17, 2025"
-    },
-    {
-      id: 3,
-      image: "/group/group3.jpg",
-      title: "E-Cell REC Launches New Innovation Hub Connecting Student Entrepreneurs",
-      description: "The new E-Cell REC Innovation Hub brings together diverse student entrepreneurs from various departments, fostering collaboration and innovation across the campus.",
-      date: "July 3, 2025"
-    }
-  ];
+  {
+    id: 1,
+    image: "/innv2startup.jpeg",
+    title: "E-Cell REC Kicks Off 2025 with ‘Innovation to Startup’",
+    description: "After a year of building and dreaming behind the scenes, E-Cell REC is back with a fresh team and bigger ambitions for 2025! The year begins with our flagship event, ‘Innovation to Startup,’ a deep-dive session that takes students from idea to execution. Alongside the main event, the inauguration of the new core team and a graduation ceremony for the outgoing members marked this exciting new chapter for E-Cell REC.",
+    date: "July 19, 2025"
+  },
+  {
+    id: 2,
+    image: "/erk.png",
+    title: "Eureka! 2025 – College Pitching Competition",
+    description: "E-Cell REC successfully hosted ‘Eureka! 2025,’ the annual college pitching competition where 20 shortlisted teams pitched their startup ideas before a panel of mentors and judges. The event witnessed bold innovations, high-energy pitches, and valuable feedback from industry experts. Winning teams now advance to the Eureka! Zonals in Delhi, Mumbai, and Bengaluru, marking an inspiring step forward for student entrepreneurship at REC.",
+    date: "August 23, 2025"
+  },
+  {
+    id: 3,
+    image: "/trdng.jpeg",
+    title: "Basics of Investing & Riding the Market Rollercoaster",
+    description: "E-Cell REC hosted an engaging session on ‘Basics of Investing & Riding the Market Rollercoaster,’ led by capital markets expert Jay Mehta. The session covered market cycles, investment strategies, and fundraising essentials for startups. Students gained hands-on experience through paper trading, while also learning about pitch decks, valuations, and equity management. The event successfully bridged financial literacy with entrepreneurial skills, empowering students to think like investors and founders alike.",
+    date: "August 25, 2025"
+  }
+];
+
 
   return (
     <section className="relative py-16 px-6 overflow-hidden bg-gray-900">

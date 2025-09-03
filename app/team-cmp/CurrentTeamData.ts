@@ -102,12 +102,12 @@ const CurrentTeamMembers = [
   },
   {
     role: "Marketing & Outreach Head",
-    name: "Sagi Sanvitha",
+    name: "Mounica Yerramsetti",
     socialLinks: [
       { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: '#' },
+      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mounica-yerramsetti-77499b320' },
     ],
-    imageUrl: "/sanvitha.jpg",
+    imageUrl: "/mounica.jpg",
   },
   {
     role: "Events & Management Head",
@@ -128,24 +128,6 @@ const CurrentTeamMembers = [
     imageUrl: "/shazia.jpg",
   },
   {
-    role: "Events & Management Head",
-    name: "Enduga Ramya",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: '#' },
-    ],
-    imageUrl: "/ramya.jpg",
-  },
-  {
-    role: "Events & Management Head",
-    name: "Jeevan Kurmadasu",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/kurmadasu-jeevan-a54903337/' },
-    ],
-    imageUrl: "/KJeevan.jpg",
-  },
-  {
     role: "Club Chronicles Head",
     name: "Renitha Ashwa",
     socialLinks: [
@@ -153,15 +135,6 @@ const CurrentTeamMembers = [
       { platform: 'LinkedIn', url: '#' },
     ],
     imageUrl: "/renitha.jpeg",
-  },
-  {
-    role: "Club Chronicles Head",
-    name: "shaik karishma",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: '#' },
-    ],
-    imageUrl: "/karishma.jpg",
   }
 ];
 

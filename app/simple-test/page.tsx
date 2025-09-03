@@ -83,7 +83,7 @@ export default function SimpleTestPage() {
       setResult(prev => prev + '\n' + JSON.stringify(dashboardResult.data, null, 2))
       
     } catch (error) {
-      setResult(prev => prev + '\n❌ Error: ' + (error instanceof Error ? error.message : 'An error occurred'))
+      setResult(prev => prev + '\n❌ Error: ' + error.message)
     } finally {
       setLoading(false)
     }

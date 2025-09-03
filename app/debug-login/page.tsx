@@ -50,10 +50,7 @@ export default function DebugLoginPage() {
       }, 1000)
     } catch (error) {
       console.error('Login error:', error)
-      setLoginResult({
-        success: false,
-        error: error instanceof Error ? error.message : 'An error occurred'
-      })
+      setLoginResult({ success: false, error: error.message })
     }
   }
 

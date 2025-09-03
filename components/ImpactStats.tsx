@@ -21,7 +21,7 @@ const ImpactStats = () => {
 
   useEffect(() => {
     const duration = 2000; // 2 seconds
-    const intervals: NodeJS.Timeout[] = [];
+    const intervals = [];
 
     Object.keys(finalCounts).forEach((key) => {
       const finalValue = finalCounts[key as keyof typeof finalCounts];

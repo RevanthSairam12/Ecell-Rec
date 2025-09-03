@@ -128,11 +128,7 @@ export function RoleBasedContent({
       // Create team for the student (leader)
       const teamResult = await DatabaseService.createTeam(student.id)
       if (teamResult.error || !teamResult.data) {
-        throw new Error(
-          teamResult.error instanceof Error
-            ? teamResult.error.message
-            : 'Failed to create team'
-        )
+        throw new Error(teamResult.error?.message || 'Failed to create team')
       }
 
       // Update student role to leader
@@ -218,8 +214,7 @@ export function RoleBasedContent({
             subtitle: hasTeam ? `Member of ${team?.leader?.name}'s team` : 'Ready to start your journey?',
             icon: hasTeam ? Users : User,
             color: hasTeam ? 'text-blue-400' : 'text-muted-foreground',
-            bgColor: hasTeam ? 'bg-blue-500/20' : 'bg-muted/20',
-            trend: null
+            bgColor: hasTeam ? 'bg-blue-500/20' : 'bg-muted/20'
           },
           {
             title: 'Team Status',
@@ -227,8 +222,7 @@ export function RoleBasedContent({
             subtitle: hasTeam ? 'Contributing to team success' : 'Submit an idea to create your team',
             icon: hasTeam ? CheckCircle : AlertCircle,
             color: hasTeam ? 'text-green-400' : 'text-yellow-400',
-            bgColor: hasTeam ? 'bg-green-500/20' : 'bg-yellow-500/20',
-            trend: null
+            bgColor: hasTeam ? 'bg-green-500/20' : 'bg-yellow-500/20'
           },
           {
             title: 'Idea Status',
@@ -236,8 +230,7 @@ export function RoleBasedContent({
             subtitle: hasIdea ? `Team idea: ${idea.title}` : 'No team idea yet',
             icon: hasIdea ? Lightbulb : AlertCircle,
             color: hasIdea ? 'text-purple-400' : 'text-muted-foreground',
-            bgColor: hasIdea ? 'bg-purple-500/20' : 'bg-muted/20',
-            trend: null
+            bgColor: hasIdea ? 'bg-purple-500/20' : 'bg-muted/20'
           }
         ]
       }
@@ -458,11 +451,7 @@ export function RoleBasedContent({
             status: 'submitted' as const
           })
           if (updateRes.error || !updateRes.data) {
-            throw new Error(
-              updateRes.error instanceof Error
-                ? updateRes.error.message
-                : 'Failed to update idea'
-            )
+            throw new Error(updateRes.error?.message || 'Failed to update idea')
           }
           savedIdea = updateRes.data
         } else {
@@ -473,11 +462,7 @@ export function RoleBasedContent({
             status: 'submitted' as const
           })
           if (createRes.error || !createRes.data) {
-            throw new Error(
-              createRes.error instanceof Error
-                ? createRes.error.message
-                : 'Failed to submit idea'
-            )
+            throw new Error(createRes.error?.message || 'Failed to submit idea')
           }
           savedIdea = createRes.data
         }
@@ -748,11 +733,7 @@ export function RoleBasedContent({
         // Add team member in backend
         const addRes = await DatabaseService.addTeamMember(team.id, studentToAdd.id)
         if (addRes.error) {
-          throw new Error(
-            addRes.error instanceof Error
-              ? addRes.error.message
-              : 'Failed to add member'
-          )
+          throw new Error(addRes.error.message || 'Failed to add member')
         }
 
         // Refresh data

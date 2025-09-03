@@ -1,32 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'images.unsplash.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'assets.aceternity.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'picsum.photos',
-            },
-            {
-                protocol: 'https',
-                hostname: 'avatar.vercel.sh',
-            },
-            {
-                protocol: 'https',
-                hostname: 'i.ibb.co',
-            },
-            {
-                protocol: 'https',
-                hostname: 'i.vimeocdn.com',
-            }
-        ]
+        domains: ["acertinity ui.com", "images.unsplash.com", "assets.aceternity.com","picsum.photos","avatar.vercel.sh","i.ibb.co","i.vimeocdn.com"]
     },
     eslint: {
         ignoreDuringBuilds: true,
@@ -34,7 +9,10 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: false,
     },
-    swcMinify: true,
+    swcMinify: false,
+    experimental: {
+        forceSwcTransforms: false,
+    },
     compiler: {
         // Disable SWC and use Babel instead
         removeConsole: process.env.NODE_ENV === "production",

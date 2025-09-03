@@ -64,11 +64,7 @@ export default function DashboardPage() {
         const result = await DatabaseService.getStudentDashboardData(student.id)
 
         if (result.error) {
-          throw new Error(
-            result.error instanceof Error
-              ? result.error.message
-              : 'Failed to fetch dashboard data'
-          )
+          throw new Error(result.error.message || 'Failed to fetch dashboard data')
         }
 
         console.log('Dashboard data fetched successfully:', result.data)

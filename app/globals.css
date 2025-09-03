@@ -11,34 +11,6 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Extra small screen utilities for popup responsiveness */
-  @media (max-width: 375px) {
-    .popup-xs-padding {
-      padding: 0.75rem;
-    }
-
-    .popup-xs-text {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-    }
-
-    .popup-xs-title {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
-    }
-  }
-
-  /* Ensure popup doesn't exceed viewport height */
-  .popup-max-height {
-    max-height: calc(100vh - 2rem);
-  }
-
-  @media (max-width: 640px) {
-    .popup-max-height {
-      max-height: calc(100vh - 1rem);
-    }
-  }
 }
 
 @layer base {

@@ -97,7 +97,7 @@ export default function Team() {
               <p className="text-left">
                 The <span className="font-semibold text-blue-600">Global Board of Directors</span> leading E-Cell plays a crucial role in overseeing the organization's strategic direction,
                 financial stewardship, and its continued growth and impact. This distinguished group of entrepreneurs brings a wealth of <span className="font-semibold">business and
-                membership experience</span> and insights to guide <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">E-Cell's global mission</span>.
+                  membership experience</span> and insights to guide <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">E-Cell's global mission</span>.
               </p>
             </div>
           </div>
@@ -158,6 +158,7 @@ export default function Team() {
 
           {/* Team Members Grid - 4 columns layout exactly as shown */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+
             {currentTeam.map((member, index) => (
               <div key={member.name} className="text-center group">
                 {/* Profile Image with rounded corners and hover overlay */}
@@ -184,11 +185,11 @@ export default function Team() {
                           >
                             {link.platform === 'Twitter' ? (
                               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                               </svg>
                             ) : link.platform === 'LinkedIn' ? (
                               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                               </svg>
                             ) : null}
                           </a>
@@ -251,16 +252,16 @@ export default function Team() {
               {/* Sun icon - top left */}
               <div className="absolute top-8 left-12 w-16 h-16">
                 <svg viewBox="0 0 100 100" className="w-full h-full text-pink-500">
-                  <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="3"/>
+                  <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="3" />
                   <g stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                    <line x1="50" y1="10" x2="50" y2="20"/>
-                    <line x1="50" y1="80" x2="50" y2="90"/>
-                    <line x1="10" y1="50" x2="20" y2="50"/>
-                    <line x1="80" y1="50" x2="90" y2="50"/>
-                    <line x1="25.86" y1="25.86" x2="32.32" y2="32.32"/>
-                    <line x1="67.68" y1="67.68" x2="74.14" y2="74.14"/>
-                    <line x1="74.14" y1="25.86" x2="67.68" y2="32.32"/>
-                    <line x1="32.32" y1="67.68" x2="25.86" y2="74.14"/>
+                    <line x1="50" y1="10" x2="50" y2="20" />
+                    <line x1="50" y1="80" x2="50" y2="90" />
+                    <line x1="10" y1="50" x2="20" y2="50" />
+                    <line x1="80" y1="50" x2="90" y2="50" />
+                    <line x1="25.86" y1="25.86" x2="32.32" y2="32.32" />
+                    <line x1="67.68" y1="67.68" x2="74.14" y2="74.14" />
+                    <line x1="74.14" y1="25.86" x2="67.68" y2="32.32" />
+                    <line x1="32.32" y1="67.68" x2="25.86" y2="74.14" />
                   </g>
                 </svg>
               </div>
@@ -268,33 +269,33 @@ export default function Team() {
               {/* Birds - top right */}
               <div className="absolute top-12 right-20">
                 <svg viewBox="0 0 60 20" className="w-12 h-4 text-pink-500">
-                  <path d="M5 10 Q10 5 15 10 Q20 15 25 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M35 10 Q40 5 45 10 Q50 15 55 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M5 10 Q10 5 15 10 Q20 15 25 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M35 10 Q40 5 45 10 Q50 15 55 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
 
               {/* Wavy lines - left side */}
               <div className="absolute left-8 top-1/2 transform -translate-y-1/2">
                 <svg viewBox="0 0 100 200" className="w-20 h-32 text-pink-500">
-                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M10 100 Q30 90 50 100 Q70 110 90 100" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10 100 Q30 90 50 100 Q70 110 90 100" fill="none" stroke="currentColor" strokeWidth="2" />
                 </svg>
               </div>
 
               {/* Wavy lines - right side */}
               <div className="absolute right-8 top-1/3">
                 <svg viewBox="0 0 100 150" className="w-16 h-24 text-pink-500">
-                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2" />
                 </svg>
               </div>
 
               {/* Path/trail lines on the mountain */}
               <div className="absolute bottom-1/4 left-1/2 transform -translate-x-1/2">
                 <svg viewBox="0 0 300 100" className="w-64 h-16 text-pink-500">
-                  <path d="M50 80 Q100 60 150 70 Q200 50 250 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-                  <path d="M30 90 Q80 70 130 80 Q180 60 230 70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M50 80 Q100 60 150 70 Q200 50 250 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                  <path d="M30 90 Q80 70 130 80 Q180 60 230 70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
             </div>

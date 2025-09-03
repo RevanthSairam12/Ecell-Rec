@@ -30,9 +30,7 @@ export default function DebugPage() {
         })
       } catch (error) {
         console.error('Error loading data:', error)
-        setData({
-          error: error instanceof Error ? error.message : 'An error occurred'
-        })
+        setData({ error: error.message })
       } finally {
         setLoading(false)
       }
@@ -54,7 +52,7 @@ export default function DebugPage() {
       alert('Student created: ' + JSON.stringify(result, null, 2))
       window.location.reload()
     } catch (error) {
-      alert('Error: ' + (error instanceof Error ? error.message : 'An error occurred'))
+      alert('Error: ' + error.message)
     }
   }
 

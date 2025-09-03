@@ -449,30 +449,30 @@ export class MockDataService {
       return { data: null, error: new Error('Student not found') }
     }
 
-    let team: any = null
+    let team = null
     let idea = null
 
     if (student.team_id) {
-      const foundTeam = this.teams.find(t => t.id === student.team_id)
-      if (foundTeam) {
+      team = this.teams.find(t => t.id === student.team_id)
+      if (team) {
         // Add team members and leader info
         const teamMembers = this.teamMembers
-          .filter(tm => tm.team_id === foundTeam.id)
+          .filter(tm => tm.team_id === team.id)
           .map(tm => ({
             ...tm,
             students: this.students.find(s => s.id === tm.student_id)
           }))
 
-        const leader = this.students.find(s => s.id === foundTeam.leader_id)
+        const leader = this.students.find(s => s.id === team.leader_id)
 
         team = {
-          ...foundTeam,
+          ...team,
           team_members: teamMembers,
           leader
         }
 
         // Get idea for the team
-        idea = this.ideas.find(i => i.team_id === foundTeam.id)
+        idea = this.ideas.find(i => i.team_id === team.id)
         if (idea) {
           team.ideas = [idea]
         }

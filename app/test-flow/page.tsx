@@ -141,13 +141,12 @@ export default function TestFlowPage() {
 
     } catch (error) {
       console.error('Test failed:', error)
-      const errorMessage = error instanceof Error ? error.message : 'An error occurred'
-      testResults.push({ step: 'Test failed', status: 'error', error: errorMessage })
+      testResults.push({ step: 'Test failed', status: 'error', error: error.message })
       setResults([...testResults])
-
+      
       toast({
         title: 'Test Failed',
-        description: errorMessage,
+        description: error.message,
         variant: 'destructive'
       })
     }

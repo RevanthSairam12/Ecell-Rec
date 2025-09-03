@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
@@ -29,14 +30,11 @@ const Footer = () => {
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-hero-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">E</span>
-              </div>
-              <span className="text-xl font-bold">E-Cell REC</span>
+            <div className="flex items-center space-x-2 ">
+              <Image src="/icons/whitelogo.png" alt="photo" width={250} height={50} />
             </div>
             <p className="text-background/80 leading-relaxed">
-              Empowering the next generation of entrepreneurs at Raghu Engineering College. 
+              Empowering the next generation of entrepreneurs at Raghu Engineering College.
               Join us in building tomorrow's innovative solutions today.
             </p>
             <div className="flex space-x-4">
@@ -80,13 +78,25 @@ const Footer = () => {
                   Visakhapatnam, Andhra Pradesh
                 </span>
               </div>
+              {/* Email */}
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-background/60" />
-                <span className="text-background/80">ecell@rec.edu.in</span>
+                <a
+                  href="mailto:ecell@rec.edu.in"
+                  className="text-background/80 hover:text-white transition-colors"
+                >
+                  ecell@rec.edu.in
+                </a>
               </div>
+              {/* Phone */}
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-background/60" />
-                <span className="text-background/80">+91 9876543210</span>
+                <a
+                  href="tel:+919154971659"
+                  className="text-background/80 hover:text-white transition-colors"
+                >
+                  +91 9154971659
+                </a>
               </div>
             </div>
           </div>
@@ -98,8 +108,8 @@ const Footer = () => {
               Subscribe to our newsletter for the latest updates on events, opportunities, and startup stories.
             </p>
             <div className="space-y-3">
-              <Input 
-                type="email" 
+              <Input
+                type="email"
                 placeholder="Enter your email"
                 className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
               />
