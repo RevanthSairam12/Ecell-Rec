@@ -19,8 +19,8 @@ const Footer = () => {
   const socialLinks = [
     { name: "Facebook", icon: Facebook, href: "#" },
     { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "Instagram", icon: Instagram, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" }
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/ecell_.rec/" },
+    { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/e-cell-rec-vizag/posts/?feedView=all" }
   ];
 
   return (
@@ -82,10 +82,10 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-background/60" />
                 <a
-                  href="mailto:ecell@rec.edu.in"
+                  href="mailto:e-cell@raghuenggcollege.in"
                   className="text-background/80 hover:text-white transition-colors"
                 >
-                  ecell@rec.edu.in
+                  e-cell@raghuenggcollege.in
                 </a>
               </div>
               {/* Phone */}

@@ -41,11 +41,11 @@ export default function Startups() {
       name: "AVATAQ.AI",
       founder: "Vishal & Santosh",
       description: "AI-powered Agentic AI",
-      status: "MVP Ready",
-      badge: "NSIC Shortlisted",
+      status: "Research Stage",
+      badge: "Research Stage",
       funding: "Looking for VCS",
       logo: "AQ",
-      achievements: ["50+ Installations", "3 City Partnerships", "IoT Innovation Award"]
+      achievements: ["Defined core problem statement", "Early research completed", "Working on concept validation"]
     },
     {
       name: "PromptCraft",
@@ -55,7 +55,7 @@ export default function Startups() {
       badge: "Prototype Ready",
       funding: "Looking for VCS",
       logo: "PC",
-      achievements: ["1000+ Students", "5 Schools", "Education Excellence Award"]
+      achievements: ["Prototype developed", "Early user testings", "Pilot demo with small creator community"]
     },
     {
       name: "Buildtrix",
@@ -65,7 +65,7 @@ export default function Startups() {
       badge: "MVP Ready",
       funding: "Looking for VCS",
       logo: "BT",
-      achievements: ["Zero Waste Goal", "B2B Partnerships", "Sustainability Award"]
+      achievements: ["Product launched and live", "100+ active users onboarded", "Positive feedback from early adopters"]
     }
   ];
 

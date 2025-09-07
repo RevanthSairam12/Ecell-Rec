@@ -48,9 +48,9 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-6">
             <Link href="/" className="transition-transform duration-200 hover:scale-105">
-              <div className="relative w-32 h-12">
+              <div className="relative w-24 h-12">
                 <Image
                   src="/icons/ecellverynew.png"
                   alt="E-Cell REC"
@@ -61,11 +61,22 @@ const Header = () => {
               </div>
             </Link>
 
-            <Link href="/" className="transition-transform duration-200 hover:scale-105">
-              <div className="relative w-32 h-12">
+            <Link href="https://iic.mic.gov.in/" className="transition-transform duration-200 hover:scale-105">
+              <div className="relative w-24 h-12">
                 <Image
                   src="/icons/iic.png"
                   alt="IIC"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </Link>
+
+            <Link href="https://www.raghuenggcollege.com/" className="transition-transform duration-200 hover:scale-105">
+              <div className="relative w-24 h-12">
+                <Image
+                  src="/icons/raghu.png"
+                  alt="Raghu"
                   fill
                   className="object-contain"
                 />

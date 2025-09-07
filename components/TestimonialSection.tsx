@@ -65,11 +65,11 @@ const TestimonialSection = () => {
               clipPath: 'polygon(0 0, 100% 0, 98% 100%, 2% 100%)'
             }}
           >
-            <div className="flex items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
 
               {/* Text content - exact match */}
-              <div className="flex-1">
-                <p className="text-white text-lg leading-relaxed mb-6 font-light">
+              <div className="flex-1 w-full">
+                <p className="text-white text-base md:text-lg leading-relaxed mb-4 md:mb-6 font-light">
                   E-Cell REC is more than just an entrepreneurship club—it's a community where innovation meets opportunity. Through our workshops, events, and collaborative environment, we empower students to transform their ideas into impactful ventures and build the future of entrepreneurship.
                 </p>
 
@@ -80,16 +80,16 @@ const TestimonialSection = () => {
               </div>
 
               {/* Profile image with concentric circles */}
-              <div className="flex-shrink-0">
-                <div className="relative w-32 h-32">
+              <div className="flex-shrink-0 w-28 h-28 md:w-32 md:h-32 mb-4 md:mb-0">
+                <div className="relative w-full h-full">
                   {/* Outer pink circle */}
-                  <div className="absolute inset-0 w-32 h-32 rounded-full border-4 border-pink-400"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-pink-400"></div>
 
                   {/* Inner red circle */}
-                  <div className="absolute inset-2 w-28 h-28 rounded-full border-3 border-red-500"></div>
+                  <div className="absolute inset-2 rounded-full border-3 border-red-500"></div>
 
                   {/* Profile photo */}
-                  <div className="absolute inset-4 w-24 h-24 rounded-full overflow-hidden bg-blue-400">
+                  <div className="absolute inset-4 rounded-full overflow-hidden bg-blue-400">
                     <Image
                       src="/group/group1.jpg"
                       alt="E-Cell REC Team"

@@ -29,7 +29,7 @@ export default function AdvisoryBoard() {
       name: "Dr. A.Vijay kumar",
       role: "Principal",
       subtitle: "Providing academic leadership and fostering learning environment",
-      image: "/new-prince.jpeg"
+      image: "/avijaykmr.jpeg"
     },
     {
       name: "Dr. G. Kiran Kumar",
