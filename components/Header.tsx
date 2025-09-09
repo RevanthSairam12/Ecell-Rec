@@ -13,11 +13,12 @@ const Header = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const navigation = [
+    { name: "Home", href: "/" },
     { name: "Team", href: "/team" },
     { name: "Events", href: "/events" },
     { name: "Resources", href: "/resources" },
     { name: "Startups", href: "/startups" },
-    { name: "Advisory Board", href: "/advisory-board" },
+    { name: "About", href: "/advisory-board" },
   ];
 
   useEffect(() => {
@@ -46,46 +47,9 @@ const Header = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 relative">
-          {/* Logo */}
-          <div className="flex items-center gap-6">
-            <Link href="/" className="transition-transform duration-200 hover:scale-105">
-              <div className="relative w-24 h-12">
-                <Image
-                  src="/icons/ecellverynew.png"
-                  alt="E-Cell REC"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </Link>
-
-            <Link href="https://iic.mic.gov.in/" className="transition-transform duration-200 hover:scale-105">
-              <div className="relative w-24 h-12">
-                <Image
-                  src="/icons/iic.png"
-                  alt="IIC"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </Link>
-
-            <Link href="https://www.raghuenggcollege.com/" className="transition-transform duration-200 hover:scale-105">
-              <div className="relative w-24 h-12">
-                <Image
-                  src="/icons/raghu.png"
-                  alt="Raghu"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </Link>
-          </div>
-
+        <div className="flex justify-center items-center h-16 relative">
           {/* Navigation (centered) */}
-          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 z-10">
+          <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -99,7 +63,7 @@ const Header = () => {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 absolute right-4">
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button

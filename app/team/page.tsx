@@ -156,12 +156,15 @@ export default function Team() {
             </h1>
           </div>
 
-          {/* Team Members Grid - 4 columns layout exactly as shown */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          {/* Team Members Grid - 4 + 4 + 4 + 3 (centered) */}
+          {(() => {
+            const firstRow = currentTeam.slice(0, 4);
+            const secondRow = currentTeam.slice(4, 8);
+            const thirdRow = currentTeam.slice(8, 12);
+            const remaining = currentTeam.slice(12, 15);
 
-            {currentTeam.map((member, index) => (
+            const Card = (member: typeof currentTeam[number], index: number) => (
               <div key={member.name} className="text-center group">
-                {/* Profile Image with rounded corners and hover overlay */}
                 <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
                   <Image
                     src={member.image}
@@ -170,8 +173,6 @@ export default function Team() {
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                     priority={index < 8}
                   />
-
-                  {/* Social Links Overlay - appears on hover */}
                   {member.socialLinks && (
                     <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="flex space-x-4">
@@ -198,22 +199,45 @@ export default function Team() {
                     </div>
                   )}
                 </div>
-
-                {/* Member Info - exact same styling */}
                 <div className="text-white">
-                  <h3 className="text-lg font-bold mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-yellow-400 text-sm font-medium mb-1">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-300 text-xs">
-                    {member.subtitle}
-                  </p>
+                  <h3 className="text-lg font-bold mb-1">{member.name}</h3>
+                  <p className="text-yellow-400 text-sm font-medium mb-1">{member.role}</p>
+                  <p className="text-gray-300 text-xs">{member.subtitle}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+
+            return (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
+                  {firstRow.map((m, i) => Card(m, i))}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
+                  {secondRow.map((m, i) => Card(m, i + 4))}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
+                  {thirdRow.map((m, i) => Card(m, i + 8))}
+                </div>
+                {remaining.length > 0 && (
+                  <div className="max-w-6xl mx-auto">
+                    {/* Mobile/Tablet: keep grid responsive */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:hidden">
+                      {remaining.map((m, i) => Card(m, i + 12))}
+                    </div>
+                    {/* Desktop: keep same card width as 4-col (25%) and center */}
+                    <div className="hidden lg:flex justify-center gap-8">
+                      {remaining.map((m, i) => (
+                        <div key={m.name} className="w-1/4">
+                          {Card(m, i + 12)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            );
+          })()}
+          
         </div>
       </section>
 

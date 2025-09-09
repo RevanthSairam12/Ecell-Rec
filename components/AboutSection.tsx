@@ -16,10 +16,7 @@ const AboutSection = () => {
               {/* Main Text Block */}
               <div className="space-y-6">
                 <p className="text-base md:text-lg leading-relaxed font-normal">
-                  Welcome to E-Cell REC, where aspiring entrepreneurs connect, learn and grow together. Join our
-                  vibrant community by students, for students, designed to help future business leaders like
-                  you, who are taking their ideas and ventures to the next level. Discover the power of
-                  shared experiences, world-class resources, and a network that spans the campus and beyond.
+                Welcome to E-Cell REC, a dynamic platform dedicated to fostering innovation and entrepreneurship. We bring together aspiring changemakers, providing them with the right ecosystem to connect, collaborate, and scale their ideas into impactful ventures. Built on the spirit of “by students, for students,” our community empowers the next generation of business leaders through shared learning, world-class resources, and strategic networks that extend well beyond the campus.
                 </p>
               </div>
 

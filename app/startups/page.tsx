@@ -37,6 +37,7 @@ export default function Startups() {
   ];
 
   const startupStories = [
+    
     {
       name: "AVATAQ.AI",
       founder: "Vishal & Santosh",
@@ -66,12 +67,25 @@ export default function Startups() {
       funding: "Looking for VCS",
       logo: "BT",
       achievements: ["Product launched and live", "100+ active users onboarded", "Positive feedback from early adopters"]
+    },
+    {
+      name: "Urja H2",
+      founder: "Sai Pawan",
+      description: "Hydrogen-based energy venture",
+      status: "Prototype Ready",
+      badge: "Prototype Ready",
+      funding: "Exploring Grants",
+      logo: "UH",
+      achievements: ["Prototype built", "Lab testing initiated", "Early mentor feedback"]
     }
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <div className="px-6 pt-6">
+        <h2 className="text-xl font-semibold">ujra h2-prototype ready</h2>
+      </div>
       
       {/* Hero Section - Matching home page style */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">

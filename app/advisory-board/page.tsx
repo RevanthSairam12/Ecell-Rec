@@ -63,12 +63,12 @@ export default function AdvisoryBoard() {
           <div className="max-w-4xl mx-auto">
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 leading-tight">
-              Advisory Board
+              About Us
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
-              Guiding Entrepreneurial Excellence
+              Empowering students today to lead industries tomorrow.
             </p>
           </div>
         </div>
@@ -80,9 +80,7 @@ export default function AdvisoryBoard() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-blue-600 rounded-2xl p-8 md:p-12 shadow-lg">
               <p className="text-white text-base md:text-lg leading-relaxed text-center">
-                Our distinguished Advisory Board comprises visionary leaders and experienced professionals who guide and inspire our entrepreneurial journey.
-                This esteemed group brings decades of experience in education, business, and innovation to shape the future of E-CELL REC and foster
-                the next generation of entrepreneurs.
+                At E-Cell REC, we are committed to nurturing a culture of innovation and entrepreneurship among students. Our mission is to create an ecosystem where ideas are cultivated, skills are sharpened, and ventures are transformed into reality. We believe in empowering young minds with the right knowledge, mentorship, and resources to become impactful leaders of tomorrow.
               </p>
             </div>
           </div>
@@ -103,7 +101,7 @@ export default function AdvisoryBoard() {
               <p className="text-left">
                 The <span className="font-semibold text-blue-600">Advisory Board</span> of E-CELL REC plays a crucial role in overseeing the organization's strategic direction,
                 educational excellence, and its continued growth and impact. This distinguished group of leaders brings a wealth of <span className="font-semibold">educational and
-                business experience</span> and insights to guide <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">our entrepreneurial mission</span>.
+                  business experience</span> and insights to guide <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">our entrepreneurial mission</span>.
               </p>
             </div>
           </div>
@@ -121,9 +119,9 @@ export default function AdvisoryBoard() {
             </h1>
           </div>
 
-          {/* Advisory Board Members Grid - First row with 4 members */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
-            {advisoryBoardMembers.slice(0, 4).map((member, index) => (
+          {/* Advisory Board Members Grid - First row with 3 members */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
+            {advisoryBoardMembers.slice(0, 3).map((member, index) => (
               <div key={member.name} className="text-center">
                 {/* Profile Image with rounded corners - exact same styling */}
                 <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
@@ -154,8 +152,8 @@ export default function AdvisoryBoard() {
 
           {/* Second row with 2 members centered */}
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8" style={{width: 'calc(50% + 1rem)'}}>
-              {advisoryBoardMembers.slice(4, 6).map((member, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8" style={{ width: 'calc(50% + 1rem)' }}>
+              {advisoryBoardMembers.slice(3, 5).map((member, index) => (
                 <div key={member.name} className="text-center">
                   {/* Profile Image with rounded corners - exact same styling */}
                   <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
@@ -199,10 +197,11 @@ export default function AdvisoryBoard() {
             {/* Description - Left aligned */}
             <div className="text-gray-700 text-base leading-relaxed mb-12">
               <p className="text-left">
-                Our Advisory Board members have the opportunity to shape the <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">student experience</span> and co-create the future of our
-                organization across a variety of educational, strategic, and functional roles that serve all aspects of our
-                entrepreneurial community. Their guidance helps us maintain <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">excellence</span> in all our endeavors.
-                We are grateful for their continued support in <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">our mission</span>.
+                At E-Cell REC, our journey is defined by innovation, collaboration, and a relentless pursuit of excellence. We strive to create an ecosystem where students can explore their entrepreneurial potential, gain hands-on experience, and build ventures that make a lasting impact.
+
+                Central to this mission is our distinguished Advisory Board—a group of visionary leaders and seasoned professionals who bring decades of expertise in education, business, and innovation. Their insights not only shape the student experience but also co-create the future of our organization across educational, strategic, and functional dimensions.
+
+                This Path to Excellence ensures that every initiative at E-Cell REC is guided by wisdom, fueled by ambition, and aligned with our mission to empower the next generation of entrepreneurs. We are deeply grateful for the continued support and guidance of our Advisory Board as we work together to build a stronger, more dynamic entrepreneurial community.
               </p>
             </div>
           </div>
@@ -222,16 +221,16 @@ export default function AdvisoryBoard() {
               {/* Sun icon - top left */}
               <div className="absolute top-8 left-12 w-16 h-16">
                 <svg viewBox="0 0 100 100" className="w-full h-full text-pink-500">
-                  <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="3"/>
+                  <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="3" />
                   <g stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                    <line x1="50" y1="10" x2="50" y2="20"/>
-                    <line x1="50" y1="80" x2="50" y2="90"/>
-                    <line x1="10" y1="50" x2="20" y2="50"/>
-                    <line x1="80" y1="50" x2="90" y2="50"/>
-                    <line x1="25.86" y1="25.86" x2="32.32" y2="32.32"/>
-                    <line x1="67.68" y1="67.68" x2="74.14" y2="74.14"/>
-                    <line x1="74.14" y1="25.86" x2="67.68" y2="32.32"/>
-                    <line x1="32.32" y1="67.68" x2="25.86" y2="74.14"/>
+                    <line x1="50" y1="10" x2="50" y2="20" />
+                    <line x1="50" y1="80" x2="50" y2="90" />
+                    <line x1="10" y1="50" x2="20" y2="50" />
+                    <line x1="80" y1="50" x2="90" y2="50" />
+                    <line x1="25.86" y1="25.86" x2="32.32" y2="32.32" />
+                    <line x1="67.68" y1="67.68" x2="74.14" y2="74.14" />
+                    <line x1="74.14" y1="25.86" x2="67.68" y2="32.32" />
+                    <line x1="32.32" y1="67.68" x2="25.86" y2="74.14" />
                   </g>
                 </svg>
               </div>
@@ -239,33 +238,33 @@ export default function AdvisoryBoard() {
               {/* Birds - top right */}
               <div className="absolute top-12 right-20">
                 <svg viewBox="0 0 60 20" className="w-12 h-4 text-pink-500">
-                  <path d="M5 10 Q10 5 15 10 Q20 15 25 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M35 10 Q40 5 45 10 Q50 15 55 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M5 10 Q10 5 15 10 Q20 15 25 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M35 10 Q40 5 45 10 Q50 15 55 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
 
               {/* Wavy lines - left side */}
               <div className="absolute left-8 top-1/2 transform -translate-y-1/2">
                 <svg viewBox="0 0 100 200" className="w-20 h-32 text-pink-500">
-                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M10 100 Q30 90 50 100 Q70 110 90 100" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10 100 Q30 90 50 100 Q70 110 90 100" fill="none" stroke="currentColor" strokeWidth="2" />
                 </svg>
               </div>
 
               {/* Wavy lines - right side */}
               <div className="absolute right-8 top-1/3">
                 <svg viewBox="0 0 100 150" className="w-16 h-24 text-pink-500">
-                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2" />
                 </svg>
               </div>
 
               {/* Path/trail lines on the mountain */}
               <div className="absolute bottom-1/4 left-1/2 transform -translate-x-1/2">
                 <svg viewBox="0 0 300 100" className="w-64 h-16 text-pink-500">
-                  <path d="M50 80 Q100 60 150 70 Q200 50 250 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-                  <path d="M30 90 Q80 70 130 80 Q180 60 230 70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M50 80 Q100 60 150 70 Q200 50 250 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                  <path d="M30 90 Q80 70 130 80 Q180 60 230 70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
             </div>

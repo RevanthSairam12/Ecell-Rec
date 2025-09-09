@@ -127,15 +127,6 @@ const CurrentTeamMembers = [
     ],
     imageUrl: "/shazia.jpg",
   },
-      {
-    role: "Events & Management Head",
-    name: "Enduga Ramya",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: '#' },
-    ],
-    imageUrl: "/ramya.png",
-  },
   {
     role: "Club Chronicles Head",
     name: "Renitha Ashwa",
@@ -144,15 +135,6 @@ const CurrentTeamMembers = [
       { platform: 'LinkedIn', url: '#' },
     ],
     imageUrl: "/renitha.jpeg",
-  },
-      {
-    role: "Club Chronicles Head",
-    name: "Shaik Karishma",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: '#' },
-    ],
-    imageUrl: "/karishma.jpg",
   }
 ];
 
