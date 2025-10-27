@@ -88,41 +88,57 @@ export default function Startups() {
       </div>
       
       {/* Hero Section - Matching home page style */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/group/group1.jpg"
-            alt="Startup Assistance - E-Cell REC"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/40"></div>
+      <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 via-blue-100/30 to-indigo-100/40"></div>
+          <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-blue-200/20 to-transparent"></div>
+        </div>
+
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
+
+        {/* Partner Logos bar just below header */}
+        <div className="absolute top-16 left-0 right-0 z-20">
+          {/* Desktop layout: left and right logos */}
+          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
+            <div className="relative w-36 h-16">
+              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
+              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+            </div>
+          </div>
+          {/* Mobile layout: two logos */}
+          <div className="md:hidden px-5">
+            <div className="flex justify-between items-center">
+              <div className="relative w-20 h-12">
+                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+              </div>
+              <div className="relative w-20 h-12">
+                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Main Content - Center Aligned */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-8 md:mt-12">
           <div className="max-w-4xl mx-auto">
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Startup Assistance
-            </h1>
+            <div className="mb-8">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-6 leading-tight" style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em' }}>
+                Startup Assistance
+              </h1>
+            </div>
 
             {/* Subheading */}
-            <p className="text-lg md:text-xl text-white/95 leading-relaxed font-light max-w-3xl mx-auto mb-8">
+            <p className="text-xl md:text-2xl text-slate-800 mb-4 font-semibold tracking-wide" style={{ fontFamily: '"Lato", system-ui, sans-serif', letterSpacing: '0.02em' }}>
+              From Idea to Reality
+            </p>
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-12 max-w-2xl mx-auto" style={{ fontFamily: '"Lato", system-ui, sans-serif', fontWeight: 400 }}>
               Have a startup idea? We'll help you build it from concept to reality
             </p>
-
-            {/* CTA Button */}
-            <Button
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Apply for Support
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
           </div>
         </div>
       </section>
@@ -174,97 +190,67 @@ export default function Startups() {
         </div>
       </section>
 
-      {/* Startup Stories - Matching home page gray section style */}
-      <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
-        {/* Pink decorative squiggly lines */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Top left squiggly line */}
-          <svg
-            className="absolute top-10 left-10 w-20 h-20 text-pink-400"
-            viewBox="0 0 100 100"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          >
-            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round"/>
-            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round"/>
-          </svg>
-
-          {/* Bottom right squiggly line */}
-          <svg
-            className="absolute bottom-10 right-10 w-24 h-24 text-pink-400"
-            viewBox="0 0 100 100"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          >
-            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round"/>
-            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round"/>
-            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round"/>
-          </svg>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Header Section */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+      {/* Startup Stories - More natural, authentic design */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Simple Header */}
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Student Startup Stories
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Meet the innovative startups built by our community members
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Startup Cards - More casual grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {startupStories.map((startup, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100">
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                      {startup.logo}
+              <div key={index} className="group">
+                <div className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 transition-colors">
+                  {/* Header with logo and badge */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center text-white font-semibold shrink-0">
+                        {startup.logo}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-1">{startup.name}</h3>
+                        <p className="text-sm text-gray-500">{startup.founder}</p>
+                      </div>
+                    </div>
+                    <span className="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-700 rounded-full whitespace-nowrap">
+                      {startup.badge}
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-700 mb-5 leading-relaxed">{startup.description}</p>
+
+                  {/* Status info - simpler layout */}
+                  <div className="flex gap-6 mb-5 text-sm">
+                    <div>
+                      <span className="text-gray-500">Status: </span>
+                      <span className="text-gray-900 font-medium">{startup.status}</span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{startup.name}</h3>
-                      <p className="text-gray-600">by {startup.founder}</p>
+                      <span className="text-gray-500">Funding: </span>
+                      <span className="text-gray-900 font-medium">{startup.funding}</span>
                     </div>
                   </div>
-                  <Badge
-                    className={startup.badge === "NSIC Shortlisted" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"}
-                  >
-                    {startup.badge}
-                  </Badge>
-                </div>
 
-                <p className="text-gray-600 mb-6">{startup.description}</p>
-
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="text-center">
-                      <div className="text-sm text-gray-500">Status</div>
-                      <div className="font-semibold text-gray-900">{startup.status}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm text-gray-500">Funding</div>
-                      <div className="font-semibold text-blue-600">{startup.funding}</div>
-                    </div>
+                  {/* Achievements - cleaner list */}
+                  <div className="border-t border-gray-100 pt-4">
+                    <ul className="space-y-2">
+                      {startup.achievements.map((achievement, i) => (
+                        <li key={i} className="flex items-start text-sm text-gray-600">
+                          <span className="text-gray-400 mr-2">•</span>
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-
-                <div className="space-y-2 mb-6">
-                  <h4 className="font-semibold text-sm text-gray-900">Key Achievements:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {startup.achievements.map((achievement, i) => (
-                      <Badge key={i} className="bg-gray-100 text-gray-700 text-xs">
-                        {achievement}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300">
-                  View Details
-                  <ExternalLink className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Button>
               </div>
             ))}
           </div>

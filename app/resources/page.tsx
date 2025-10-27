@@ -142,46 +142,71 @@ export default function Resources() {
       <Header />
       
       {/* Hero Section - Matching home page style */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/group/group1.jpg"
-            alt="Resources Hub - E-Cell REC"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/40"></div>
+      <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 via-blue-100/30 to-indigo-100/40"></div>
+          <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-blue-200/20 to-transparent"></div>
+        </div>
+
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
+
+        {/* Partner Logos bar just below header */}
+        <div className="absolute top-16 left-0 right-0 z-20">
+          {/* Desktop layout: left and right logos */}
+          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
+            <div className="relative w-36 h-16">
+              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
+              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+            </div>
+          </div>
+          {/* Mobile layout: two logos */}
+          <div className="md:hidden px-5">
+            <div className="flex justify-between items-center">
+              <div className="relative w-20 h-12">
+                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+              </div>
+              <div className="relative w-20 h-12">
+                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Main Content - Center Aligned */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-8 md:mt-12">
           <div className="max-w-4xl mx-auto">
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Resources Hub
-            </h1>
+            <div className="mb-8">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-6 leading-tight" style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em' }}>
+                Resources Hub
+              </h1>
+            </div>
 
             {/* Subheading */}
-            <p className="text-lg md:text-xl text-white/95 leading-relaxed font-light max-w-3xl mx-auto mb-8">
+            <p className="text-xl md:text-2xl text-slate-800 mb-4 font-semibold tracking-wide" style={{ fontFamily: '"Lato", system-ui, sans-serif', letterSpacing: '0.02em' }}>
+              Your Startup Toolkit
+            </p>
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto" style={{ fontFamily: '"Lato", system-ui, sans-serif', fontWeight: 400 }}>
               Everything you need to build and scale your startup - from templates to expert guides
             </p>
 
             {/* Stats */}
-            <div className="flex items-center justify-center space-x-8 text-white">
+            <div className="flex items-center justify-center space-x-8 text-slate-700">
               <div className="text-center">
                 <div className="text-2xl font-bold">50+</div>
-                <div className="text-white/80">Resources</div>
+                <div className="text-slate-600">Resources</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">15K+</div>
-                <div className="text-white/80">Downloads</div>
+                <div className="text-slate-600">Downloads</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">100%</div>
-                <div className="text-white/80">Free</div>
+                <div className="text-slate-600">Free</div>
               </div>
             </div>
           </div>

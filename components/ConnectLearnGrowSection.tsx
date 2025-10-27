@@ -24,10 +24,6 @@ const ConnectLearnGrowSection = () => {
             <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               Build relationships with fellow entrepreneurs across our vibrant community. Have the conversations you can't have anywhere else about what's really going on in your life and your ventures and make the connections that unlock real growth.
             </p>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium text-base flex items-center space-x-2">
-              <span>Learn More</span>
-              <ArrowRight className="w-4 h-4" />
-            </Button>
           </div>
 
           {/* Connect Image */}
@@ -77,10 +73,6 @@ const ConnectLearnGrowSection = () => {
             <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               Access world-class education, renowned visionaries, and events tailored for established entrepreneurs. Learn from peers who are going through what you are and from the experts who have been there and done that.
             </p>
-            <Button className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg font-medium text-base flex items-center space-x-2">
-              <span>Learn More</span>
-              <ArrowRight className="w-4 h-4" />
-            </Button>
           </div>
         </div>
 
@@ -94,10 +86,6 @@ const ConnectLearnGrowSection = () => {
             <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               Your business will grow as fast as you can level up. Advance your leadership skills, develop your mindset and scale your business through peer support and expert guidance.
             </p>
-            <Button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg font-medium text-base flex items-center space-x-2">
-              <span>Learn More</span>
-              <ArrowRight className="w-4 h-4" />
-            </Button>
           </div>
 
           {/* Grow Image */}
