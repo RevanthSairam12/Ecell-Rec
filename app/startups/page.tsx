@@ -19,7 +19,7 @@ export default function Startups() {
       color: "text-innovation bg-innovation/10"
     },
     {
-      step: "02", 
+      step: "02",
       title: "Validation",
       description: "Build MVP, test with real users, and iterate based on feedback",
       features: ["MVP Development", "User Testing", "Product-Market Fit"],
@@ -37,7 +37,7 @@ export default function Startups() {
   ];
 
   const startupStories = [
-    
+
     {
       name: "AVATAQ.AI",
       founder: "Vishal & Santosh",
@@ -82,11 +82,9 @@ export default function Startups() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <div className="px-6 pt-6">
-        <h2 className="text-xl font-semibold">ujra h2-prototype ready</h2>
-      </div>
-      
+      {/* <Header /> */}  {/* Old Header */}
+
+
       {/* Hero Section - Matching home page style */}
       <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Subtle Background Elements */}
@@ -103,10 +101,13 @@ export default function Startups() {
           {/* Desktop layout: left and right logos */}
           <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
             <div className="relative w-36 h-16">
-              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
             </div>
             <div className="relative w-36 h-16">
-              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
+              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
             </div>
           </div>
           {/* Mobile layout: two logos */}
@@ -267,7 +268,7 @@ export default function Startups() {
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join our next cohort of entrepreneurs and get the support you need to turn your idea into reality
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
                 <div className="text-3xl font-bold mb-2">15+</div>

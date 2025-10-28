@@ -71,7 +71,7 @@ const CurrentTeamMembers = [
       { platform: 'Twitter', url: 'https://x.com/__Jeevan_sai__' },
       { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/jeevan-sai-eddipilli-43734a329/' },
     ],
-    imageUrl: "/EJeevan.jpg",
+    imageUrl: "/JeevanSai.png",
   },
   {
     role: "Web Tech Head",
@@ -90,6 +90,14 @@ const CurrentTeamMembers = [
       { platform: 'LinkedIn', url: '#' },
     ],
     imageUrl: "/sashank.jpg"
+  },{
+    role: "Designing & Branding Head",
+    name: "Abishai Yelleti",
+    socialLinks: [
+      { platform: 'Twitter', url: '#' },
+      { platfrom: 'LinkedIn', url: 'https://www.linkedin.com/in/abishai-yelleti' }
+    ],
+    imageUrl: "/abhishai.jpg"
   },
   {
     role: "Marketing & Outreach Head",

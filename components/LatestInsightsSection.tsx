@@ -26,6 +26,17 @@ const LatestInsightsSection = () => {
     title: "Basics of Investing & Riding the Market Rollercoaster",
     description: "E-Cell REC hosted an engaging session on ‘Basics of Investing & Riding the Market Rollercoaster,’ led by capital markets expert Jay Mehta. The session covered market cycles, investment strategies, and fundraising essentials for startups. Students gained hands-on experience through paper trading, while also learning about pitch decks, valuations, and equity management. The event successfully bridged financial literacy with entrepreneurial skills, empowering students to think like investors and founders alike.",
     date: "August 25, 2025"
+  },{
+    id:4,
+    image: "/youngprenuerFest.png",
+    title: "Youngprenuer Fest'25",
+    description: "Youngpreneur Fest is the flagship initiative crafted to ignite the entrepreneurial spark among first-year students. The event offered a hands-on introduction to the world of startups through interactive workshops, real-world startup simulation games, and direct engagement with accomplished industry leaders. A highlight of the fest was the exclusive session by a distinguished jury member from IIM, who shared his personal journey, startup insights, and lessons on innovation and leadership. Students gained exposure to idea validation",
+    date: "October 12, 2025"
+  },{
+    id:5,
+    image: "/hackverse.jpg",
+    description:"Hackverse 1.0 was the first-ever state-wide 24-hour hackathon hosted by Raghu Engineering College, organized by GDG On Campus REC and E-CELL REC Visakhapatnam. The event brought together over 400 innovators who turned ideas into working prototypes in domains like AI, web, mobile, and automation. Students experienced the thrill of building, collaborating, and pitching under real-world pressure, guided by expert mentors and judged by an esteemed jury. It was a celebration of creativity, teamwork, and the spirit of innovation that defined the next generation of builders at REC.",
+    date: "October 18-19, 2025"
   }
 ];
 

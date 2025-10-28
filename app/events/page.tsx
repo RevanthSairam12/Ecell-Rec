@@ -16,7 +16,7 @@ export default function EventsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      {/* <Header /> */}  {/* Old Header */}
 
       {/* Hero Section - Matching home page style */}
       <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -37,6 +37,9 @@ export default function EventsPage() {
               <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
             </div>
             <div className="relative w-36 h-16">
+              <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
               <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
             </div>
           </div>
@@ -45,6 +48,9 @@ export default function EventsPage() {
             <div className="flex justify-between items-center">
               <div className="relative w-20 h-12">
                 <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              </div>
+              <div className="relative w-36 h-16">
+                <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
               </div>
               <div className="relative w-20 h-12">
                 <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />

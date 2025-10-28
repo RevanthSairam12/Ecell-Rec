@@ -35,7 +35,7 @@ export default function Team() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <Header />
+      {/* <Header /> */}  {/* Old Header */}
 
       {/* Hero Section - Matching home page style */}
       <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -53,20 +53,26 @@ export default function Team() {
           {/* Desktop layout: left and right logos */}
           <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
             <div className="relative w-36 h-16">
-              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
             </div>
             <div className="relative w-36 h-16">
-              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
+              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
             </div>
           </div>
           {/* Mobile layout: two logos */}
           <div className="md:hidden px-5">
             <div className="flex justify-between items-center">
               <div className="relative w-20 h-12">
-                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              </div>
+              <div className="relative w-36 h-16">
+                <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
               </div>
               <div className="relative w-20 h-12">
-                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
               </div>
             </div>
           </div>
@@ -186,7 +192,7 @@ export default function Team() {
             const firstRow = currentTeam.slice(0, 4);
             const secondRow = currentTeam.slice(4, 8);
             const thirdRow = currentTeam.slice(8, 12);
-            const remaining = currentTeam.slice(12, 15);
+            const remaining = currentTeam.slice(12, 16);
 
             const Card = (member: typeof currentTeam[number], index: number) => (
               <div key={member.name} className="text-center group">
@@ -262,7 +268,7 @@ export default function Team() {
               </>
             );
           })()}
-          
+
         </div>
       </section>
 

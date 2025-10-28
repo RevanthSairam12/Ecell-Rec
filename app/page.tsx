@@ -51,7 +51,7 @@ export default function NewDesignHome() {
   return (
     <div className="min-h-screen bg-background">
       <IlluminatePopup />
-      <Header />
+      {/* <Header /> */}  {/* Old Header */}
       <Hero />
       <section className="py-16 px-6 bg-slate-900 pt-24">
         <div className="max-w-7xl mx-auto">

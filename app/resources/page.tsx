@@ -21,10 +21,10 @@ export default function Resources() {
       icon: Users,
       resources: [
         {
-          title: "Entrepreneur's Handbook",
-          description: "Complete guide to starting your entrepreneurial journey",
+          title: "Roadmap",
+          description: "Complete roadmap from idea to startup",
           type: "PDF",
-          size: "2.5 MB",
+          size: "2 MB",
           downloads: 1250
         },
         {
@@ -44,33 +44,77 @@ export default function Resources() {
       ]
     },
     {
-      id: "pitch-decks",
-      title: "Pitch Deck Templates",
-      icon: FileText,
+      id: "enterpenuer-handbook",
+      title: "Enterpenuer's Handbook",
+      icon: Book,
       resources: [
         {
-          title: "Investor Pitch Template",
-          description: "Professional template for investor presentations",
-          type: "PPTX",
-          size: "3.1 MB",
-          downloads: 2100
-        },
-        {
-          title: "Demo Day Template",
-          description: "Optimized for 5-minute demo presentations",
-          type: "PPTX",
-          size: "2.8 MB",
-          downloads: 1650
-        },
-        {
-          title: "Product Pitch Guide",
-          description: "Step-by-step guide to creating compelling pitches",
+          title: "Enterpenuer knowledge series",
+          description: "Basic knowledge that enterpenuer has to be know to begin",
           type: "PDF",
-          size: "1.8 MB",
-          downloads: 1420
+          size: "9.5 MB",
+          downloads: 356
+        }, {
+          title: "Investor Playbook 7 Essential Rules No One Teaches you",
+          description: "Startup founders must know guide for pitching investors with clarity, credibility, and traction.",
+          type: "PDF",
+          size: "23 KB",
+          downloads: 234
+        }, {
+          title: "Getting Started with Entrepreneurship",
+          description: "A foundational guide outlining the initial steps and key concepts for aspiring entrepreneurs.",
+          type: "PDF",
+          size: "182 KB",
+          downloads: 859
+        }, {
+          title: "Startup Playbook",
+          description: "This PDF details benefits for DPIIT-recognised startups in India.",
+          type: "PDF",
+          size: "3.7 MB",
+          downloads: 304
+        }, {
+          title: "Top mistakes I made as an early enterpenuer",
+          description: "Mistakes that successful enterpenuers did in their past",
+          type: "PDF",
+          size: "571 KB",
+          downloads: 272
+        }, {
+          title: "The Lean Startup",
+          description: "Startups grow by rapidly testing, learning, and adapting to customer needs.",
+          type: "PDF",
+          size: "571 KB",
+          downloads: 493
         }
       ]
     },
+    // {
+    //   id: "pitch-decks",
+    //   title: "Pitch Deck Templates",
+    //   icon: FileText,
+    //   resources: [
+    //     {
+    //       title: "Investor Pitch Template",
+    //       description: "Professional template for investor presentations",
+    //       type: "PPTX",
+    //       size: "3.1 MB",
+    //       downloads: 2100
+    //     },
+    //     {
+    //       title: "Demo Day Template",
+    //       description: "Optimized for 5-minute demo presentations",
+    //       type: "PPTX",
+    //       size: "2.8 MB",
+    //       downloads: 1650
+    //     },
+    //     {
+    //       title: "Product Pitch Guide",
+    //       description: "Step-by-step guide to creating compelling pitches",
+    //       type: "PDF",
+    //       size: "1.8 MB",
+    //       downloads: 1420
+    //     }
+    //   ]
+    // },
     {
       id: "funding",
       title: "Funding Checklists",
@@ -110,20 +154,18 @@ export default function Resources() {
           type: "Link",
           size: "External",
           downloads: 3200
-        },
-        {
-          title: "The Hard Thing About Hard Things",
-          description: "Building a business when there are no easy answers",
-          type: "Link", 
-          size: "External",
-          downloads: 2800
-        },
-        {
-          title: "Zero to One",
-          description: "Notes on startups and building the future",
+        }, {
+          title: "AI terms related to enterpenuership",
+          description: "40 AI techniques to grow up in Enterpenuership ecosystem",
           type: "Link",
           size: "External",
-          downloads: 3100
+          downloads: 3500
+        }, {
+          title: "The Lean startup",
+          description: "Startups grow by rapidly testing, learning, and adapting to customer needs.",
+          type: "Link",
+          size: "External",
+          downloads: 2100
         }
       ]
     }
@@ -139,8 +181,8 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
+      {/* <Header /> */}  {/* Old Header */}
+
       {/* Hero Section - Matching home page style */}
       <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Subtle Background Elements */}
@@ -157,20 +199,26 @@ export default function Resources() {
           {/* Desktop layout: left and right logos */}
           <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
             <div className="relative w-36 h-16">
-              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
             </div>
             <div className="relative w-36 h-16">
-              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
+              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
             </div>
           </div>
           {/* Mobile layout: two logos */}
           <div className="md:hidden px-5">
             <div className="flex justify-between items-center">
               <div className="relative w-20 h-12">
-                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
+                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+              </div>
+              <div className="relative w-36 h-16">
+                <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
               </div>
               <div className="relative w-20 h-12">
-                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
               </div>
             </div>
           </div>
@@ -225,8 +273,8 @@ export default function Resources() {
             stroke="currentColor"
             strokeWidth="3"
           >
-            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round"/>
-            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round"/>
+            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round" />
+            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round" />
           </svg>
 
           {/* Bottom right squiggly line */}
@@ -237,9 +285,9 @@ export default function Resources() {
             stroke="currentColor"
             strokeWidth="3"
           >
-            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round"/>
-            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round"/>
-            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round"/>
+            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round" />
+            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round" />
+            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round" />
           </svg>
         </div>
 
@@ -305,15 +353,15 @@ export default function Resources() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Top left squiggly line */}
           <svg className="absolute top-10 left-10 w-20 h-20 text-pink-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round"/>
-            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round"/>
+            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round" />
+            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round" />
           </svg>
 
           {/* Bottom right squiggly line */}
           <svg className="absolute bottom-10 right-10 w-24 h-24 text-pink-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round"/>
-            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round"/>
-            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round"/>
+            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round" />
+            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round" />
+            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round" />
           </svg>
         </div>
 

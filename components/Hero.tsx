@@ -24,6 +24,9 @@ const Hero = () => {
             <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
           </div>
           <div className="relative w-36 h-16">
+            <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
+          </div>
+          <div className="relative w-36 h-16">
             <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
           </div>
         </div>
@@ -32,6 +35,9 @@ const Hero = () => {
           <div className="flex justify-between items-center">
             <div className="relative w-20 h-12">
               <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
+            </div>
+            <div className="relative w-36 h-16">
+              <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
             </div>
             <div className="relative w-20 h-12">
               <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
@@ -43,7 +49,7 @@ const Hero = () => {
       {/* Main Content - Center Aligned */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-8 md:mt-12">
         <div className="max-w-4xl mx-auto">
-          
+
           {/* Main Heading - E-Cell REC Branding */}
           <div className="mb-8">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-6 leading-tight" style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em' }}>
