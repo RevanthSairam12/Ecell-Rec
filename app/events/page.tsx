@@ -1,13 +1,96 @@
 'use client'
 
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import EventsVideo from '../pages/EventsVideo';
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import PageHero from "@/components/PageHero";
+
+// Motion Text Roll Component
+const MotionTextRoll = ({ 
+  texts, 
+  className = "",
+  style = {},
+  interval = 4000
+}: { 
+  texts: string[], 
+  className?: string,
+  style?: React.CSSProperties,
+  interval?: number
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % texts.length);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [texts.length, interval]);
+
+  const currentText = texts[currentIndex];
+
+  return (
+    <div className={`relative overflow-hidden ${className}`} style={{ ...style, perspective: '1000px' }}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          className="flex justify-center flex-wrap"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          {currentText.split('').map((letter, index) => (
+            <motion.span
+              key={`${currentIndex}-${index}`}
+              className="inline-block"
+              style={{ 
+                transformStyle: 'preserve-3d',
+                display: letter === ' ' ? 'inline' : 'inline-block',
+                minWidth: letter === ' ' ? '0.3em' : 'auto'
+              }}
+              variants={{
+                hidden: { 
+                  opacity: 0, 
+                  rotateX: -90,
+                  y: 15,
+                },
+                visible: { 
+                  opacity: 1, 
+                  rotateX: 0,
+                  y: 0,
+                  transition: {
+                    duration: 0.4,
+                    delay: index * 0.02,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }
+                },
+                exit: { 
+                  opacity: 0, 
+                  rotateX: 90,
+                  y: -15,
+                  transition: {
+                    duration: 0.25,
+                    delay: index * 0.015,
+                    ease: [0.55, 0.06, 0.68, 0.19]
+                  }
+                }
+              }}
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function EventsPage() {
+  const subtitleTexts = ["Connecting Entrepreneurs Worldwide", "Impactful Events & Experiences", "Where Ideas Meet Opportunity"];
 
 
 
@@ -18,67 +101,11 @@ export default function EventsPage() {
     <div className="min-h-screen bg-background">
       {/* <Header /> */}  {/* Old Header */}
 
-      {/* Hero Section - Matching home page style */}
-      <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-        {/* Subtle Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 via-blue-100/30 to-indigo-100/40"></div>
-          <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-blue-200/20 to-transparent"></div>
-        </div>
-
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
-
-        {/* Partner Logos bar just below header */}
-        <div className="absolute top-16 left-0 right-0 z-20">
-          {/* Desktop layout: left and right logos */}
-          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
-            <div className="relative w-36 h-16">
-              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
-            </div>
-            <div className="relative w-36 h-16">
-              <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
-            </div>
-            <div className="relative w-36 h-16">
-              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
-            </div>
-          </div>
-          {/* Mobile layout: two logos */}
-          <div className="md:hidden px-5">
-            <div className="flex justify-between items-center">
-              <div className="relative w-20 h-12">
-                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
-              </div>
-              <div className="relative w-36 h-16">
-                <Image src="/icons/ecellverynew.png" alt="Ecell" fill className="object-contain" />
-              </div>
-              <div className="relative w-20 h-12">
-                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content - Center Aligned */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-8 md:mt-12">
-          <div className="max-w-4xl mx-auto">
-            {/* Main Heading */}
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-6 leading-tight" style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em' }}>
-                E-Cell Events
-              </h1>
-            </div>
-
-            {/* Subheading */}
-            <p className="text-xl md:text-2xl text-slate-800 mb-4 font-semibold tracking-wide" style={{ fontFamily: '"Lato", system-ui, sans-serif', letterSpacing: '0.02em' }}>
-              Connecting Entrepreneurs Worldwide
-            </p>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-12 max-w-2xl mx-auto" style={{ fontFamily: '"Lato", system-ui, sans-serif', fontWeight: 400 }}>
-              Connecting entrepreneurs worldwide through impactful events and experiences
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        title="Our" 
+        highlight="Events" 
+        description="Connecting Entrepreneurs Worldwide. Impactful Events & Experiences. Where Ideas Meet Opportunity." 
+      />
 
       {/* Blue Description Section */}
       <section className="relative py-16 px-6 overflow-hidden bg-gray-50">

@@ -1,7 +1,8 @@
 'use client'
 
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import Hero from "@/components/HeroGloria";
+import Loader from "@/components/Loader";
 import AboutSection from "@/components/AboutSection";
 import VideoSection from "@/components/VideoSection";
 import ConnectLearnGrowSection from "@/components/ConnectLearnGrowSection";
@@ -13,6 +14,9 @@ import Image from "next/image";
 import JoinECellCommunitySection from "@/components/JoinGlobalCommunitySection";
 import Footer from "@/components/Footer";
 import IlluminatePopup from "@/components/IlluminatePopup";
+import { Anton } from 'next/font/google'
+
+const anton = Anton({ subsets: ['latin'], weight: '400' })
 
 
 export default function NewDesignHome() {
@@ -50,6 +54,7 @@ export default function NewDesignHome() {
   ];
   return (
     <div className="min-h-screen bg-background">
+      <Loader />
       <IlluminatePopup />
       {/* <Header /> */}  {/* Old Header */}
       <Hero />
@@ -57,7 +62,7 @@ export default function NewDesignHome() {
         <div className="max-w-7xl mx-auto">
           {/* Header - Exact same styling */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className={`${anton.className} text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide uppercase`}>
               Meet Our Advisory Board
             </h1>
           </div>

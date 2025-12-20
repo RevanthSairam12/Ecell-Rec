@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Anton } from 'next/font/google'
+
+const anton = Anton({ subsets: ['latin'], weight: '400' })
 
 const JoinECellCommunitySection = () => {
   return (
@@ -38,7 +41,7 @@ const JoinECellCommunitySection = () => {
         
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className={`${anton.className} text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-wide uppercase`}>
             Join Our E-Cell Community
           </h2>
           <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
@@ -66,7 +69,7 @@ const JoinECellCommunitySection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a href="/join">
             <Button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
-              Join as Volunteer
+              Join Now
             </Button>
           </a>
           <a href="/resources">

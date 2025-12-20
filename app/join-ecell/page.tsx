@@ -5,76 +5,19 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, Mail, Calendar, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import PageHero from "@/components/PageHero";
 
 export default function JoinECellPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-
-      {/* Hero Section - Matching home page style */}
-      <section className="relative h-screen flex items-center justify-start overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-        {/* Subtle Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 via-blue-100/30 to-indigo-100/40"></div>
-          <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-blue-200/20 to-transparent"></div>
-        </div>
-
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
-
-        {/* Partner Logos bar just below header */}
-        <div className="absolute top-16 left-0 right-0 z-20">
-          {/* Desktop layout: left and right logos */}
-          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
-            <div className="relative w-36 h-16">
-              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
-            </div>
-            <div className="relative w-36 h-16">
-              <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
-            </div>
-          </div>
-          {/* Mobile layout: two logos */}
-          <div className="md:hidden px-5">
-            <div className="flex justify-between items-center">
-              <div className="relative w-20 h-12">
-                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" />
-              </div>
-              <div className="relative w-20 h-12">
-                <Image src="/icons/raghu.png" alt="Raghu" fill className="object-contain" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content - Center Aligned */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-8 md:mt-12">
-          <div className="max-w-4xl mx-auto">
-            {/* Badge */}
-            <Badge className="mb-6 bg-green-500/20 text-green-700 border-green-300/50">
-              <CheckCircle className="w-4 h-4 mr-2" />
-              Registrations Open
-            </Badge>
-
-            {/* Main Heading */}
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-6 leading-tight" style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em' }}>
-                Join E-Cell REC
-              </h1>
-            </div>
-
-            {/* Subheading */}
-            <p className="text-xl md:text-2xl text-slate-800 mb-4 font-semibold tracking-wide" style={{ fontFamily: '"Lato", system-ui, sans-serif', letterSpacing: '0.02em' }}>
-              Join Our Community
-            </p>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-12 max-w-2xl mx-auto" style={{ fontFamily: '"Lato", system-ui, sans-serif', fontWeight: 400 }}>
-              Be part of the entrepreneurial revolution at Raghu Engineering College
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Join E-Cell REC"
+        highlight="Join Our Community"
+        description="Be part of the entrepreneurial revolution at Raghu Engineering College"
+        showButtons={false}
+      />
 
       {/* Registration Closed Notice - Matching home page gray section style */}
       <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
@@ -108,12 +51,12 @@ export default function JoinECellPage() {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white p-8 md:p-12 text-center rounded-3xl shadow-lg border-2 border-green-200 bg-green-50/50">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+            <div className="bg-white p-8 md:p-12 text-center rounded-3xl shadow-lg">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <XCircle className="w-8 h-8 text-gray-600" />
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Registrations Are Now Open!
+                Registrations Are Closed
               </h2>
               <p className="text-base md:text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Join E-Cell REC and be part of the entrepreneurial revolution! We're now accepting applications
@@ -128,17 +71,17 @@ export default function JoinECellPage() {
                   </p>
                 </div>
                 <div className="text-left">
-                  <h3 className="font-semibold text-gray-900 mb-2">Join Today</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">Stay Tuned</h3>
                   <p className="text-gray-600 text-sm">
-                    Fill out our registration form and become part of our growing entrepreneurial community.
+                    Registrations are currently closed. Follow us for updates on when the next batch opens.
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  Register Now
+                <Button disabled className="bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300 cursor-not-allowed opacity-70">
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Registrations Closed
                 </Button>
                 <Link href="/events">
                   <Button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold text-base min-w-[180px] transition-all duration-300">
@@ -169,7 +112,7 @@ export default function JoinECellPage() {
                 Get Started Today
               </h2>
               <p className="text-base md:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-                Now that registrations are open, here are some ways to get involved and prepare for your entrepreneurial journey
+                Although registrations are closed, here are some ways to get involved and prepare for your entrepreneurial journey
               </p>
             </div>
 
@@ -213,9 +156,11 @@ export default function JoinECellPage() {
                 <p className="text-white/80 mb-4 text-sm">
                   Subscribe to our newsletter to receive updates about registration openings and upcoming events.
                 </p>
-                <Button className="bg-white text-blue-600 hover:bg-white/90 px-6 py-2 rounded-lg font-medium text-sm transition-all duration-300">
-                  Subscribe
-                </Button>
+                <Link href="#footer">
+                  <Button className="bg-white text-blue-600 hover:bg-white/90 px-6 py-2 rounded-lg font-medium text-sm transition-all duration-300">
+                    Subscribe
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -264,7 +209,9 @@ export default function JoinECellPage() {
         </div>
       </section>
 
-      <Footer />
+      <div id="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

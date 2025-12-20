@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Anton } from 'next/font/google'
+
+const anton = Anton({ subsets: ['latin'], weight: '400' })
 
 const ConnectLearnGrowSection = () => {
   return (
@@ -10,7 +13,7 @@ const ConnectLearnGrowSection = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Main Heading */}
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16">
+        <h2 className={`${anton.className} text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16 tracking-wide uppercase`}>
           Connect. Learn. Grow.
         </h2>
 
