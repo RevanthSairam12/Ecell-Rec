@@ -1,13 +1,9 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Image from "next/image";
-import { Lightbulb, Target, TrendingUp, ArrowRight, ExternalLink, CheckCircle } from "lucide-react";
+import { Lightbulb, Target, TrendingUp, ArrowRight, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHero from "@/components/PageHero";
 

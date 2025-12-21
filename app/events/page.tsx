@@ -1,17 +1,13 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from "react";
-import { useEffect, useState } from "react";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import EventsVideo from '../pages/EventsVideo';
-import Image from "next/image";
-import VantaClouds from "@/components/ui/VantaClouds";
-import DecryptedText from "@/components/ui/DecryptedText";
+import EventsVideo from "../pages/EventsVideo";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHero from "@/components/PageHero";
+
 
 // Motion Text Roll Component
 const MotionTextRoll = ({ 

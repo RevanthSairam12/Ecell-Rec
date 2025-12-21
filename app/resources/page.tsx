@@ -1,15 +1,10 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Image from "next/image";
-import { Download, FileText, Book, DollarSign, Users, Send, ExternalLink } from "lucide-react";
+import { Download, FileText, Book, DollarSign, Users, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHero from "@/components/PageHero";
 

@@ -1,133 +1,13 @@
 'use client'
 import AdvisoryBoardComponent from "@/components/advisoryBoard";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import VantaClouds from "@/components/ui/VantaClouds";
-import TextType from "@/components/ui/TextType";
-
-export default function AdvisoryBoard() {
-
-import { motion, AnimatePresence } from "framer-motion";
 import PageHero from "@/components/PageHero";
 
-// Motion Text Roll Component
-const MotionTextRoll = ({ 
-  texts, 
-  className = "",
-  style = {},
-  interval = 4000
-}: { 
-  texts: string[], 
-  className?: string,
-  style?: React.CSSProperties,
-  interval?: number
-}) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    if (texts.length <= 1) return;
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % texts.length);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [texts.length, interval]);
-
-  const currentText = texts[currentIndex];
-
-  return (
-    <div className={`relative overflow-hidden ${className}`} style={{ ...style, perspective: '1000px' }}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          className="flex justify-center flex-wrap"
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          {currentText.split('').map((letter, index) => (
-            <motion.span
-              key={`${currentIndex}-${index}`}
-              className="inline-block"
-              style={{ 
-                transformStyle: 'preserve-3d',
-                display: letter === ' ' ? 'inline' : 'inline-block',
-                minWidth: letter === ' ' ? '0.3em' : 'auto'
-              }}
-              variants={{
-                hidden: { 
-                  opacity: 0, 
-                  rotateX: -90,
-                  y: 15,
-                },
-                visible: { 
-                  opacity: 1, 
-                  rotateX: 0,
-                  y: 0,
-                  transition: {
-                    duration: 0.4,
-                    delay: index * 0.02,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }
-                },
-                exit: { 
-                  opacity: 0, 
-                  rotateX: 90,
-                  y: -15,
-                  transition: {
-                    duration: 0.25,
-                    delay: index * 0.015,
-                    ease: [0.55, 0.06, 0.68, 0.19]
-                  }
-                }
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-};
 
 export default function AdvisoryBoard() {
-  const subtitleTexts = ["Empowering Tomorrow's Leaders", "Advisory Board", "Guiding Excellence"];
 
-  // Advisory Board Data - Using the same structure as team page
-  const advisoryBoardMembers = [
-    {
-      name: "Raghu Kalidindi",
-      role: "Chairman",
-      subtitle: "Leading the vision and strategic direction of our educational institution",
-      image: "/raghu-sir-1.jpg"
-    },
-    {
-      name: "Rama Devi Kalidindi",
-      role: "Secretary",
-      subtitle: "Overseeing administrative excellence and educational quality",
-      image: "/RamaDevi-Kalidindi-1.jpg"
-    },
-    {
-      name: "Rahul Kalidindi",
-      role: "Director",
-      subtitle: "Driving innovation and modern educational practices",
-      image: "/Rahul-Kalidindi-1.jpg"
-    },
-    {
-      name: "Dr. A.Vijay kumar",
-      role: "Principal",
-      subtitle: "Providing academic leadership and fostering learning environment",
-      image: "/avijaykmr.jpeg"
-    },
-    {
-      name: "Dr. G. Kiran Kumar",
-      role: "Faculty Coordinator",
-      subtitle: "Mentoring students in entrepreneurship and innovation",
-      image: "/kiranspecial.png"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -266,4 +146,4 @@ export default function AdvisoryBoard() {
     </div>
   );
 }
-}
+
