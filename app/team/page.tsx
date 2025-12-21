@@ -1,12 +1,70 @@
-'use client'
+"use client";
 
 import Image from "next/image";
-import Header from "@/components/Header";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import BlurText from "@/components/ui/BlurText";
 import Footer from "@/components/Footer";
 import CurrentTeamMembers from "@/app/team-cmp/CurrentTeamData";
+import VantaClouds from "@/components/ui/VantaClouds";
+
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.6,
+      ease: [0.23, 1, 0.82, 1], 
+    },
+  },
+};
+
+const cardHoverVariants = {
+  rest: {
+    y: 0,
+    boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
+  },
+  hover: {
+    y: -12,
+    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.25)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+const wrapperVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const rowVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
 
 export default function Team() {
-  // Transform the imported team data to match the expected format
   const currentTeam = CurrentTeamMembers.map(member => ({
     name: member.name,
     role: member.role,
@@ -14,8 +72,6 @@ export default function Team() {
     image: member.imageUrl,
     socialLinks: member.socialLinks
   }));
-
-  // Helper function to get subtitle based on role
   function getSubtitleForRole(role: string): string {
     const subtitles: { [key: string]: string } = {
       "President": "Leading the entrepreneurial revolution at REC",
@@ -32,6 +88,9 @@ export default function Team() {
     };
     return subtitles[role] || "Contributing to entrepreneurial excellence";
   }
+
+  const teamSectionRef = useRef(null);
+  const isTeamInView = useInView(teamSectionRef, { once: true, amount: 0.1 });
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -84,8 +143,8 @@ export default function Team() {
             {/* Main Heading */}
             <div className="mb-8">
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-6 leading-tight" style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em' }}>
-                E-Cell Leadership
-              </h1>
+                  E-Cell Leadership
+                </h1>
             </div>
 
             {/* Subheading */}
@@ -93,8 +152,8 @@ export default function Team() {
               Our Team
             </p>
             <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-12 max-w-2xl mx-auto" style={{ fontFamily: '"Lato", system-ui, sans-serif', fontWeight: 400 }}>
-              Guiding Global Entrepreneurs
-            </p>
+                  Guiding Global Entrepreneurs
+                </p>
           </div>
         </div>
       </section>
@@ -187,101 +246,163 @@ export default function Team() {
             </h1>
           </div>
 
-          {/* Team Members Grid - 4 + 4 + 4 + 3 (centered) */}
-          {(() => {
-            const firstRow = currentTeam.slice(0, 4);
-            const secondRow = currentTeam.slice(4, 8);
-            const thirdRow = currentTeam.slice(8, 12);
-            const remaining = currentTeam.slice(12, 16);
+          {/* Team Members Grid - Enhanced with Framer Motion Animations */}
+          <motion.div
+            ref={teamSectionRef}
+            initial="hidden"
+            animate={isTeamInView ? "visible" : "hidden"}
+            variants={wrapperVariants}
+            className="max-w-6xl mx-auto"
+          >
+            {(() => {
+              const firstRow = currentTeam.slice(0, 4);
+              const secondRow = currentTeam.slice(4, 8);
+              const thirdRow = currentTeam.slice(8, 12);
+              const remaining = currentTeam.slice(12, 16);
 
-            const Card = (member: typeof currentTeam[number], index: number) => (
-              <div key={member.name} className="text-center group">
-                <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    priority={index < 8}
-                  />
-                  {member.socialLinks && (
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="flex space-x-4">
-                        {member.socialLinks.map((link, linkIndex) => (
-                          <a
-                            key={linkIndex}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors duration-200"
+              
+              const AnimatedCard = (member: typeof currentTeam[number], index: number, rowIndex: number) => {
+                
+                const totalCards = firstRow.length;
+                const centerPosition = totalCards / 2 - 0.5;
+                const distanceFromCenter = Math.abs(index - centerPosition);
+
+                
+                const delayMultiplier = distanceFromCenter * 0.05;
+
+                return (
+                  <motion.div
+                    key={member.name}
+                    variants={cardVariants}
+                    custom={delayMultiplier}
+                    transition={{
+                      duration: 0.7,
+                      delay: rowIndex * 0.15 + delayMultiplier,
+                      ease: [0.23, 1, 0.82, 1],
+                    }}
+                    className="text-center group"
+                  >
+                    <motion.div
+                      initial="rest"
+                      whileHover="hover"
+                      variants={cardHoverVariants}
+                      className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden"
+                    >
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        priority={index < 8}
+                      />
+                      {member.socialLinks && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute inset-0 bg-black/70 flex items-center justify-center"
+                        >
+                          <div className="flex space-x-4">
+                            {member.socialLinks.map((link, linkIndex) => (
+                              <motion.a
+                                key={linkIndex}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors duration-200"
+                              >
+                                {link.platform === 'Twitter' ? (
+                                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                  </svg>
+                                ) : link.platform === 'LinkedIn' ? (
+                                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                  </svg>
+                                ) : null}
+                              </motion.a>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </motion.div>
+                    <div className="text-white">
+                      <h3 className="text-lg font-bold mb-1">{member.name}</h3>
+                      <p className="text-yellow-400 text-sm font-medium mb-1">{member.role}</p>
+                      <p className="text-gray-300 text-xs">{member.subtitle}</p>
+                    </div>
+                  </motion.div>
+                );
+              };
+
+              return (
+                <>
+                 
+                  <motion.div
+                    variants={rowVariants}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8"
+                  >
+                    {firstRow.map((m, i) => AnimatedCard(m, i, 0))}
+                  </motion.div>
+
+                  
+                  <motion.div
+                    variants={rowVariants}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8"
+                  >
+                    {secondRow.map((m, i) => AnimatedCard(m, i, 1))}
+                  </motion.div>
+
+                  
+                  <motion.div
+                    variants={rowVariants}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8"
+                  >
+                    {thirdRow.map((m, i) => AnimatedCard(m, i, 2))}
+                  </motion.div>
+
+                  
+                  {remaining.length > 0 && (
+                    <motion.div variants={rowVariants} className="max-w-6xl mx-auto">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:hidden">
+                        {remaining.map((m, i) => AnimatedCard(m, i, 3))}
+                      </div>
+                      <div className="hidden lg:flex justify-center gap-8">
+                        {remaining.map((m, i) => (
+                          <motion.div
+                            key={m.name}
+                            className="w-1/4"
+                            variants={cardVariants}
+                            transition={{
+                              duration: 0.7,
+                              delay: 3 * 0.15 + i * 0.1,
+                              ease: [0.23, 1, 0.82, 1],
+                            }}
                           >
-                            {link.platform === 'Twitter' ? (
-                              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                              </svg>
-                            ) : link.platform === 'LinkedIn' ? (
-                              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                              </svg>
-                            ) : null}
-                          </a>
+                            {AnimatedCard(m, i, 3)}
+                          </motion.div>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   )}
-                </div>
-                <div className="text-white">
-                  <h3 className="text-lg font-bold mb-1">{member.name}</h3>
-                  <p className="text-yellow-400 text-sm font-medium mb-1">{member.role}</p>
-                  <p className="text-gray-300 text-xs">{member.subtitle}</p>
-                </div>
-              </div>
-            );
-
-            return (
-              <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
-                  {firstRow.map((m, i) => Card(m, i))}
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
-                  {secondRow.map((m, i) => Card(m, i + 4))}
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
-                  {thirdRow.map((m, i) => Card(m, i + 8))}
-                </div>
-                {remaining.length > 0 && (
-                  <div className="max-w-6xl mx-auto">
-                    {/* Mobile/Tablet: keep grid responsive */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:hidden">
-                      {remaining.map((m, i) => Card(m, i + 12))}
-                    </div>
-                    {/* Desktop: keep same card width as 4-col (25%) and center */}
-                    <div className="hidden lg:flex justify-center gap-8">
-                      {remaining.map((m, i) => (
-                        <div key={m.name} className="w-1/4">
-                          {Card(m, i + 12)}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </>
-            );
-          })()}
+                </>
+              );
+            })()}
+          </motion.div>
 
         </div>
       </section>
 
-      {/* E-Cell's Path of Leadership Section - Exact same design as shown in image */}
+      
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            {/* Section Title - Left aligned */}
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-left">
               E-Cell's Path of Leadership
             </h2>
 
-            {/* Description - Left aligned */}
             <div className="text-gray-700 text-base leading-relaxed mb-12">
               <p className="text-left">
                 E-Cell members have the opportunity to shape the <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">member experience</span> and co-create the future of our
@@ -293,7 +414,6 @@ export default function Team() {
           </div>
         </div>
 
-        {/* Mountain Background Image Section */}
         <div className="relative h-[400px] md:h-[500px] overflow-hidden">
           <div className="absolute inset-0">
             <Image
@@ -302,7 +422,6 @@ export default function Team() {
               fill
               className="object-cover object-center"
             />
-            {/* Pink decorative elements overlay - matching the image design */}
             <div className="absolute inset-0">
               {/* Sun icon - top left */}
               <div className="absolute top-8 left-12 w-16 h-16">
@@ -321,7 +440,6 @@ export default function Team() {
                 </svg>
               </div>
 
-              {/* Birds - top right */}
               <div className="absolute top-12 right-20">
                 <svg viewBox="0 0 60 20" className="w-12 h-4 text-pink-500">
                   <path d="M5 10 Q10 5 15 10 Q20 15 25 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -329,7 +447,6 @@ export default function Team() {
                 </svg>
               </div>
 
-              {/* Wavy lines - left side */}
               <div className="absolute left-8 top-1/2 transform -translate-y-1/2">
                 <svg viewBox="0 0 100 200" className="w-20 h-32 text-pink-500">
                   <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -338,7 +455,6 @@ export default function Team() {
                 </svg>
               </div>
 
-              {/* Wavy lines - right side */}
               <div className="absolute right-8 top-1/3">
                 <svg viewBox="0 0 100 150" className="w-16 h-24 text-pink-500">
                   <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -346,7 +462,6 @@ export default function Team() {
                 </svg>
               </div>
 
-              {/* Path/trail lines on the mountain */}
               <div className="absolute bottom-1/4 left-1/2 transform -translate-x-1/2">
                 <svg viewBox="0 0 300 100" className="w-64 h-16 text-pink-500">
                   <path d="M50 80 Q100 60 150 70 Q200 50 250 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />

@@ -1,11 +1,13 @@
 'use client'
 
-import Header from "@/components/Header";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import EventsVideo from '../pages/EventsVideo';
 import Image from "next/image";
+import VantaClouds from "@/components/ui/VantaClouds";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 export default function EventsPage() {
 
