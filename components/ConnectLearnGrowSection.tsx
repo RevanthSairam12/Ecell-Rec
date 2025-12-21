@@ -3,6 +3,11 @@
 import TextType from "@/components/ui/TextType";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { Anton } from 'next/font/google'
+
+const anton = Anton({ subsets: ['latin'], weight: '400' })
 
 /* ------------------ Animation Variants ------------------ */
 
@@ -50,6 +55,11 @@ export default function ConnectLearnGrowSection() {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="max-w-6xl mx-auto">
+        
+        {/* Main Heading */}
+        <h2 className={`${anton.className} text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16 tracking-wide uppercase`}>
+          Connect. Learn. Grow.
+        </h2>
 
         {/* Main Heading */}
         <motion.h2

@@ -1,5 +1,9 @@
 'use client'
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { Anton } from 'next/font/google'
+
+const anton = Anton({ subsets: ['latin'], weight: '400' })
+
 const MembersLoveECellSection = () => {
 
 
@@ -62,7 +66,7 @@ const MembersLoveECellSection = () => {
       <div className="max-w-6xl mx-auto">
 
         {/* Main Heading */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
+        <h2 className={`${anton.className} text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16 tracking-wide uppercase`}>
           Members Love E-Cell REC ❤️
         </h2>
 
