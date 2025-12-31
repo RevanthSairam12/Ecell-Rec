@@ -62,89 +62,6 @@ const rowVariants = {
   },
 };
 
-// export default function Team() {
-
-
-// // Motion Text Roll Component
-// const MotionTextRoll = ({ 
-//   texts, 
-//   className = "",
-//   style = {},
-//   interval = 4000
-// }: { 
-//   texts: string[], 
-//   className?: string,
-//   style?: React.CSSProperties,
-//   interval?: number
-// }) => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   useEffect(() => {
-//     const timer = setInterval(() => {
-//       setCurrentIndex((prev) => (prev + 1) % texts.length);
-//     }, interval);
-//     return () => clearInterval(timer);
-//   }, [texts.length, interval]);
-
-//   const currentText = texts[currentIndex];
-
-//   return (
-//     <div className={`relative overflow-hidden ${className}`} style={{ ...style, perspective: '1000px' }}>
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={currentIndex}
-//           className="flex justify-center flex-wrap"
-//           initial="hidden"
-//           animate="visible"
-//           exit="exit"
-//         >
-//           {currentText.split('').map((letter, index) => (
-//             <motion.span
-//               key={`${currentIndex}-${index}`}
-//               className="inline-block"
-//               style={{ 
-//                 transformStyle: 'preserve-3d',
-//                 display: letter === ' ' ? 'inline' : 'inline-block',
-//                 minWidth: letter === ' ' ? '0.3em' : 'auto'
-//               }}
-//               variants={{
-//                 hidden: { 
-//                   opacity: 0, 
-//                   rotateX: -90,
-//                   y: 15,
-//                 },
-//                 visible: { 
-//                   opacity: 1, 
-//                   rotateX: 0,
-//                   y: 0,
-//                   transition: {
-//                     duration: 0.4,
-//                     delay: index * 0.02,
-//                     ease: [0.25, 0.46, 0.45, 0.94]
-//                   }
-//                 },
-//                 exit: { 
-//                   opacity: 0, 
-//                   rotateX: 90,
-//                   y: -15,
-//                   transition: {
-//                     duration: 0.25,
-//                     delay: index * 0.015,
-//                     ease: [0.55, 0.06, 0.68, 0.19]
-//                   }
-//                 }
-//               }}
-//             >
-//               {letter}
-//             </motion.span>
-//           ))}
-//         </motion.div>
-//       </AnimatePresence>
-//     </div>
-//   );
-// };
-// }
-
 export default function Team() {
   
   // Transform the imported team data to match the expected format
@@ -497,7 +414,6 @@ export default function Team() {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );

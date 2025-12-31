@@ -111,7 +111,6 @@ export default function LatestInsightsSection() {
                   className="object-cover"
                 />
               </div>
-
               <div className="p-6">
                 <h3 className="text-white text-lg font-semibold mb-3 leading-tight">
                   {insight.title}

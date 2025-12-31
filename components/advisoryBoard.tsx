@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 
 export default function AdvisoryBoardComponent() {
     return (
-
-
         <section className="py-16 px-6 bg-slate-900 pt-24">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">

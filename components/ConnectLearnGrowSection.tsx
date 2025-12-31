@@ -9,8 +9,6 @@ import { Anton } from 'next/font/google'
 
 const anton = Anton({ subsets: ['latin'], weight: '400' })
 
-/* ------------------ Animation Variants ------------------ */
-
 const sectionVariant = {
   hidden: {
     opacity: 0,
@@ -44,7 +42,6 @@ const blockVariant = {
     },
   },
 };
-
 export default function ConnectLearnGrowSection() {
   return (
     <motion.section
@@ -167,7 +164,6 @@ export default function ConnectLearnGrowSection() {
             </div>
           </div>
         </motion.div>
-
       </div>
     </motion.section>
   );
