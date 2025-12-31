@@ -5,9 +5,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { Anton } from 'next/font/google'
+import { Anton } from 'next/font/google';
 
-const anton = Anton({ subsets: ['latin'], weight: '400' })
+const anton = Anton({ subsets: ['latin'], weight: '400' });
+
+/* ------------------ Animation Variants ------------------ */
 
 const sectionVariant = {
   hidden: {
@@ -42,6 +44,7 @@ const blockVariant = {
     },
   },
 };
+
 export default function ConnectLearnGrowSection() {
   return (
     <motion.section
@@ -49,19 +52,24 @@ export default function ConnectLearnGrowSection() {
       variants={sectionVariant}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-120px" }}   // 🔑 critical fix
     >
       <div className="max-w-6xl mx-auto">
-        
-        {/* Main Heading */}
-        <h2 className={`${anton.className} text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16 tracking-wide uppercase`}>
+
+        {/* Static Heading */}
+        <h2
+          className={`${anton.className} text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16 tracking-wide uppercase`}
+        >
           Connect. Learn. Grow.
         </h2>
 
-        {/* Main Heading */}
+        {/* Animated Typing Heading */}
         <motion.h2
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16"
           variants={blockVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
         >
           <TextType
             text={["Connect With Us", "Learn With Us", "Grow With Us"]}
@@ -76,6 +84,9 @@ export default function ConnectLearnGrowSection() {
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-20"
           variants={blockVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
         >
           <div className="space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -107,6 +118,9 @@ export default function ConnectLearnGrowSection() {
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-20"
           variants={blockVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
         >
           <div className="relative order-2 lg:order-1">
             <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg">
@@ -138,6 +152,9 @@ export default function ConnectLearnGrowSection() {
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
           variants={blockVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
         >
           <div className="space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -164,6 +181,7 @@ export default function ConnectLearnGrowSection() {
             </div>
           </div>
         </motion.div>
+
       </div>
     </motion.section>
   );

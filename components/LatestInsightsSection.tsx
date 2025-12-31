@@ -67,7 +67,7 @@ export default function LatestInsightsSection() {
       variants={sectionVariant}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-120px" }}   // 🔑 critical fix
     >
       <div className="max-w-6xl mx-auto">
 
@@ -75,6 +75,9 @@ export default function LatestInsightsSection() {
         <motion.div
           className="relative mb-16"
           variants={fadeUpVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
         >
           <div
             className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-12 py-4 font-bold text-xl md:text-2xl text-center"
@@ -94,7 +97,7 @@ export default function LatestInsightsSection() {
           variants={containerVariant}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-120px" }}
         >
           {insights.map((insight) => (
             <motion.div
@@ -130,6 +133,9 @@ export default function LatestInsightsSection() {
         <motion.div
           className="text-center"
           variants={fadeUpVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
         >
           <a href="/events">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium text-sm flex items-center space-x-2 mx-auto">
