@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import CurrentTeamMembers from "@/app/team-cmp/CurrentTeamData";
 import PageHero from "@/components/PageHero";
+import AppNavbar from "@/components/AppNavbar";
 
 
 const cardVariants = {
@@ -20,7 +22,7 @@ const cardVariants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.6,
-      ease: [0.23, 1, 0.82, 1], 
+      ease: [0.23, 1, 0.82, 1],
     },
   },
 };
@@ -63,7 +65,7 @@ const rowVariants = {
 };
 
 export default function Team() {
-  
+
   // Transform the imported team data to match the expected format
   const currentTeam = CurrentTeamMembers.map(member => ({
     name: member.name,
@@ -94,15 +96,15 @@ export default function Team() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      
-      <PageHero 
-        title="Our" 
-        highlight="Team" 
-        description="Guiding Global Entrepreneurs. Building Tomorrow's Leaders." 
+      <AppNavbar />
+      <PageHero
+        title="Our"
+        highlight="Team"
+        description="Guiding Global Entrepreneurs. Building Tomorrow's Leaders."
         useWhiteBackground={true}
       />
 
-      {/* Blue Information Box Section */}
+
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -117,16 +119,16 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Global Board of Directors Section */}
+
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            {/* Section Title - Left aligned */}
+
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-left">
               Global Board of Directors
             </h2>
 
-            {/* Description - Left aligned */}
+
             <div className="text-gray-700 text-base leading-relaxed">
               <p className="text-left">
                 The <span className="font-semibold text-blue-600">Global Board of Directors</span> serves as the visionary backbone of E-Cell, steering our strategic course and ensuring sustainable growth. Comprising distinguished entrepreneurs and industry leaders, this body brings <span className="font-semibold">unparalleled expertise and insight</span> to amplify <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">E-Cell's global mission</span>, fostering an ecosystem where innovation thrives and future leaders are forged.
@@ -136,20 +138,20 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Faculty Coordinator Section */}
+
       <section className="py-16 px-6 bg-slate-900 pt-24">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Faculty Coordinator
             </h1>
           </div>
 
-          {/* Faculty Coordinator - Single member centered */}
+
           <div className="flex justify-center mb-16">
             <div className="text-center max-w-xs">
-              {/* Profile Image with rounded corners */}
+
               <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden">
                 <Image
                   src="/kirankumar.png"
@@ -160,7 +162,7 @@ export default function Team() {
                 />
               </div>
 
-              {/* Member Info */}
+
               <div className="text-white">
                 <h3 className="text-lg font-bold mb-1">
                   Dr. G. Kiran Kumar
@@ -177,18 +179,18 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Meet Our Team Section - Exact same design as Global Board */}
+
       <section className="py-16 px-6 bg-slate-900 pt-0">
         <div className="max-w-7xl mx-auto">
 
-          {/* Header - Exact same styling */}
+
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Meet Our Team
             </h1>
           </div>
 
-          {/* Team Members Grid - Enhanced with Framer Motion Animations */}
+
           <motion.div
             ref={teamSectionRef}
             initial="hidden"
@@ -197,19 +199,25 @@ export default function Team() {
             className="max-w-6xl mx-auto"
           >
             {(() => {
-              const firstRow = currentTeam.slice(0, 4);
-              const secondRow = currentTeam.slice(4, 8);
-              const thirdRow = currentTeam.slice(8, 12);
-              const remaining = currentTeam.slice(12, 16);
 
-              
-              const AnimatedCard = (member: typeof currentTeam[number], index: number, rowIndex: number) => {
-                
-                const totalCards = firstRow.length;
+              const rows = [
+                currentTeam.slice(0, 1),
+                currentTeam.slice(1, 3),
+                currentTeam.slice(3, 5),
+                currentTeam.slice(5, 8),
+                currentTeam.slice(8, 11),
+                currentTeam.slice(11, 15)
+              ];
+
+
+              const AnimatedCard = (member: typeof currentTeam[number], index: number, rowIndex: number, rowLength: number) => {
+
+
+                const totalCards = rowLength;
                 const centerPosition = totalCards / 2 - 0.5;
                 const distanceFromCenter = Math.abs(index - centerPosition);
 
-                
+
                 const delayMultiplier = distanceFromCenter * 0.05;
 
                 return (
@@ -222,20 +230,20 @@ export default function Team() {
                       delay: rowIndex * 0.15 + delayMultiplier,
                       ease: [0.23, 1, 0.82, 1],
                     }}
-                    className="text-center group"
+                    className="text-center group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px]"
                   >
                     <motion.div
                       initial="rest"
                       whileHover="hover"
                       variants={cardHoverVariants}
-                      className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden"
+                      className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden mx-auto bg-gray-800"
                     >
                       <Image
                         src={member.image}
                         alt={member.name}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-110"
-                        priority={index < 8}
+                        priority={rowIndex < 2}
                       />
                       {member.socialLinks && (
                         <motion.div
@@ -280,56 +288,17 @@ export default function Team() {
               };
 
               return (
-                <>
-                 
-                  <motion.div
-                    variants={rowVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8"
-                  >
-                    {firstRow.map((m, i) => AnimatedCard(m, i, 0))}
-                  </motion.div>
-
-                  
-                  <motion.div
-                    variants={rowVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8"
-                  >
-                    {secondRow.map((m, i) => AnimatedCard(m, i, 1))}
-                  </motion.div>
-
-                  
-                  <motion.div
-                    variants={rowVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8"
-                  >
-                    {thirdRow.map((m, i) => AnimatedCard(m, i, 2))}
-                  </motion.div>
-
-                  
-                  {remaining.length > 0 && (
-                    <motion.div variants={rowVariants} className="max-w-6xl mx-auto">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:hidden">
-                        {remaining.map((m, i) => AnimatedCard(m, i, 3))}
-                      </div>
-                      <div className="hidden lg:flex justify-center gap-8">
-                        {remaining.map((m, i) => (
-                          <motion.div
-                            key={m.name}
-                            className="w-1/4"
-                            variants={cardVariants}
-                            transition={{
-                              duration: 0.7,
-                              delay: 3 * 0.15 + i * 0.1,
-                              ease: [0.23, 1, 0.82, 1],
-                            }}
-                          >
-                            {AnimatedCard(m, i, 3)}
-                          </motion.div>
-                        ))}
-                      </div>
+                <div className="flex flex-col gap-8">
+                  {rows.map((rowMembers, rowIndex) => (
+                    <motion.div
+                      key={rowIndex}
+                      variants={rowVariants}
+                      className="flex flex-wrap justify-center gap-8 w-full max-w-7xl mx-auto px-4"
+                    >
+                      {rowMembers.map((member, index) => AnimatedCard(member, index, rowIndex, rowMembers.length))}
                     </motion.div>
-                  )}
-                </>
+                  ))}
+                </div>
               );
             })()}
           </motion.div>
@@ -337,79 +306,35 @@ export default function Team() {
         </div>
       </section>
 
-      
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-left">
-              E-Cell's Path of Leadership
-            </h2>
 
-            <div className="text-gray-700 text-base leading-relaxed mb-12">
-              <p className="text-left">
-                E-Cell members have the opportunity to shape the <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">member experience</span> and co-create the future of our
-                organization across a variety of local, regional, global and functional roles that serve all aspects of our
-                organizational community. Serving in volunteer leadership roles are typically <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">one year</span>
-                We encourage members to expand their leadership skills by serving in <span className="text-blue-600 underline cursor-pointer hover:text-blue-800">E-Cell's Path of Leadership</span>.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative h-[400px] md:h-[500px] overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src="/group/group1.jpg"
-              alt="Person on mountain path representing E-Cell's Path of Leadership"
-              fill
-              className="object-cover object-center"
-            />
+      <section className="py-16 px-6 bg-slate-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+            {/* Background Image with Overlay */}
             <div className="absolute inset-0">
-              {/* Sun icon - top left */}
-              <div className="absolute top-8 left-12 w-16 h-16">
-                <svg viewBox="0 0 100 100" className="w-full h-full text-pink-500">
-                  <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="3" />
-                  <g stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                    <line x1="50" y1="10" x2="50" y2="20" />
-                    <line x1="50" y1="80" x2="50" y2="90" />
-                    <line x1="10" y1="50" x2="20" y2="50" />
-                    <line x1="80" y1="50" x2="90" y2="50" />
-                    <line x1="25.86" y1="25.86" x2="32.32" y2="32.32" />
-                    <line x1="67.68" y1="67.68" x2="74.14" y2="74.14" />
-                    <line x1="74.14" y1="25.86" x2="67.68" y2="32.32" />
-                    <line x1="32.32" y1="67.68" x2="25.86" y2="74.14" />
-                  </g>
-                </svg>
-              </div>
+              <Image
+                src="/group/group1.jpg"
+                alt="Former Team"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500" />
+            </div>
 
-              <div className="absolute top-12 right-20">
-                <svg viewBox="0 0 60 20" className="w-12 h-4 text-pink-500">
-                  <path d="M5 10 Q10 5 15 10 Q20 15 25 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  <path d="M35 10 Q40 5 45 10 Q50 15 55 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </div>
+            {/* Content Centered */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-wide drop-shadow-md">
+                Meet our Former Team
+              </h2>
 
-              <div className="absolute left-8 top-1/2 transform -translate-y-1/2">
-                <svg viewBox="0 0 100 200" className="w-20 h-32 text-pink-500">
-                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <path d="M10 100 Q30 90 50 100 Q70 110 90 100" fill="none" stroke="currentColor" strokeWidth="2" />
-                </svg>
-              </div>
-
-              <div className="absolute right-8 top-1/3">
-                <svg viewBox="0 0 100 150" className="w-16 h-24 text-pink-500">
-                  <path d="M10 20 Q30 10 50 20 Q70 30 90 20" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <path d="M10 60 Q30 50 50 60 Q70 70 90 60" fill="none" stroke="currentColor" strokeWidth="2" />
-                </svg>
-              </div>
-
-              <div className="absolute bottom-1/4 left-1/2 transform -translate-x-1/2">
-                <svg viewBox="0 0 300 100" className="w-64 h-16 text-pink-500">
-                  <path d="M50 80 Q100 60 150 70 Q200 50 250 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                  <path d="M30 90 Q80 70 130 80 Q180 60 230 70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </div>
+              <Link href="/former-team">
+                <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50 flex items-center gap-2">
+                  Former Team
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

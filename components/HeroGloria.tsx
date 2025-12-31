@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { Inter, Whisper, Anton } from 'next/font/google'
 import { Button } from "@heroui/react"
 
-const UserIcon = ({fill = "currentColor", size, height, width, ...props}: any) => {
+const UserIcon = ({ fill = "currentColor", size, height, width, ...props }: any) => {
   return (
     <svg
       data-name="Iconly/Curved/Profile"
@@ -34,7 +34,7 @@ const UserIcon = ({fill = "currentColor", size, height, width, ...props}: any) =
   );
 };
 
-const CameraIcon = ({fill = "currentColor", size, height, width, ...props}: any) => {
+const CameraIcon = ({ fill = "currentColor", size, height, width, ...props }: any) => {
   return (
     <svg
       fill="none"
@@ -88,7 +88,7 @@ const Hero = () => {
 
   useEffect(() => {
     setIsLoaded(true)
-    
+
     intervalRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 5000)
@@ -174,7 +174,7 @@ const Hero = () => {
           />
 
           {/* Grid Pattern Overlay */}
-          <div 
+          <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
@@ -183,7 +183,7 @@ const Hero = () => {
           />
 
           {/* Subtle Dots Pattern */}
-          <div 
+          <div
             className="absolute inset-0 opacity-[0.04]"
             style={{
               backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`,
@@ -195,28 +195,22 @@ const Hero = () => {
         {/* Content Container */}
         <div className="relative z-20 min-h-screen flex flex-col pt-16">
           {/* Logo Bar - Matching team page style */}
-          {/* Desktop layout */}
-          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto w-full">
-            <div className="relative w-36 h-16">
+          {/* Desktop layout: Shifted down 100px */}
+          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto w-full mt-[100px]">
+            <div className="relative w-56 h-24">
               <Image src="/icons/raghu.png" alt="Raghu Engineering College" fill className="object-contain" priority />
             </div>
-            <div className="relative w-36 h-16">
-              <Image src="/icons/ecellverynew.png" alt="E-Cell REC" fill className="object-contain" priority />
-            </div>
-            <div className="relative w-36 h-16">
+            <div className="relative w-56 h-24">
               <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" priority />
             </div>
           </div>
-          {/* Mobile layout */}
-          <div className="md:hidden px-5">
+          {/* Mobile layout: Shifted down 100px */}
+          <div className="md:hidden px-5 mt-[100px]">
             <div className="flex justify-between items-center">
-              <div className="relative w-20 h-12">
+              <div className="relative w-28 h-16">
                 <Image src="/icons/raghu.png" alt="Raghu Engineering College" fill className="object-contain" priority />
               </div>
-              <div className="relative w-36 h-16">
-                <Image src="/icons/ecellverynew.png" alt="E-Cell REC" fill className="object-contain" priority />
-              </div>
-              <div className="relative w-20 h-12">
+              <div className="relative w-28 h-16">
                 <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" priority />
               </div>
             </div>
@@ -230,26 +224,25 @@ const Hero = () => {
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-                    className={`transition-all duration-700 ease-in-out ${
-                      index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 absolute inset-0 pointer-events-none'
-                    }`}
+                    className={`transition-all duration-700 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 absolute inset-0 pointer-events-none'
+                      }`}
                   >
                     {index === currentSlide && (
                       <div className="mb-8 relative">
                         <div className="relative inline-block py-4">
-                          <h1 
-                            className={`${anton.className} text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 tracking-wide uppercase relative z-10 whitespace-nowrap`}
+                          <h1
+                            className={`${anton.className} text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 tracking-wide uppercase relative z-10 whitespace-nowrap`}
                           >
                             {slide.title}
                           </h1>
-                          <span 
+                          <span
                             className={`${whisper.className} absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-red-600 -rotate-6 pointer-events-none z-20 opacity-90`}
                             style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.5)' }}
                           >
                             {slide.highlight}
                           </span>
                         </div>
-                        <p 
+                        <p
                           className={`${inter.className} text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto mt-8 mb-10 font-normal`}
                         >
                           {slide.description}
@@ -258,12 +251,12 @@ const Hero = () => {
                     )}
                   </div>
                 ))}
-                
+
                 {/* Fixed Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-                  <Button 
-                    as="a" 
-                    href="/join-ecell" 
+                  <Button
+                    as="a"
+                    href="/join-ecell"
                     color="primary"
                     size="lg"
                     radius="md"
@@ -272,9 +265,9 @@ const Hero = () => {
                   >
                     Join E-Cell Today
                   </Button>
-                  <Button 
-                    as="a" 
-                    href="/events" 
+                  <Button
+                    as="a"
+                    href="/events"
                     variant="bordered"
                     size="lg"
                     radius="md"

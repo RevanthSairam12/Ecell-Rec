@@ -10,10 +10,19 @@ const Loader = ({ onComplete }: LoaderProps) => {
   const [isAnimating, setIsAnimating] = useState(true)
 
   useEffect(() => {
+    // Check if loader has already been shown in this session
+    const hasShown = sessionStorage.getItem("loaderShown");
+
+    if (hasShown) {
+      setIsAnimating(false);
+      return;
+    }
+
     // Hide loader after animation completes
     const timer = setTimeout(() => {
       setIsAnimating(false)
       onComplete?.()
+      sessionStorage.setItem("loaderShown", "true");
     }, 3500) // Animation duration
 
     return () => clearTimeout(timer)

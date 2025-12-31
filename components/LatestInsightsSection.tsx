@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* ---------------- Animation Variants ---------------- */
+
 
 const sectionVariant = {
   hidden: {
@@ -104,9 +104,10 @@ export default function LatestInsightsSection() {
               key={insight.id}
               variants={cardVariant}
               className="bg-gray-800 rounded-lg overflow-hidden cursor-pointer
-                         hover:transform hover:scale-105 transition-all duration-300"
+                         hover:transform hover:scale-105 transition-all duration-300
+                         flex flex-col h-[580px]"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 shrink-0 overflow-hidden">
                 <Image
                   src={insight.image}
                   alt={insight.title}
@@ -114,16 +115,27 @@ export default function LatestInsightsSection() {
                   className="object-cover"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-white text-lg font-semibold mb-3 leading-tight">
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="text-white text-lg font-semibold mb-3 leading-tight line-clamp-2 h-[3.5rem]">
                   {insight.title}
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                <p
+                  className="text-gray-300 text-sm leading-relaxed mb-4 flex-1 overflow-hidden"
+                  style={{ display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical' }}
+                >
                   {insight.description}
                 </p>
-                <p className="text-gray-400 text-xs">
-                  {insight.date}
-                </p>
+                <div className="mt-auto pt-4 flex flex-col gap-4">
+                  <p className="text-gray-400 text-xs">
+                    {insight.date}
+                  </p>
+                  <a href="/events" className="w-full">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium text-sm flex items-center justify-center space-x-2 w-full">
+                      <span>Explore More</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}

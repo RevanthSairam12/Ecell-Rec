@@ -3,6 +3,7 @@ import AdvisoryBoardComponent from "@/components/advisoryBoard";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import AppNavbar from "@/components/AppNavbar";
 
 
 
@@ -11,10 +12,11 @@ export default function AdvisoryBoard() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <PageHero 
-        title="About" 
-        highlight="Us" 
-        description="Empowering students today to lead industries tomorrow. At E-Cell REC, we are committed to nurturing a culture of innovation and entrepreneurship." 
+      <AppNavbar />
+      <PageHero
+        title="About"
+        highlight="Us"
+        description="Empowering students today to lead industries tomorrow. At E-Cell REC, we are committed to nurturing a culture of innovation and entrepreneurship."
         useWhiteBackground={true}
       />
 

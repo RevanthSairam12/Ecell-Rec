@@ -39,15 +39,6 @@ const CurrentTeamMembers = [
   },
   {
     role: "Startup Assistance & program Head",
-    name: "Tappiti Ganesh",
-    socialLinks: [
-      { platform: 'Twitter', url: 'https://x.com/ganeshtappiti' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/ganeshtappiti/' },
-    ],
-    imageUrl: "/ganesh.jpg",
-  },
-  {
-    role: "Startup Assistance & program Head",
     name: "Ponugupati Sai Pawan",
     socialLinks: [
       { platform: 'Twitter', url: 'https://x.com/pawan28016' },
@@ -56,7 +47,7 @@ const CurrentTeamMembers = [
     imageUrl: "/Pawan2.jpg",
   },
   {
-    role: "Alumni & Community Relations Head",
+    role: "Events & Management Head",
     name: "Ujjesha Nitya Routhu",
     socialLinks: [
       { platform: 'Twitter', url: 'https://x.com/UjjeshaNitya' },
@@ -65,6 +56,50 @@ const CurrentTeamMembers = [
     imageUrl: "/nitya.jpg",
   },
   {
+    role: "Events & Management Head",
+    name: "Shazia sadaf",
+    socialLinks: [
+      { platform: 'Twitter', url: '#' },
+      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/shazia-sadaf-83837933a/' },
+    ],
+    imageUrl: "/shazia.jpg",
+  },
+  {
+    role: "Events & Management Head",
+    name: "Renitha Ashwa",
+    socialLinks: [
+      { platform: 'Twitter', url: '#' },
+      { platform: 'LinkedIn', url: '#' },
+    ],
+    imageUrl: "/renitha.jpeg",
+  },
+  {
+    role: "Marketing & Outreach Head",
+    name: "Vineela Vadrevu",
+    socialLinks: [
+      { platform: 'Twitter', url: 'https://x.com/VVadrevu39607' },
+      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/sai-satya-vineela-vadrevu-976b04374/' },
+    ],
+    imageUrl: "/vineela.jpg",
+  },
+  {
+    role: "Social Media Head",
+    name: "Mounica Yerramsetti",
+    socialLinks: [
+      { platform: 'Twitter', url: '#' },
+      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mounica-yerramsetti-77499b320' },
+    ],
+    imageUrl: "/mounica.jpg",
+  },
+  {
+    role: "Club Chronicles Head",
+    name: "Mohammad Shahidulla",
+    socialLinks: [
+      { platform: 'Twitter', url: '#' },
+      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mohammad-shahidulla-214428321/' },
+    ],
+    imageUrl: "/shahid.jpg",
+  },{
     role: "Web Tech Head",
     name: "Jeevan Sai Eddipilli",
     socialLinks: [
@@ -90,7 +125,7 @@ const CurrentTeamMembers = [
       { platform: 'LinkedIn', url: '#' },
     ],
     imageUrl: "/sashank.jpg"
-  },{
+  }, {
     role: "Designing & Branding Head",
     name: "Abishai Yelleti",
     socialLinks: [
@@ -98,51 +133,6 @@ const CurrentTeamMembers = [
       { platfrom: 'LinkedIn', url: 'https://www.linkedin.com/in/abishai-yelleti' }
     ],
     imageUrl: "/abhishai.jpg"
-  },
-  {
-    role: "Marketing & Outreach Head",
-    name: "Vineela Vadrevu",
-    socialLinks: [
-      { platform: 'Twitter', url: 'https://x.com/VVadrevu39607' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/sai-satya-vineela-vadrevu-976b04374/' },
-    ],
-    imageUrl: "/vineela.jpg",
-  },
-  {
-    role: "Marketing & Outreach Head",
-    name: "Mounica Yerramsetti",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mounica-yerramsetti-77499b320' },
-    ],
-    imageUrl: "/mounica.jpg",
-  },
-  {
-    role: "Events & Management Head",
-    name: "Mohammad Shahidulla",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mohammad-shahidulla-214428321/' },
-    ],
-    imageUrl: "/shahid.jpg",
-  },
-  {
-    role: "Events & Management Head",
-    name: "Shazia sadaf",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/shazia-sadaf-83837933a/' },
-    ],
-    imageUrl: "/shazia.jpg",
-  },
-  {
-    role: "Club Chronicles Head",
-    name: "Renitha Ashwa",
-    socialLinks: [
-      { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: '#' },
-    ],
-    imageUrl: "/renitha.jpeg",
   }
 ];
 

@@ -6,15 +6,16 @@ import Footer from "@/components/Footer";
 import { Lightbulb, Target, TrendingUp, ArrowRight, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHero from "@/components/PageHero";
+import AppNavbar from "@/components/AppNavbar";
 
 // Motion Text Roll Component
-const MotionTextRoll = ({ 
-  texts, 
+const MotionTextRoll = ({
+  texts,
   className = "",
   style = {},
   interval = 4000
-}: { 
-  texts: string[], 
+}: {
+  texts: string[],
   className?: string,
   style?: React.CSSProperties,
   interval?: number
@@ -44,19 +45,19 @@ const MotionTextRoll = ({
             <motion.span
               key={`${currentIndex}-${index}`}
               className="inline-block"
-              style={{ 
+              style={{
                 transformStyle: 'preserve-3d',
                 display: letter === ' ' ? 'inline' : 'inline-block',
                 minWidth: letter === ' ' ? '0.3em' : 'auto'
               }}
               variants={{
-                hidden: { 
-                  opacity: 0, 
+                hidden: {
+                  opacity: 0,
                   rotateX: -90,
                   y: 15,
                 },
-                visible: { 
-                  opacity: 1, 
+                visible: {
+                  opacity: 1,
                   rotateX: 0,
                   y: 0,
                   transition: {
@@ -65,8 +66,8 @@ const MotionTextRoll = ({
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }
                 },
-                exit: { 
-                  opacity: 0, 
+                exit: {
+                  opacity: 0,
                   rotateX: 90,
                   y: -15,
                   transition: {
@@ -161,13 +162,14 @@ export default function Startups() {
 
   return (
     <div className="min-h-screen bg-background">
+      <AppNavbar />
       {/* <Header /> */}  {/* Old Header */}
 
 
-      <PageHero 
-        title="Our" 
-        highlight="Startups" 
-        description="From Idea to Reality. Build Your Startup With Us. Concept to Success." 
+      <PageHero
+        title="Our"
+        highlight="Startups"
+        description="From Idea to Reality. Build Your Startup With Us. Concept to Success."
       />
 
       {/* 3-Step Process - Matching home page blue section style */}
