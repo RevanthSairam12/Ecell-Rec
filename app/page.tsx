@@ -1,7 +1,8 @@
 'use client'
 
 
-import Hero from "@/components/Hero";
+import Hero from "@/components/HeroGloria";
+import Loader from "@/components/Loader";
 import AboutSection from "@/components/AboutSection";
 import ConnectLearnGrowSection from "@/components/ConnectLearnGrowSection";
 import MembersLoveECellSection from "@/components/MembersLoveEOSection";
@@ -13,7 +14,7 @@ export default function NewDesignHome() {
   return (
     <div className="min-h-screen bg-background">
       
-      {/* <Header /> */}  {/* Old Header */}
+      <Loader />
       <Hero />
       <AdvisoryBoardComponent />
       <AboutSection />
