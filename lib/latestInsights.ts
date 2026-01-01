@@ -12,7 +12,7 @@ const insights = [
     title: "School 2 Startup",
     description: "School 2 Startup is an outreach initiative by E-Cell REC focused on introducing school students to entrepreneurship and the startup ecosystem. Conducted at Visakha Valley International School, Visakhapatnam, the session aimed to inspire young minds, foster innovation, and build early awareness about transforming ideas into impactful ventures.",
     date: "August 22, 2025",
-    href: "/school2startup"
+    href: "/schl2startup"
   },
   {
     id: 3,
