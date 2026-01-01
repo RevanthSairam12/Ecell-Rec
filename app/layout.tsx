@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Providers } from "@/components/providers/Providers";
 import SocialSidebar from "@/components/SocialSideBar";
+import { PrimeReactProvider } from "primereact/api";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -32,8 +33,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <SocialSidebar />
-          {children}
+          <PrimeReactProvider>
+            <SocialSidebar />
+            {children}
+          </PrimeReactProvider>
         </Providers>
       </body>
     </html>

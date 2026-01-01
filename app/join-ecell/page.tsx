@@ -8,10 +8,12 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
+import AppNavbar from "@/components/AppNavbar";
 
 export default function JoinECellPage() {
   return (
     <div className="min-h-screen bg-background">
+      <AppNavbar />
       <PageHero
         title="Join E-Cell REC"
         highlight="Join Our Community"

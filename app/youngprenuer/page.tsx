@@ -1,17 +1,118 @@
+"use client";
 import AppNavbar from "@/components/AppNavbar";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
+import EventsHero from "@/components/Hero";
+import GalleriaGallery from "@/components/ui/GalleriaGallery";
+import { motion } from "framer-motion";
 
-export default function YoungPrenuerPage() {
+export default function innv2StartupPage() {
+    const fadeInUp = {
+        initial: { opacity: 0, y: 30, filter: "blur(10px)" },
+        whileInView: { opacity: 1, y: 0, filter: "blur(0px)" },
+        viewport: { once: true },
+        transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] }
+    };
+
     return (
         <div>
             <AppNavbar />
-            <PageHero
-                title="YoungPrenuer"
-                highlight="Fest'25"
-                description="Empowering students today to lead industries tomorrow. At E-Cell REC, we are committed to nurturing a culture of innovation and entrepreneurship."
-                useWhiteBackground={true}
+            <EventsHero
+                label="Igniting Entrepreneurial Sparks"
+                title="YoungPrenuer Fest'25"
+                description="Designed specifically for first-year students to dive into the world of startups, innovation, and leadership."
+                backgroundImage="/events/youngprenuer/youngprenuer-3.jpeg"
+                primaryCTA={{ text: "Join Us", href: "/join-ecell" }}
+                secondaryCTA={{ text: "Learn More", href: "#what-is" }}
             />
+            <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+                            What is YoungPrenuer Fest'25?
+                        </h2>
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                            It's not just a talk. It's an exclusive, two-part entrepreneurship workshop designed to teach you how to think like a founder and build real ideas.
+                        </p>
+                    </div>
+
+                    {/* Event Schedule */}
+                    <div className="flex justify-center mb-12">
+                        <div className="max-w-2xl bg-white rounded-2xl p-8 shadow-lg border-2 border-indigo-200 hover:shadow-xl transition-all">
+                            <p className="text-4xl font-bold text-indigo-600 mb-2">October 12, 2025</p>
+                            <p className="text-slate-600">Youngpreneur Fest is the flagship initiative crafted to ignite the entrepreneurial spark among first-year students. The event offered a hands-on introduction to the world of startups through interactive workshops, real-world startup simulation games, and direct engagement with accomplished industry leaders. A highlight of the fest was the exclusive session by a distinguished jury member from IIM, who shared his personal journey, startup insights, and lessons on innovation and leadership. Students gained exposure to idea validation</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Memories Section */}
+            <section className="relative w-full py-24 bg-slate-950 overflow-hidden">
+                {/* Background Gradients */}
+                <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
+                </div>
+
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    {/* Header Block */}
+                    <div className="text-center mb-16">
+                        <motion.span
+                            {...fadeInUp}
+                            transition={{ ...fadeInUp.transition, delay: 0.1 }}
+                            className="text-blue-400 text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
+                        >
+                            WHERE IT ALL BEGAN
+                        </motion.span>
+                        <motion.h2
+                            {...fadeInUp}
+                            transition={{ ...fadeInUp.transition, delay: 0.2 }}
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+                        >
+                            Moments That Built Our Legacy
+                        </motion.h2>
+                        <motion.p
+                            {...fadeInUp}
+                            transition={{ ...fadeInUp.transition, delay: 0.3 }}
+                            className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+                        >
+                            Before the startups, before the stages — there were people, ideas, and unforgettable moments that shaped our journey.
+                        </motion.p>
+                    </div>
+
+                    {/* Gallery Container */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
+                        className="p-1 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/5 backdrop-blur-3xl shadow-2xl"
+                    >
+                        <GalleriaGallery images={[
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-8.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-8.jpeg", alt: "YoungPrenuer 8" },
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-4.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-4.jpeg", alt: "YoungPrenuer 4" },
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-1.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-1.jpeg", alt: "YoungPrenuer 1" },
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-2.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-2.jpeg", alt: "YoungPrenuer 2" },
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-5.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-5.jpeg", alt: "YoungPrenuer 5" },
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-6.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-6.jpeg", alt: "YoungPrenuer 6" },
+                            { itemImageSrc: "/events/youngprenuer/youngprenuer-7.jpeg", thumbnailImageSrc: "/events/youngprenuer/youngprenuer-7.jpeg", alt: "YoungPrenuer 7" }
+                        ]} />
+                    </motion.div>
+
+                    {/* Emotional Quote */}
+                    <div className="mt-16 text-center">
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 0.6 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.5 }}
+                            className="text-white text-lg md:text-xl italic font-light tracking-wide"
+                        >
+                            “Some memories don’t fade — they become the foundation.”
+                        </motion.p>
+                    </div>
+                </div>
+            </section>
+
             <Footer />
         </div>
     );

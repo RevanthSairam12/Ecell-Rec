@@ -48,7 +48,7 @@ const insights = [
     image: "/upcevents/illuminate.png",
     title: "Illuminate Workshop",
     description: "Illuminate Workshop 2 days unique initiative by E-Cell REC Visakhapatnam and E-Cell IIT Bombay, designed to empower students with the skills needed to succeed in the startup ecosystem. The workshop offers a hands-on introduction to the world of startups through interactive sessions, real-world startup simulation games, and direct engagement with accomplished industry leaders.",
-    date: "November 8-15, 2025",
+    date: "November 8,15, 2025",
     href: "/illuminate"
   }
 ];

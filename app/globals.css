@@ -6,6 +6,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import 'primereact/resources/themes/lara-light-indigo/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -72,6 +75,7 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -117,6 +121,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -127,6 +132,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -149,6 +155,7 @@ body {
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(-100%);
   }
@@ -193,14 +200,16 @@ body {
 /* Hide scrollbar arrows completely */
 ::-webkit-scrollbar-button {
   display: none !important;
-} 
+}
+
 ::-webkit-scrollbar-button {
   display: none !important;
 }
 
 /* Firefox scrollbar */
 
-html, body {
+html,
+body {
   scrollbar-width: thin;
   scrollbar-color: #1a232e #f1f5f9;
 }
@@ -231,6 +240,32 @@ html {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-} 
+}
 
+/* Galleria Navigation Styles */
+.p-galleria-item-prev,
+.p-galleria-item-next {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-radius: 50% !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  margin: 0 1rem !important;
+  z-index: 10 !important;
+}
 
+.p-galleria-item-prev:hover,
+.p-galleria-item-next:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
+  transform: scale(1.1) !important;
+}
+
+.p-galleria-item-prev-icon,
+.p-galleria-item-next-icon {
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+}

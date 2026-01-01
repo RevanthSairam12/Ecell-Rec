@@ -92,6 +92,15 @@ export default function Resources() {
   const subtitleTexts = ["Your Startup Toolkit", "Templates & Expert Guides", "Everything You Need to Scale"];
   const [suggestion, setSuggestion] = useState("");
 
+  const handleDownload = (fileName: string) => {
+    const link = document.createElement("a");
+    link.href = `/resources/${encodeURIComponent(fileName)}`;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const resourceCategories = [
     {
       id: "getting-started",
@@ -103,21 +112,24 @@ export default function Resources() {
           description: "Complete roadmap from idea to startup",
           type: "PDF",
           size: "2 MB",
-          downloads: 1250
+          downloads: 1250,
+          fileName: "getting-started-roadmap.pdf"
         },
         {
           title: "Market Research Template",
           description: "Structured approach to understanding your target market",
-          type: "DOCX",
+          type: "PDF",
           size: "890 KB",
-          downloads: 980
+          downloads: 980,
+          fileName: "getting-started-market-research.pdf"
         },
         {
           title: "Business Model Canvas",
           description: "Visual template for developing business models",
           type: "PDF",
           size: "1.2 MB",
-          downloads: 1890
+          downloads: 1890,
+          fileName: "getting-started-bussiness-canvas(1).pdf"
         }
       ]
     },
@@ -131,37 +143,43 @@ export default function Resources() {
           description: "Basic knowledge that enterpenuer has to be know to begin",
           type: "PDF",
           size: "9.5 MB",
-          downloads: 356
+          downloads: 356,
+          fileName: "E-Book-Knowledge-series.pdf"
         }, {
           title: "Investor Playbook 7 Essential Rules No One Teaches you",
           description: "Startup founders must know guide for pitching investors with clarity, credibility, and traction.",
           type: "PDF",
           size: "23 KB",
-          downloads: 234
+          downloads: 234,
+          fileName: "EBook-Investor Playbook 7 Essential Rules No One Teaches You.pdf"
         }, {
           title: "Getting Started with Entrepreneurship",
           description: "A foundational guide outlining the initial steps and key concepts for aspiring entrepreneurs.",
           type: "PDF",
           size: "182 KB",
-          downloads: 859
+          downloads: 859,
+          fileName: "getting-started-roadmap.pdf"
         }, {
           title: "Startup Playbook",
           description: "This PDF details benefits for DPIIT-recognised startups in India.",
           type: "PDF",
           size: "3.7 MB",
-          downloads: 304
+          downloads: 304,
+          fileName: "EBook-Startup Playbook.pdf"
         }, {
           title: "Top mistakes I made as an early enterpenuer",
           description: "Mistakes that successful enterpenuers did in their past",
           type: "PDF",
           size: "571 KB",
-          downloads: 272
+          downloads: 272,
+          fileName: "EBook-Top mistakes i made as an early Entrepreneur.pdf"
         }, {
           title: "The Lean Startup",
           description: "Startups grow by rapidly testing, learning, and adapting to customer needs.",
           type: "PDF",
-          size: "571 KB",
-          downloads: 493
+          size: "2.1 MB",
+          downloads: 493,
+          fileName: "EBook-The Lean Startup - Erick Ries.pdf"
         }
       ]
     },
@@ -202,22 +220,25 @@ export default function Resources() {
           title: "Funding Readiness Checklist",
           description: "Ensure you're prepared before approaching investors",
           type: "PDF",
-          size: "950 KB",
-          downloads: 1340
+          size: "25 KB",
+          downloads: 1340,
+          fileName: "F-CheckList-Startup Incentives and Support Programs.pdf"
         },
         {
           title: "Government Schemes Guide",
           description: "Complete list of startup-friendly government programs",
           type: "PDF",
-          size: "2.2 MB",
-          downloads: 1780
+          size: "65 KB",
+          downloads: 1780,
+          fileName: "government-scheme-guides.pdf"
         },
         {
           title: "Term Sheet Template",
           description: "Standard term sheet template with explanations",
-          type: "DOCX",
-          size: "650 KB",
-          downloads: 890
+          type: "PDF",
+          size: "130 KB",
+          downloads: 890,
+          fileName: "market-sheet-template.pdf"
         }
       ]
     },
@@ -229,21 +250,24 @@ export default function Resources() {
         {
           title: "Lean Startup Methodology",
           description: "Essential reading on building sustainable startups",
-          type: "Link",
-          size: "External",
-          downloads: 3200
+          type: "PDF",
+          size: "571 KB",
+          downloads: 3200,
+          fileName: "EBook-Top mistakes i made as an early Entrepreneur.pdf"
         }, {
           title: "AI terms related to enterpenuership",
           description: "40 AI techniques to grow up in Enterpenuership ecosystem",
-          type: "Link",
-          size: "External",
-          downloads: 3500
+          type: "PDF",
+          size: "132 KB",
+          downloads: 3500,
+          fileName: "ai-terms-related-enterprenuership.pdf"
         }, {
           title: "The Lean startup",
           description: "Startups grow by rapidly testing, learning, and adapting to customer needs.",
-          type: "Link",
-          size: "External",
-          downloads: 2100
+          type: "PDF",
+          size: "2.1 MB",
+          downloads: 2100,
+          fileName: "EBook-The Lean Startup - Erick Ries.pdf"
         }
       ]
     }
@@ -335,7 +359,10 @@ export default function Resources() {
                           <Download className="w-4 h-4 mr-1" />
                           {resource.downloads.toLocaleString()} downloads
                         </div>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300">
+                        <Button
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300"
+                          onClick={() => resource.fileName && handleDownload(resource.fileName)}
+                        >
                           {resource.type === "Link" ? "Visit" : "Download"}
                           {resource.type === "Link" ?
                             <ExternalLink className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" /> :
@@ -411,7 +438,17 @@ export default function Resources() {
                 <div className="text-sm text-gray-500 mb-4">
                   {item.downloads} downloads
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300">
+                <Button
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300"
+                  onClick={() => {
+                    const fileName =
+                      item.title === "Startup Toolkit" ? "EBook-Startup Playbook.pdf" :
+                        item.title === "Funding Guide 2024" ? "government-scheme-guides.pdf" :
+                          item.title === "Tech Stack Guide" ? "ai-terms-related-enterprenuership.pdf" : // Fallback/Placeholder
+                            "";
+                    if (fileName) handleDownload(fileName);
+                  }}
+                >
                   Download
                   <Download className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                 </Button>
