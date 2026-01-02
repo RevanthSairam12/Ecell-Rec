@@ -20,7 +20,7 @@ export default function AdvisoryBoard() {
         useWhiteBackground={true}
       />
 
-      {/* Blue Information Box Section */}
+
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -33,16 +33,13 @@ export default function AdvisoryBoard() {
         </div>
       </section>
 
-      {/* Global Board of Directors Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            {/* Section Title - Left aligned */}
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-left">
               Advisory Board Members
             </h2>
 
-            {/* Description - Left aligned */}
             <div className="text-gray-700 text-base leading-relaxed">
               <p className="text-left">
                 The <span className="font-semibold text-blue-600">Advisory Board</span> of E-CELL REC plays a crucial role in overseeing the organization's strategic direction,
@@ -57,16 +54,13 @@ export default function AdvisoryBoard() {
 
       <AdvisoryBoardComponent />
 
-      {/* Advisory Excellence Section - Exact same design as team page */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            {/* Section Title - Left aligned */}
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-left">
               Path to Excellence
             </h2>
 
-            {/* Description - Left aligned */}
             <div className="text-gray-700 text-base leading-relaxed mb-12">
               <p className="text-left">
                 At E-Cell REC, our journey is defined by innovation, collaboration, and a relentless pursuit of excellence. We strive to create an ecosystem where students can explore their entrepreneurial potential, gain hands-on experience, and build ventures that make a lasting impact.
