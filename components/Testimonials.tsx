@@ -55,13 +55,6 @@ export default function Testimonials({ testimonials }: Testimonials10Props) {
               Insights and encouragement from the distinguished mentors and leaders guiding our mission to foster innovation and entrepreneurship.
             </p>
           </div>
-
-          <a
-            href="#"
-            className="mt-4 md:mt-0 inline-flex items-center justify-center text-sm font-medium text-primary hover:underline"
-          >
-            More customer stories
-          </a>
         </div>
 
         {/* Content */}

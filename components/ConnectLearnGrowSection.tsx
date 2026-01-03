@@ -63,23 +63,6 @@ export default function ConnectLearnGrowSection() {
           Connect. Learn. Grow.
         </h2>
 
-        {/* Animated Typing Heading */}
-        <motion.h2
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16"
-          variants={blockVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-120px" }}
-        >
-          <TextType
-            text={["Connect With Us", "Learn With Us", "Grow With Us"]}
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={true}
-            cursorCharacter="|"
-          />
-        </motion.h2>
-
         {/* ---------------- CONNECT ---------------- */}
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-20"
