@@ -19,7 +19,7 @@ export default function innv2StartupPage() {
             <PageHero
                 title="School"
                 highlight="to Startup"
-                description="Empowering students today to lead industries tomorrow. At E-Cell REC, we are committed to nurturing a culture of innovation and entrepreneurship."
+                description="A launchpad that turns curiosity in classrooms into conviction in startups guiding young minds from first ideas to real-world impact."
                 useWhiteBackground={true}
             />
             <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
@@ -29,17 +29,32 @@ export default function innv2StartupPage() {
                             What is School to Startup?
                         </h2>
                         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                            It's not just a talk. It's an exclusive, two-part entrepreneurship workshop designed to teach you how to think like a founder and build real ideas.
+                            A launchpad that turns curiosity in classrooms into conviction in startups, guiding young minds from first ideas to real-world impact.
                         </p>
                     </div>
 
                     {/* Event Schedule */}
-                    <div className="flex justify-center mb-12">
-                        <div className="max-w-2xl bg-white rounded-2xl p-8 shadow-lg border-2 border-indigo-200 hover:shadow-xl transition-all">
-                            <p className="text-4xl font-bold text-indigo-600 mb-2">August 22, 2025</p>
-                            <p className="text-slate-600">School 2 Startup is an outreach initiative by E-Cell REC focused on introducing school students to entrepreneurship and the startup ecosystem. Conducted at Visakha Valley International School, Visakhapatnam, the session aimed to inspire young minds, foster innovation, and build early awareness about transforming ideas into impactful ventures.</p>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="mb-12"
+                    >
+                        <div className="relative bg-blue-600 rounded-3xl p-8 md:p-12 overflow-hidden">
+                            {/* Decorative Elements */}
+                            <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rotate-45 rounded-sm"></div>
+                            <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400 rotate-45 rounded-sm opacity-60"></div>
+                            
+                            <div className="relative z-10">
+                                <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-2">Event Date</p>
+                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">August 22, 2025</h3>
+                                <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-4xl">
+                                    School 2 Startup is an outreach initiative by E-Cell REC focused on introducing school students to entrepreneurship and the startup ecosystem. Conducted at Visakha Valley International School, Visakhapatnam, the session aimed to inspire young minds, foster innovation, and build early awareness about transforming ideas into impactful ventures.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

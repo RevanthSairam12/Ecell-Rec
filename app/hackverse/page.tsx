@@ -19,27 +19,42 @@ export default function innv2StartupPage() {
             <PageHero
                 title="HackVerse"
                 highlight="Hackathon 1.0"
-                description="Empowering students today to lead industries tomorrow. At E-Cell REC, we are committed to nurturing a culture of innovation and entrepreneurship."
+                description="Not just a hackathon but a universe of innovation where boundaries dissolve and ideas come alive. In this high-energy arena, participants code, create, and challenge convention, turning imagination into tangible impact under the pressure of the clock."
                 useWhiteBackground={true}
             />
             <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-12">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-                            What is YoungPrenuer Fest'25?
+                            What is HackVerse?
                         </h2>
                         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                            It's not just a talk. It's an exclusive, two-part entrepreneurship workshop designed to teach you how to think like a founder and build real ideas.
+                            Not just a hackathon but a universe of innovation where boundaries dissolve and ideas come alive. In this high-energy arena, participants code, create, and challenge convention, turning imagination into tangible impact under the pressure of the clock.
                         </p>
                     </div>
 
                     {/* Event Schedule */}
-                    <div className="flex justify-center mb-12">
-                        <div className="max-w-2xl bg-white rounded-2xl p-8 shadow-lg border-2 border-indigo-200 hover:shadow-xl transition-all">
-                            <p className="text-4xl font-bold text-indigo-600 mb-2">October 18-19, 2025</p>
-                            <p className="text-slate-600">Hackverse 1.0 was the first-ever state-wide 24-hour hackathon hosted by Raghu Engineering College, organized by E-CELL REC Visakhapatnam and GDG On Campus REC. The event brought together over 400 innovators who turned ideas into working prototypes in domains like AI, web, mobile, and automation. Students experienced the thrill of building, collaborating, and pitching under real-world pressure, guided by expert mentors and judged by an esteemed jury. It was a celebration of creativity, teamwork, and the spirit of innovation that defined the next generation of builders at REC.</p>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="mb-12"
+                    >
+                        <div className="relative bg-blue-600 rounded-3xl p-8 md:p-12 overflow-hidden">
+                            {/* Decorative Elements */}
+                            <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rotate-45 rounded-sm"></div>
+                            <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400 rotate-45 rounded-sm opacity-60"></div>
+                            
+                            <div className="relative z-10">
+                                <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-2">Event Date</p>
+                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">October 18-19, 2025</h3>
+                                <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-4xl">
+                                    Hackverse 1.0 was the first-ever state-wide 24-hour hackathon hosted by Raghu Engineering College, organized by E-CELL REC Visakhapatnam and GDG On Campus REC. The event brought together over 400 innovators who turned ideas into working prototypes in domains like AI, web, mobile, and automation. Students experienced the thrill of building, collaborating, and pitching under real-world pressure, guided by expert mentors and judged by an esteemed jury. It was a celebration of creativity, teamwork, and the spirit of innovation that defined the next generation of builders at REC.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

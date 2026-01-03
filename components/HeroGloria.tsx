@@ -236,7 +236,7 @@ const Hero = () => {
                             {slide.title}
                           </h1>
                           <span
-                            className={`${whisper.className} absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-red-600 -rotate-6 pointer-events-none z-20 opacity-90`}
+                            className={`${whisper.className} absolute top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-red-600 -rotate-6 pointer-events-none z-20 opacity-90`}
                             style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.5)' }}
                           >
                             {slide.highlight}

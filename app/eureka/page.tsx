@@ -19,7 +19,7 @@ export default function innv2StartupPage() {
             <EventsHero
                 label="The Ultimate Pitching Competition"
                 title="Eureka! 2025"
-                description="Step into the arena where ideas transform into ventures. Eureka is your platform to pitch, perform, and prevail."
+                description="A high-impact idea pitching competition where bold student innovations are challenged, refined, and elevated through collaboration with IIT Bombay, turning imagination into execution-ready ventures."
                 backgroundImage="/events/eureka/eureka-2.jpg"
                 primaryCTA={{ text: "Join Us", href: "/join-ecell" }}
                 secondaryCTA={{ text: "Learn More", href: "#what-is" }}
@@ -31,17 +31,32 @@ export default function innv2StartupPage() {
                             What is Eureka?
                         </h2>
                         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                            It's not just a talk. It's an exclusive, two-part entrepreneurship workshop designed to teach you how to think like a founder and build real ideas.
+                            A high-impact idea pitching competition where bold student innovations are challenged, refined, and elevated through collaboration with IIT Bombay, turning imagination into execution-ready ventures.
                         </p>
                     </div>
 
                     {/* Event Schedule */}
-                    <div className="flex justify-center mb-12">
-                        <div className="max-w-2xl bg-white rounded-2xl p-8 shadow-lg border-2 border-indigo-200 hover:shadow-xl transition-all">
-                            <p className="text-4xl font-bold text-indigo-600 mb-2">July 19, 2025</p>
-                            <p className="text-slate-600">E-Cell REC successfully hosted ‘Eureka! 2025,’ the annual college pitching competition where 20 shortlisted teams pitched their startup ideas before a panel of mentors and judges. The event witnessed bold innovations, high-energy pitches, and valuable feedback from industry experts. Winning teams now advance to the Eureka! Zonals in Delhi, Mumbai, and Bengaluru, marking an inspiring step forward for student entrepreneurship at REC.</p>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="mb-12"
+                    >
+                        <div className="relative bg-blue-600 rounded-3xl p-8 md:p-12 overflow-hidden">
+                            {/* Decorative Elements */}
+                            <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rotate-45 rounded-sm"></div>
+                            <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400 rotate-45 rounded-sm opacity-60"></div>
+                            
+                            <div className="relative z-10">
+                                <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-2">Event Date</p>
+                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">July 19, 2025</h3>
+                                <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-4xl">
+                                    E-Cell REC successfully hosted 'Eureka! 2025,' the annual college pitching competition where 20 shortlisted teams pitched their startup ideas before a panel of mentors and judges. The event witnessed bold innovations, high-energy pitches, and valuable feedback from industry experts. Winning teams now advance to the Eureka! Zonals in Delhi, Mumbai, and Bengaluru, marking an inspiring step forward for student entrepreneurship at REC.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

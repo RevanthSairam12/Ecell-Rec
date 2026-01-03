@@ -1,97 +1,14 @@
 'use client'
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Footer from "@/components/Footer";
 import { Download, FileText, Book, DollarSign, Users, ExternalLink } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import AppNavbar from "@/components/AppNavbar";
 
-// Motion Text Roll Component
-const MotionTextRoll = ({
-  texts,
-  className = "",
-  style = {},
-  interval = 4000
-}: {
-  texts: string[],
-  className?: string,
-  style?: React.CSSProperties,
-  interval?: number
-}) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % texts.length);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [texts.length, interval]);
-
-  const currentText = texts[currentIndex];
-
-  return (
-    <div className={`relative overflow-hidden ${className}`} style={{ ...style, perspective: '1000px' }}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          className="flex justify-center flex-wrap"
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          {currentText.split('').map((letter, index) => (
-            <motion.span
-              key={`${currentIndex}-${index}`}
-              className="inline-block"
-              style={{
-                transformStyle: 'preserve-3d',
-                display: letter === ' ' ? 'inline' : 'inline-block',
-                minWidth: letter === ' ' ? '0.3em' : 'auto'
-              }}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  rotateX: -90,
-                  y: 15,
-                },
-                visible: {
-                  opacity: 1,
-                  rotateX: 0,
-                  y: 0,
-                  transition: {
-                    duration: 0.4,
-                    delay: index * 0.02,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }
-                },
-                exit: {
-                  opacity: 0,
-                  rotateX: 90,
-                  y: -15,
-                  transition: {
-                    duration: 0.25,
-                    delay: index * 0.015,
-                    ease: [0.55, 0.06, 0.68, 0.19]
-                  }
-                }
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-};
-
 export default function Resources() {
-  const subtitleTexts = ["Your Startup Toolkit", "Templates & Expert Guides", "Everything You Need to Scale"];
-  const [suggestion, setSuggestion] = useState("");
-
   const handleDownload = (fileName: string) => {
     const link = document.createElement("a");
     link.href = `/resources/${encodeURIComponent(fileName)}`;
@@ -273,18 +190,9 @@ export default function Resources() {
     }
   ];
 
-  const handleSuggestion = () => {
-    if (suggestion.trim()) {
-      // Handle suggestion submission
-      setSuggestion("");
-      // Show success toast
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <AppNavbar />
-      {/* <Header /> */}  {/* Old Header */}
 
       <PageHero
         title="Our"
@@ -292,75 +200,87 @@ export default function Resources() {
         description="Your Startup Toolkit. Templates & Expert Guides. Everything You Need to Scale."
       />
 
-      {/* Resources Section - Matching home page gray section style */}
+      {/* Blue Description Section - Matching Team/Events pages */}
       <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
-        {/* Pink decorative squiggly lines */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Top left squiggly line */}
-          <svg
-            className="absolute top-10 left-10 w-20 h-20 text-pink-400"
-            viewBox="0 0 100 100"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          >
-            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round" />
-            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round" />
-          </svg>
-
-          {/* Bottom right squiggly line */}
-          <svg
-            className="absolute bottom-10 right-10 w-24 h-24 text-pink-400"
-            viewBox="0 0 100 100"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          >
-            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round" />
-            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round" />
-            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round" />
-          </svg>
+        <div className="max-w-6xl mx-auto">
+          <div className="relative bg-blue-600 rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden">
+            <div className="text-center">
+              <p className="text-base md:text-lg text-white/90 max-w-4xl mx-auto leading-relaxed">
+                Access our curated collection of startup resources, templates, and expert guides. 
+                From business model canvases to funding checklists, we provide everything you need 
+                to transform your ideas into successful ventures.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+      {/* Resources Section */}
+      <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Browse <span className="text-blue-600">Resources</span>
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our comprehensive library of startup resources
+            </p>
+          </div>
+
           <Tabs defaultValue="getting-started" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8 bg-white rounded-xl shadow-sm">
+            <TabsList className="flex flex-wrap w-full justify-center gap-3 mb-10 bg-transparent p-0 h-auto">
               {resourceCategories.map((category) => (
-                <TabsTrigger key={category.id} value={category.id} className="flex items-center space-x-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                <TabsTrigger 
+                  key={category.id} 
+                  value={category.id} 
+                  className="flex items-center justify-center gap-2 py-3 px-6 rounded-full font-medium text-sm transition-all duration-300 bg-white border-2 border-gray-200 text-gray-700 shadow-sm hover:border-blue-300 hover:bg-blue-50 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-600 data-[state=active]:shadow-lg"
+                >
                   <category.icon className="w-4 h-4" />
-                  <span className="hidden sm:inline">{category.title}</span>
+                  <span>{category.title}</span>
                 </TabsTrigger>
               ))}
             </TabsList>
 
             {resourceCategories.map((category) => (
               <TabsContent key={category.id} value={category.id}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
                   {category.resources.map((resource, index) => (
-                    <div key={index} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                          {resource.type === "PDF" && <FileText className="w-6 h-6 text-blue-600" />}
-                          {resource.type === "DOCX" && <FileText className="w-6 h-6 text-green-600" />}
-                          {resource.type === "PPTX" && <FileText className="w-6 h-6 text-orange-600" />}
-                          {resource.type === "Link" && <ExternalLink className="w-6 h-6 text-blue-600" />}
+                    <motion.div 
+                      key={index} 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100 hover:-translate-y-1"
+                    >
+                      <div className="flex items-start justify-between mb-5">
+                        <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                          {resource.type === "PDF" && <FileText className="w-7 h-7 text-white" />}
+                          {resource.type === "DOCX" && <FileText className="w-7 h-7 text-white" />}
+                          {resource.type === "PPTX" && <FileText className="w-7 h-7 text-white" />}
+                          {resource.type === "Link" && <ExternalLink className="w-7 h-7 text-white" />}
                         </div>
-                        <div className="text-right text-sm text-gray-500">
-                          <div>{resource.type}</div>
-                          <div>{resource.size}</div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-semibold rounded-full">{resource.type}</span>
+                          <span className="text-xs text-gray-400">{resource.size}</span>
                         </div>
                       </div>
 
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{resource.title}</h3>
-                      <p className="text-gray-600 mb-4 text-sm">{resource.description}</p>
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{resource.title}</h3>
+                      <p className="text-gray-500 mb-5 text-sm leading-relaxed line-clamp-2">{resource.description}</p>
 
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center text-sm text-gray-400">
                           <Download className="w-4 h-4 mr-1" />
                           {resource.downloads.toLocaleString()} downloads
                         </div>
                         <Button
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300"
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg"
                           onClick={() => resource.fileName && handleDownload(resource.fileName)}
                         >
                           {resource.type === "Link" ? "Visit" : "Download"}
@@ -370,9 +290,9 @@ export default function Resources() {
                           }
                         </Button>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </TabsContent>
             ))}
           </Tabs>
@@ -381,32 +301,16 @@ export default function Resources() {
 
 
 
-      {/* Quick Access Section - Matching home page gray section style */}
-      <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
-        {/* Pink decorative squiggly lines */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Top left squiggly line */}
-          <svg className="absolute top-10 left-10 w-20 h-20 text-pink-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M10,50 Q30,20 50,50 T90,50" strokeLinecap="round" />
-            <path d="M15,60 Q35,30 55,60 T95,60" strokeLinecap="round" />
-          </svg>
-
-          {/* Bottom right squiggly line */}
-          <svg className="absolute bottom-10 right-10 w-24 h-24 text-pink-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M10,30 Q30,10 50,30 T90,30" strokeLinecap="round" />
-            <path d="M5,45 Q25,25 45,45 T85,45" strokeLinecap="round" />
-            <path d="M15,60 Q35,40 55,60 T95,60" strokeLinecap="round" />
-          </svg>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
+      {/* Quick Access Section */}
+      <section className="relative py-20 px-6 overflow-hidden bg-white">
+        <div className="max-w-6xl mx-auto">
           {/* Header Section */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Quick Access
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Quick <span className="text-blue-600">Access</span>
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-              Most popular resources to get you started
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Most popular resources to get you started on your entrepreneurial journey
             </p>
           </div>
 
@@ -414,47 +318,82 @@ export default function Resources() {
             {[
               {
                 title: "Startup Toolkit",
-                description: "Complete package with all essential templates",
+                description: "Complete package with all essential templates for launching your startup",
                 icon: "🎯",
-                downloads: "5.2K"
+                downloads: "5.2K",
+                color: "from-blue-500 to-indigo-600"
               },
               {
                 title: "Funding Guide 2024",
-                description: "Latest funding landscape and opportunities",
+                description: "Latest funding landscape, investor insights, and opportunities",
                 icon: "💰",
-                downloads: "3.8K"
+                downloads: "3.8K",
+                color: "from-emerald-500 to-teal-600"
               },
               {
                 title: "Tech Stack Guide",
-                description: "Best practices for technical co-founders",
+                description: "Best practices and tools for technical co-founders",
                 icon: "⚡",
-                downloads: "4.1K"
+                downloads: "4.1K",
+                color: "from-orange-500 to-red-500"
               }
             ].map((item, index) => (
-              <div key={index} className="bg-white p-8 text-center rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100">
-                <div className="text-6xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 mb-4">{item.description}</p>
-                <div className="text-sm text-gray-500 mb-4">
-                  {item.downloads} downloads
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="relative bg-white p-8 text-center rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-gray-100 overflow-hidden hover:-translate-y-2"
+              >
+                {/* Gradient overlay on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                
+                <div className="relative z-10">
+                  <div className="text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                  <p className="text-gray-500 mb-5 text-sm leading-relaxed">{item.description}</p>
+                  <div className="inline-flex items-center text-sm text-gray-400 mb-6 bg-gray-50 px-4 py-2 rounded-full">
+                    <Download className="w-4 h-4 mr-2" />
+                    {item.downloads} downloads
+                  </div>
+                  <Button
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-4 rounded-xl font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl"
+                    onClick={() => {
+                      const fileName =
+                        item.title === "Startup Toolkit" ? "EBook-Startup Playbook.pdf" :
+                          item.title === "Funding Guide 2024" ? "government-scheme-guides.pdf" :
+                            item.title === "Tech Stack Guide" ? "ai-terms-related-enterprenuership.pdf" :
+                              "";
+                      if (fileName) handleDownload(fileName);
+                    }}
+                  >
+                    Download Now
+                    <Download className="ml-2 h-5 w-5 group-hover:translate-y-0.5 transition-transform" />
+                  </Button>
                 </div>
-                <Button
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300"
-                  onClick={() => {
-                    const fileName =
-                      item.title === "Startup Toolkit" ? "EBook-Startup Playbook.pdf" :
-                        item.title === "Funding Guide 2024" ? "government-scheme-guides.pdf" :
-                          item.title === "Tech Stack Guide" ? "ai-terms-related-enterprenuership.pdf" : // Fallback/Placeholder
-                            "";
-                    if (fileName) handleDownload(fileName);
-                  }}
-                >
-                  Download
-                  <Download className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Button>
-              </div>
+              </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-20 px-6 bg-gradient-to-br from-blue-600 to-indigo-700">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Need Something Specific?
+          </h2>
+          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            Can't find what you're looking for? Our team is constantly adding new resources based on your feedback.
+          </p>
+          <Button 
+            className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl"
+            onClick={() => window.location.href = '/join-ecell'}
+          >
+            Contact Us
+            <ExternalLink className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </section>
 
