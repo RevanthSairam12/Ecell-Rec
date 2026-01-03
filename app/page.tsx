@@ -6,12 +6,12 @@ import Loader from "@/components/Loader";
 import AboutSection from "@/components/AboutSection";
 import ConnectLearnGrowSection from "@/components/ConnectLearnGrowSection";
 import MembersLoveECellSection from "@/components/MembersLoveEOSection";
-import LatestInsightsSection from "@/components/LatestInsightsSection";
 import Footer from "@/components/Footer";
 import AdvisoryBoardComponent from "@/components/advisoryBoard";
 import OurInitiatives from "@/components/OurIntiatives";
 import AppNavbar from "@/components/AppNavbar";
-
+import Testimonials from "@/components/Testimonials";
+import TestimonialsData from "@/lib/testimonials-data";
 export default function NewDesignHome() {
   return (
     <div className="min-h-screen bg-background">
@@ -21,7 +21,7 @@ export default function NewDesignHome() {
       <AdvisoryBoardComponent />
       <AboutSection />
       <ConnectLearnGrowSection />
-      <MembersLoveECellSection />
+      <Testimonials testimonials={TestimonialsData} />
       <OurInitiatives />
       <Footer />
     </div>
