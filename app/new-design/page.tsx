@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Mission from "@/components/Mission";
 import ImpactStats from "@/components/ImpactStats";
 import Testimonials from "@/components/Testimonials";
+import TestimonialsData from "@/lib/testimonials-data";
 import Footer from "@/components/Footer";
 
 export default function NewDesignHome() {
@@ -14,7 +15,7 @@ export default function NewDesignHome() {
       <Hero />
       <Mission />
       <ImpactStats />
-      <Testimonials />
+      <Testimonials testimonials={TestimonialsData} />
       <Footer />
     </div>
   );
