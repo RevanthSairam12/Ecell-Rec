@@ -9,13 +9,11 @@ import MembersLoveECellSection from "@/components/MembersLoveEOSection";
 import Footer from "@/components/Footer";
 import AdvisoryBoardComponent from "@/components/advisoryBoard";
 import OurInitiatives from "@/components/OurIntiatives";
-import AppNavbar from "@/components/AppNavbar";
 import Testimonials from "@/components/Testimonials";
 import TestimonialsData from "@/lib/testimonials-data";
 export default function NewDesignHome() {
   return (
     <div className="min-h-screen bg-background">
-      <AppNavbar />
       <Loader />
       <Hero />
       <AdvisoryBoardComponent />
