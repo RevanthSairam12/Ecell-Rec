@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Providers } from "@/components/providers/Providers";
 import SocialSidebar from "@/components/SocialSideBar";
+import AppNavbar from "@/components/AppNavbar";
 import { PrimeReactProvider } from "primereact/api";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       >
         <Providers>
           <PrimeReactProvider>
+            <AppNavbar />
             <SocialSidebar />
             {children}
           </PrimeReactProvider>

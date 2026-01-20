@@ -1,85 +1,104 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-    Navbar,
-    NavBody,
-    NavItems,
-    MobileNav,
-    MobileNavHeader,
-    MobileNavMenu,
-    MobileNavToggle,
-} from "@/components/ui/resizable-navbar";
+import React, { useEffect, useState } from "react";
+import { StaggeredMenu, StaggeredMenuItem } from "@/components/StaggeredMenu";
 import Image from "next/image";
-import Link from "next/link";
-
-const CustomLogo = () => (
-    <Link
-        href="/"
-        prefetch
-        className="relative z-20 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
-    >
-        <Image
-            src="/icons/ecellverynew.png"
-            alt="E-CELL REC"
-            width={150}
-            height={50}
-            className="h-12 w-auto object-contain"
-            priority
-        />
-    </Link>
-);
 
 export default function AppNavbar() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
-    const navItems = [
-        { name: "Home", link: "/" },
-        { name: "About", link: "/advisory-board" },
-        { name: "Team", link: "/team" },
-        { name: "Events", link: "/events" },
-        { name: "Resources", link: "/resources" },
-        { name: "Startups", link: "/startups" },
+    useEffect(() => {
+        const handleScroll = () => {
+            // Hide logos after scrolling down 100px
+            setIsScrolled(window.scrollY > 100);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const navItems: StaggeredMenuItem[] = [
+        { label: "Home", ariaLabel: "Navigate to Home", link: "/" },
+        { label: "About", ariaLabel: "Navigate to About", link: "/advisory-board" },
+        { label: "Team", ariaLabel: "Navigate to Team", link: "/team" },
+        { label: "Events", ariaLabel: "Navigate to Events", link: "/events" },
+        { label: "Resources", ariaLabel: "Navigate to Resources", link: "/resources" },
+        { label: "Startups", ariaLabel: "Navigate to Startups", link: "/startups" },
     ];
 
     return (
         <>
-            {/* Desktop Navbar */}
-            <Navbar className="hidden lg:block fixed top-4 z-50">
-                <NavBody className="border-2 border-gray-300 dark:border-gray-700 bg-white/80 backdrop-blur-md">
-                    <CustomLogo />
-                    {/* 🔑 NavItems MUST use next/link internally */}
-                    <NavItems items={navItems} />
-                </NavBody>
-            </Navbar>
+            {/* Logo Header - Fixed at top with gradient background matching hero */}
+            <header 
+                className={`fixed top-0 left-0 w-full z-[50] bg-gradient-to-br from-white/95 via-blue-50/40 to-indigo-50/50 backdrop-blur-lg border-b border-blue-100/30 transition-all duration-500 ease-in-out ${
+                    isScrolled 
+                        ? 'opacity-0 -translate-y-full pointer-events-none' 
+                        : 'opacity-100 translate-y-0'
+                }`}
+            >
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div className="flex items-center justify-between">
+                        {/* Raghu Engineering College Logo - Left */}
+                        <div className={`flex items-center transition-all duration-700 delay-100 ${
+                            isScrolled ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'
+                        }`}>
+                            <Image
+                                src="/icons/raghu.png"
+                                alt="Raghu Engineering College"
+                                width={100}
+                                height={100}
+                                className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain"
+                                priority
+                            />
+                        </div>
+                        
+                        {/* E-CELL REC Logo - Center */}
+                        <div className={`flex items-center absolute left-1/2 -translate-x-1/2 transition-all duration-700 delay-200 ${
+                            isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+                        }`}>
+                            <Image
+                                src="/icons/ecellverynew.png"
+                                alt="E-CELL REC"
+                                width={150}
+                                height={100}
+                                className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
+                                priority
+                            />
+                        </div>
+                        
+                        {/* IIC Logo - Right */}
+                        <div className={`flex items-center transition-all duration-700 delay-100 ${
+                            isScrolled ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'
+                        }`}>
+                            <Image
+                                src="/icons/iic.png"
+                                alt="IIC - Institution's Innovation Council"
+                                width={100}
+                                height={100}
+                                className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain"
+                                priority
+                            />
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-            {/* Mobile Navbar */}
-            <MobileNav className="lg:hidden fixed top-4 inset-x-0 mx-auto z-50 border-2 border-gray-300 dark:border-gray-700 bg-white/80 backdrop-blur-md">
-                <MobileNavHeader className="px-4">
-                    <CustomLogo />
-                    <MobileNavToggle
-                        isOpen={isMobileMenuOpen}
-                        onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                    />
-                </MobileNavHeader>
-
-                <MobileNavMenu
-                    isOpen={isMobileMenuOpen}
-                    onClose={() => setIsMobileMenuOpen(false)}
-                >
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.link}
-                            prefetch
-                            className="block w-full px-4 py-2 text-lg font-medium text-neutral-600 hover:text-neutral-900"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
-                </MobileNavMenu>
-            </MobileNav>
+            {/* StaggeredMenu - Fixed positioned overlay */}
+            <div className="fixed top-0 right-0 w-0 h-0 overflow-visible z-[70]">
+                <StaggeredMenu
+                    position="right"
+                    colors={["#3b82f6", "#6366F1", "#818CF8"]}
+                    items={navItems}
+                    displaySocials={false}
+                    displayItemNumbering={true}
+                    menuButtonColor="#000000"
+                    openMenuButtonColor="#000000"
+                    accentColor="#3b82f6"
+                    isFixed={true}
+                    changeMenuColorOnOpen={true}
+                    closeOnClickAway={true}
+                />
+            </div>
         </>
     );
 }
