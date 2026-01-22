@@ -10,6 +10,7 @@ import PageHero from "@/components/PageHero";
 import AppNavbar from "@/components/AppNavbar";
 import OurInitiatives from "@/components/OurIntiatives";
 import Image from "next/image";
+import latestInsights from "@/lib/latestInsights";
 
 
 // Motion Text Roll Component
@@ -128,7 +129,7 @@ export default function EventsPage() {
 
       <section className="relative py-16 px-6 overflow-hidden bg-gray-50" id="events">
         <div className="max-w-6xl mx-auto relative z-10">
-          
+
           <div className="mb-12">
             <EventsVideo />
           </div>
@@ -213,7 +214,10 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-      <OurInitiatives />
+      <OurInitiatives
+        data={latestInsights}
+        heading="Our Events"
+      />
       <Footer />
     </div>
   );

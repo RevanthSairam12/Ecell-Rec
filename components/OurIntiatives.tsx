@@ -1,9 +1,9 @@
 'use client';
 
-import insights from "@/lib/latestInsights";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 // Animation variants matching LatestInsightsSection
 const sectionVariant = {
@@ -58,7 +58,23 @@ const fadeUpVariant = {
     },
 };
 
-export default function OurInitiatives() {
+interface Initiative {
+    id: number;
+    image: string;
+    title: string;
+    description: string;
+    date: string;
+    href?: string;
+}
+
+interface OurInitiativesProps {
+    data: Initiative[];
+    heading: string;
+    buttonText?: string;
+    buttonHref?: string;
+}
+
+export default function OurInitiatives({ data, heading, buttonText, buttonHref }: OurInitiativesProps) {
     return (
         <motion.section
             className="relative py-16 px-6 overflow-hidden bg-gray-900"
@@ -84,7 +100,7 @@ export default function OurInitiatives() {
                             minWidth: '300px',
                         }}
                     >
-                        Our Initiatives
+                        {heading}
                     </div>
                     <div className="h-16"></div>
                 </motion.div>
@@ -97,7 +113,7 @@ export default function OurInitiatives() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-120px" }}
                 >
-                    {insights.map((initiative) => (
+                    {data.map((initiative) => (
                         <motion.div
                             key={initiative.id}
                             variants={cardVariant}
@@ -178,6 +194,26 @@ export default function OurInitiatives() {
                         </motion.div>
                     ))}
                 </motion.div>
+
+                {/* Optional Button */}
+                {buttonText && buttonHref && (
+                    <motion.div
+                        className="flex justify-center"
+                        variants={fadeUpVariant}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-120px" }}
+                    >
+                        <Link href={buttonHref}>
+                            <Button
+                                size="lg"
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 text-lg rounded-lg shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
+                            >
+                                {buttonText}
+                            </Button>
+                        </Link>
+                    </motion.div>
+                )}
 
             </div>
         </motion.section>

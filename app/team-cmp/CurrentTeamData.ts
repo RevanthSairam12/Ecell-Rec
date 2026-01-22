@@ -92,13 +92,13 @@ const CurrentTeamMembers = [
     imageUrl: "/mounica.jpg",
   },
   {
-    role: "Club Chronicles Head",
-    name: "Mohammad Shahidulla",
+    role: "Events & Management Head",
+    name: "Jeevan Kurmadasu",
     socialLinks: [
       { platform: 'Twitter', url: '#' },
-      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mohammad-shahidulla-214428321/' },
+      { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/jeevan-kurmadasu-214428321/' },
     ],
-    imageUrl: "/shahid.jpg",
+    imageUrl: "/KJeevan.jpg",
   },{
     role: "Web Tech Head",
     name: "Jeevan Sai Eddipilli",

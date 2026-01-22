@@ -6,7 +6,9 @@ import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import AppNavbar from "@/components/AppNavbar";
+import OurInitiatives from "@/components/OurIntiatives";
 import FormerTeamMembers from "../team-cmp/FormerTeamData";
+import pastEvents from "@/lib/pastevents";
 
 // --- ANIMATION VARIANTS (STRICTLY PRESERVED) ---
 
@@ -215,7 +217,13 @@ export default function FormerTeamPage() {
                 </div>
             </section>
 
-            {/* C. "Meet Our Former Team" Section */}
+            {/* C. Our Past Events Section */}
+            <OurInitiatives
+                data={pastEvents}
+                heading="Our Past Events"
+            />
+
+            {/* D. "Meet Our Former Team" Section */}
             <section className="py-16 px-6 bg-slate-900">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}

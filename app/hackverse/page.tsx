@@ -1,7 +1,7 @@
 "use client";
 import AppNavbar from "@/components/AppNavbar";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
+import EventsHero from "@/components/Hero";
 import GalleriaGallery from "@/components/ui/GalleriaGallery";
 import { motion } from "framer-motion";
 
@@ -16,11 +16,13 @@ export default function innv2StartupPage() {
     return (
         <div>
             <AppNavbar />
-            <PageHero
-                title="HackVerse"
-                highlight="Hackathon 1.0"
+            <EventsHero
+                label="State-Wide 24-Hour Innovation Hackathon"
+                title="Hackverse 1.0"
                 description="Not just a hackathon but a universe of innovation where boundaries dissolve and ideas come alive. In this high-energy arena, participants code, create, and challenge convention, turning imagination into tangible impact under the pressure of the clock."
-                useWhiteBackground={true}
+                backgroundImage="/events/hackverse/hackverse-9.jpg"
+                primaryCTA={{ text: "Join Us", href: "/join-ecell" }}
+                secondaryCTA={{ text: "Learn More", href: "#what-is" }}
             />
             <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
                 <div className="max-w-6xl mx-auto">
@@ -34,7 +36,7 @@ export default function innv2StartupPage() {
                     </div>
 
                     {/* Event Schedule */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -45,7 +47,7 @@ export default function innv2StartupPage() {
                             {/* Decorative Elements */}
                             <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rotate-45 rounded-sm"></div>
                             <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400 rotate-45 rounded-sm opacity-60"></div>
-                            
+
                             <div className="relative z-10">
                                 <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-2">Event Date</p>
                                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">October 18-19, 2025</h3>
@@ -100,7 +102,17 @@ export default function innv2StartupPage() {
                         transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
                         className="p-1 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/5 backdrop-blur-3xl shadow-2xl"
                     >
-                        <GalleriaGallery />
+                        <GalleriaGallery images={[
+                            { itemImageSrc: "/events/hackverse/hackverse-1.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-1.jpg", alt: "Hackverse 1" },
+                            { itemImageSrc: "/events/hackverse/hackverse-2.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-2.jpg", alt: "Hackverse 2" },
+                            { itemImageSrc: "/events/hackverse/hackverse-3.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-3.jpg", alt: "Hackverse 3" },
+                            { itemImageSrc: "/events/hackverse/hackverse-4.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-4.jpg", alt: "Hackverse 4" },
+                            { itemImageSrc: "/events/hackverse/hackverse-5.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-5.jpg", alt: "Hackverse 5" },
+                            { itemImageSrc: "/events/hackverse/hackverse-6.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-6.jpg", alt: "Hackverse 6" },
+                            { itemImageSrc: "/events/hackverse/hackverse-7.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-7.jpg", alt: "Hackverse 7" },
+                            { itemImageSrc: "/events/hackverse/hackverse-8.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-8.jpg", alt: "Hackverse 8" },
+                            { itemImageSrc: "/events/hackverse/hackverse-9.jpg", thumbnailImageSrc: "/events/hackverse/hackverse-9.jpg", alt: "Hackverse 9" }
+                        ]} />
                     </motion.div>
 
                     {/* Emotional Quote */}

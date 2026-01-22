@@ -20,9 +20,9 @@ const SocialSidebar: FC = () => {
             className="
         fixed z-50
         left-4 bottom-4
-        flex flex-col-reverse gap-3
+        flex flex-col-reverse gap-4
         md:flex-col md:bottom-auto md:top-1/2 md:-translate-y-1/2
-        md:left-5
+        md:left-6
       "
         >
 
@@ -35,8 +35,8 @@ const SocialSidebar: FC = () => {
                     rounded-full bg-white text-slate-900
                     shadow-md
                     text-lg
-                    transition-transform duration-300
-                    hover:bg-slate-100 hover:scale-105
+                    transition-all duration-300
+                    hover:bg-slate-100 hover:scale-110 hover:opacity-90
                     focus:outline-none focus:ring-2 focus:ring-slate-400
                 "
                 aria-label="Toggle Social Sidebar"
@@ -44,10 +44,10 @@ const SocialSidebar: FC = () => {
                 {isOpen ? <FaXmark /> : <FaAt />}
             </button>
 
-            
+
             <div
                 className={`
-                    flex flex-col gap-3
+                    flex flex-col gap-4
                     transition-all duration-500 ease-in-out
                     ${isOpen
                         ? "max-h-[500px] opacity-100 translate-y-0"
@@ -97,8 +97,8 @@ const IconLink: FC<IconLinkProps> = ({ href, label, children }) => (
       rounded-full bg-white text-slate-900
       shadow-md
       text-lg
-      transition
-      hover:scale-105 hover:bg-slate-100 hover:shadow-lg
+      transition-all duration-300
+      hover:scale-110 hover:bg-slate-100 hover:shadow-xl hover:opacity-90
       focus:outline-none focus:ring-2 focus:ring-slate-400
     "
     >

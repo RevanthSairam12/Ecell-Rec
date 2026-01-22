@@ -193,7 +193,20 @@ const Hero = () => {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-20 min-h-screen flex flex-col pt-32">
+        <div className="relative z-20 min-h-screen flex flex-col pt-16">
+          {/* Logo Bar - Mobile Only */}
+          {/* Mobile layout: Shifted down 100px */}
+          <div className="md:hidden px-5 mt-[100px]">
+            <div className="flex justify-between items-center">
+              <div className="relative w-28 h-16">
+                <Image src="/icons/raghu.png" alt="Raghu Engineering College" fill className="object-contain" priority />
+              </div>
+              <div className="relative w-28 h-16">
+                <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" priority />
+              </div>
+            </div>
+          </div>
+
           {/* Main Content - Center Aligned like team page */}
           <div className="flex-1 flex items-center justify-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

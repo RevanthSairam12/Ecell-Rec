@@ -29,19 +29,17 @@ export default function AppNavbar() {
     return (
         <>
             {/* Logo Header - Fixed at top with gradient background matching hero */}
-            <header 
-                className={`fixed top-0 left-0 w-full z-[50] bg-gradient-to-br from-white/95 via-blue-50/40 to-indigo-50/50 backdrop-blur-lg border-b border-blue-100/30 transition-all duration-500 ease-in-out ${
-                    isScrolled 
-                        ? 'opacity-0 -translate-y-full pointer-events-none' 
-                        : 'opacity-100 translate-y-0'
-                }`}
+            <header
+                className={`fixed top-0 left-0 w-full z-[50] bg-gradient-to-br from-white/95 via-blue-50/40 to-indigo-50/50 backdrop-blur-lg border-b border-blue-100/30 transition-all duration-500 ease-in-out ${isScrolled
+                    ? 'opacity-0 -translate-y-full pointer-events-none'
+                    : 'opacity-100 translate-y-0'
+                    }`}
             >
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex items-center justify-between">
-                        {/* Raghu Engineering College Logo - Left */}
-                        <div className={`flex items-center transition-all duration-700 delay-100 ${
-                            isScrolled ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'
-                        }`}>
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5">
+                    <div className="flex items-center justify-between relative min-h-[48px]">
+                        {/* Raghu Engineering College Logo - Left (Desktop Only) */}
+                        <div className={`hidden md:flex items-center transition-all duration-700 delay-100 ${isScrolled ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'
+                            }`}>
                             <Image
                                 src="/icons/raghu.png"
                                 alt="Raghu Engineering College"
@@ -51,25 +49,23 @@ export default function AppNavbar() {
                                 priority
                             />
                         </div>
-                        
-                        {/* E-CELL REC Logo - Center */}
-                        <div className={`flex items-center absolute left-1/2 -translate-x-1/2 transition-all duration-700 delay-200 ${
-                            isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
-                        }`}>
+
+                        {/* E-CELL REC Logo - Always Centered */}
+                        <div className={`flex items-center absolute left-1/2 -translate-x-1/2 transition-all duration-700 delay-200 ${isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+                            }`}>
                             <Image
                                 src="/icons/ecellverynew.png"
                                 alt="E-CELL REC"
                                 width={150}
                                 height={100}
-                                className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
+                                className="h-12 sm:h-14 md:h-20 lg:h-24 w-auto object-contain"
                                 priority
                             />
                         </div>
-                        
-                        {/* IIC Logo - Right */}
-                        <div className={`flex items-center transition-all duration-700 delay-100 ${
-                            isScrolled ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'
-                        }`}>
+
+                        {/* IIC Logo - Right (Desktop Only) */}
+                        <div className={`hidden md:flex items-center transition-all duration-700 delay-100 ${isScrolled ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'
+                            }`}>
                             <Image
                                 src="/icons/iic.png"
                                 alt="IIC - Institution's Innovation Council"

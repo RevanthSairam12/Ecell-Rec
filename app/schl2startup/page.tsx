@@ -1,9 +1,13 @@
 "use client";
 import AppNavbar from "@/components/AppNavbar";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
-import GalleriaGallery from "@/components/ui/GalleriaGallery";
+import EventsHero from "@/components/Hero";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+
+const GalleriaGallery = dynamic(() => import("@/components/ui/GalleriaGallery"), {
+    ssr: false,
+});
 
 export default function innv2StartupPage() {
     const fadeInUp = {
@@ -16,11 +20,13 @@ export default function innv2StartupPage() {
     return (
         <div>
             <AppNavbar />
-            <PageHero
-                title="School"
-                highlight="to Startup"
-                description="A launchpad that turns curiosity in classrooms into conviction in startups guiding young minds from first ideas to real-world impact."
-                useWhiteBackground={true}
+            <EventsHero
+                label="Empowering Young Minds"
+                title="School to Startup"
+                description="A launchpad that turns curiosity in classrooms into conviction in startups, guiding young minds from first ideas to real-world impact."
+                backgroundImage="/events/schl2stup/schl-4.jpg"
+                primaryCTA={{ text: "Join Us", href: "/join-ecell" }}
+                secondaryCTA={{ text: "Learn More", href: "#what-is" }}
             />
             <section className="relative py-16 px-6 overflow-hidden bg-gray-50">
                 <div className="max-w-6xl mx-auto">
@@ -34,7 +40,7 @@ export default function innv2StartupPage() {
                     </div>
 
                     {/* Event Schedule */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -45,7 +51,7 @@ export default function innv2StartupPage() {
                             {/* Decorative Elements */}
                             <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rotate-45 rounded-sm"></div>
                             <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400 rotate-45 rounded-sm opacity-60"></div>
-                            
+
                             <div className="relative z-10">
                                 <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-2">Event Date</p>
                                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">August 22, 2025</h3>
@@ -100,7 +106,16 @@ export default function innv2StartupPage() {
                         transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
                         className="p-1 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/5 backdrop-blur-3xl shadow-2xl"
                     >
-                        <GalleriaGallery />
+                        <GalleriaGallery images={[
+                            { itemImageSrc: "/events/schl2stup/schl-1.jpg", thumbnailImageSrc: "/events/schl2stup/schl-1.jpg", alt: "School to Startup 1" },
+                            { itemImageSrc: "/events/schl2stup/schl-2.jpg", thumbnailImageSrc: "/events/schl2stup/schl-2.jpg", alt: "School to Startup 2" },
+                            { itemImageSrc: "/events/schl2stup/schl-3.jpg", thumbnailImageSrc: "/events/schl2stup/schl-3.jpg", alt: "School to Startup 3" },
+                            { itemImageSrc: "/events/schl2stup/schl-4.jpg", thumbnailImageSrc: "/events/schl2stup/schl-4.jpg", alt: "School to Startup 4" },
+                            { itemImageSrc: "/events/schl2stup/schl-5.jpg", thumbnailImageSrc: "/events/schl2stup/schl-5.jpg", alt: "School to Startup 5" },
+                            { itemImageSrc: "/events/schl2stup/schl-6.jpg", thumbnailImageSrc: "/events/schl2stup/schl-6.jpg", alt: "School to Startup 6" },
+                            { itemImageSrc: "/events/schl2stup/schl-7.jpg", thumbnailImageSrc: "/events/schl2stup/schl-7.jpg", alt: "School to Startup 7" },
+                            { itemImageSrc: "/events/schl2stup/schl-8.jpg", thumbnailImageSrc: "/events/schl2stup/schl-8.jpg", alt: "School to Startup 8" }
+                        ]} />
                     </motion.div>
 
                     {/* Emotional Quote */}

@@ -151,16 +151,7 @@ const PageHero = ({ title, highlight, description, useWhiteBackground = false, c
 
         {/* Content Container */}
         <div className="relative z-20 min-h-screen flex flex-col pt-16">
-          {/* Logo Bar - Matching team page style */}
-          {/* Desktop layout: Shifted down 100px */}
-          <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto w-full mt-[100px]">
-            <div className="relative w-56 h-24">
-              <Image src="/icons/raghu.png" alt="Raghu Engineering College" fill className="object-contain" priority />
-            </div>
-            <div className="relative w-56 h-24">
-              <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" priority />
-            </div>
-          </div>
+          {/* Logo Bar - Mobile Only */}
           {/* Mobile layout: Shifted down 100px */}
           <div className="md:hidden px-5 mt-[100px]">
             <div className="flex justify-between items-center">
