@@ -29,6 +29,9 @@ export interface StaggeredMenuProps {
   onMenuClose?: () => void;
 }
 
+
+gsap.config({ nullTargetWarn: false });
+
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   position = 'right',
   colors = ['#B19EEF', '#5227FF'],
@@ -47,7 +50,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   onMenuClose
 }: StaggeredMenuProps) => {
   const [open, setOpen] = useState(false);
-  const openRef = useRef(false);
+
 
   const panelRef = useRef<HTMLDivElement | null>(null);
   const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -67,31 +70,22 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const panel = panelRef.current;
-      const preContainer = preLayersRef.current;
+    const panel = panelRef.current;
+    const preContainer = preLayersRef.current;
 
-      const plusH = plusHRef.current;
-      const plusV = plusVRef.current;
-      const icon = iconRef.current;
+    if (!panel || !preContainer) return;
 
-      if (!panel || !plusH || !plusV || !icon) return;
+    const preLayers = Array.from(preContainer.querySelectorAll('.sm-prelayer')) as HTMLElement[];
+    preLayerElsRef.current = preLayers;
 
-      let preLayers: HTMLElement[] = [];
-      if (preContainer) {
-        preLayers = Array.from(preContainer.querySelectorAll('.sm-prelayer')) as HTMLElement[];
-      }
-      preLayerElsRef.current = preLayers;
+    const offscreen = position === 'left' ? -100 : 100;
 
-      const offscreen = position === 'left' ? -100 : 100;
+    requestAnimationFrame(() => {
       gsap.set([panel, ...preLayers], { xPercent: offscreen });
-
-      gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 });
-      gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 });
-      gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' });
-
+      gsap.set(plusHRef.current, { rotate: 0 });
+      gsap.set(plusVRef.current, { rotate: 90 });
+      gsap.set(iconRef.current, { rotate: 0 });
     });
-    return () => ctx.revert();
   }, [position]);
 
   const buildOpenTimeline = useCallback(() => {
@@ -275,28 +269,26 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   );
 
   const toggleMenu = useCallback(() => {
-    const target = !openRef.current;
-    openRef.current = target;
-    setOpen(target);
-
-    if (target) {
-      onMenuOpen?.();
-      playOpen();
-    } else {
-      onMenuClose?.();
-      playClose();
-    }
-    // Icon animation now handled by CSS classes (hidden/block)
+    setOpen(prev => {
+      const next = !prev;
+      if (next) {
+        onMenuOpen?.();
+        playOpen();
+      } else {
+        onMenuClose?.();
+        playClose();
+      }
+      return next;
+    });
   }, [playOpen, playClose, onMenuOpen, onMenuClose]);
 
   const closeMenu = useCallback(() => {
-    if (openRef.current) {
-      openRef.current = false;
-      setOpen(false);
+    setOpen(prev => {
+      if (!prev) return prev;
       onMenuClose?.();
       playClose();
-      // Icon animation now handled by CSS classes (hidden/block)
-    }
+      return false;
+    });
   }, [playClose, onMenuClose]);
 
   React.useEffect(() => {
@@ -321,11 +313,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   return (
     <div
-      className={`sm-scope z-40 pointer-events-none ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full'}`}
+      className={`sm-scope z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full'}`}
     >
       <div
         className={
-          (className ? className + ' ' : '') + 'staggered-menu-wrapper pointer-events-none relative w-full h-full z-40'
+          (className ? className + ' ' : '') + 'staggered-menu-wrapper relative w-full h-full z-40'
         }
         style={accentColor ? ({ ['--sm-accent' as unknown as string]: accentColor } as React.CSSProperties) : undefined}
         data-position={position}
@@ -333,7 +325,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       >
         <div
           ref={preLayersRef}
-          className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[5]"
+          className={`sm-prelayers absolute top-0 right-0 bottom-0 z-[40] overflow-hidden ${open ? 'opacity-100 w-[clamp(260px,38vw,420px)]' : 'opacity-0 w-0'
+            }`}
           aria-hidden="true"
         >
           {(() => {
@@ -392,7 +385,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] pointer-events-auto"
+          className="staggered-menu-panel absolute top-0 right-0 h-full w-[clamp(260px,38vw,420px)] z-[50] bg-white flex flex-col overflow-y-auto backdrop-blur-[12px] pointer-events-auto"
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
         >
@@ -470,9 +463,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 50 !important; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
-.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 5; }
+.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 40 !important; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
 .sm-scope .sm-prelayer { position: absolute; top: 0; right: 0; height: 100%; width: 100%; transform: translateX(0); }
 .sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; }

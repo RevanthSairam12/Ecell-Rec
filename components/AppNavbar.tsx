@@ -80,7 +80,7 @@ export default function AppNavbar() {
             </header>
 
             {/* StaggeredMenu - Fixed positioned overlay */}
-            <div className="fixed top-0 right-0 w-0 h-0 overflow-visible z-[70]">
+            <div className="fixed top-6 right-6 z-[80] pointer-events-auto">
                 <StaggeredMenu
                     position="right"
                     colors={["#3b82f6", "#6366F1", "#818CF8"]}
