@@ -5,26 +5,18 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB_qs7Mzh_vuIjLDaGA-YdYmNXiuxN0Abw",
-  authDomain: "ideathon-8d4c1.firebaseapp.com",
-  projectId: "ideathon-8d4c1",
-  storageBucket: "ideathon-8d4c1.firebasestorage.app",
-  messagingSenderId: "296804811891",
-  appId: "1:296804811891:web:5fe2f9c434779fbee4d606",
-  measurementId: "G-BNNX98HV6S"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
 };
 
-console.log("🔥 [Firebase] Initializing Firebase...");
-console.log("📦 Project ID:", firebaseConfig.projectId);
-console.log("🗄️ Storage Bucket:", firebaseConfig.storageBucket);
-
-// Prevent multiple initializations
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Prevent reinitializing Firebase during hot reload in dev
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
 
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-
-console.log("✅ [Firebase] Firebase initialized successfully");
-console.log("🌐 Storage URL:", `https://firebasestorage.googleapis.com/v0/b/${firebaseConfig.storageBucket}/o`);
-
 export default app;
