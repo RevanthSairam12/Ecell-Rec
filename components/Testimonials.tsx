@@ -112,7 +112,7 @@ export default function Testimonials({ testimonials }: Testimonials10Props) {
                       key={t.id}
                       type="button"
                       onClick={() => setActiveIndex(idx)}
-                      className={`h-2 w-2 rounded-full transition-colors ${idx === activeIndex
+                      className={`h-2 w-2 rounded-full transition-colors cursor-pointer ${idx === activeIndex
                         ? "bg-primary"
                         : "bg-muted-foreground/30"
                         }`}
@@ -126,7 +126,7 @@ export default function Testimonials({ testimonials }: Testimonials10Props) {
                   <button
                     type="button"
                     onClick={prev}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border bg-background text-foreground hover:bg-accent text-xs"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border bg-background text-foreground hover:bg-accent text-xs cursor-pointer"
                     aria-label="Previous testimonial"
                   >
                     ‹
@@ -134,7 +134,7 @@ export default function Testimonials({ testimonials }: Testimonials10Props) {
                   <button
                     type="button"
                     onClick={next}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border bg-background text-foreground hover:bg-accent text-xs"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border bg-background text-foreground hover:bg-accent text-xs cursor-pointer"
                     aria-label="Next testimonial"
                   >
                     ›
@@ -157,7 +157,7 @@ export default function Testimonials({ testimonials }: Testimonials10Props) {
                   key={t.id}
                   type="button"
                   onClick={() => setActiveIndex(idx)}
-                  className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-accent/60 ${isActive ? "bg-accent" : ""
+                  className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-accent/60 cursor-pointer ${isActive ? "bg-accent" : ""
                     }`}
                 >
                   <div className="flex items-center gap-3">

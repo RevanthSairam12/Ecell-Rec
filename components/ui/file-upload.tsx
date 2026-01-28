@@ -1,148 +1,209 @@
-"use client"
+import { cn } from "@/lib/utils";
+import React, { useRef, useState } from "react";
+import { motion } from "motion/react";
+import { IconUpload } from "@tabler/icons-react";
+import { useDropzone } from "react-dropzone";
 
-import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { Upload, File, X, CheckCircle, AlertCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from './button';
+const mainVariant = {
+  initial: {
+    x: 0,
+    y: 0,
+  },
+  animate: {
+    x: 20,
+    y: -20,
+    opacity: 0.9,
+  },
+};
 
-interface FileUploadProps {
-  onFileSelect: (file: File | null) => void;
-  accept?: string;
-  maxSize?: number; // in bytes
-  className?: string;
-  disabled?: boolean;
-}
+const secondaryVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
 
-export function FileUpload({ 
-  onFileSelect, 
-  accept = '.pdf,.ppt,.pptx', 
-  maxSize = 10 * 1024 * 1024, // 10MB
-  className,
-  disabled = false
-}: FileUploadProps) {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [error, setError] = useState<string>('');
+export const FileUpload = ({
+  onChange,
+}: {
+  onChange?: (files: File[]) => void;
+}) => {
+  const [files, setFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {
-    setError('');
-    
-    if (rejectedFiles.length > 0) {
-      const rejection = rejectedFiles[0];
-      if (rejection.errors[0]?.code === 'file-too-large') {
-        setError(`File is too large. Maximum size is ${maxSize / (1024 * 1024)}MB`);
-      } else if (rejection.errors[0]?.code === 'file-invalid-type') {
-        setError('Invalid file type. Please upload PDF, PPT, or PPTX files only.');
-      } else {
-        setError('File upload failed. Please try again.');
-      }
+  const handleFileChange = (newFiles: File[]) => {
+    if (newFiles.length === 0) return;
+
+    const file = newFiles[0];
+    const validExtensions = ['.pdf', '.pptx'];
+    const fileName = file.name.toLowerCase();
+    const isValid = validExtensions.some(ext => fileName.endsWith(ext));
+
+    if (!isValid) {
+      alert('Please upload only PDF or PPTX files');
       return;
     }
 
-    if (acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      setSelectedFile(file);
-      onFileSelect(file);
-    }
-  }, [maxSize, onFileSelect]);
+    setFiles([file]);
+    onChange && onChange([file]);
+  };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const { getRootProps, isDragActive } = useDropzone({
+    multiple: false,
+    noClick: true,
     accept: {
       'application/pdf': ['.pdf'],
-      'application/vnd.ms-powerpoint': ['.ppt'],
       'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx']
     },
-    maxSize,
-    multiple: false,
-    disabled
+    onDrop: handleFileChange,
+    onDropRejected: (error) => {
+      console.log(error);
+      alert('Please upload only PDF or PPTX files');
+    },
   });
 
-  const removeFile = () => {
-    setSelectedFile(null);
-    onFileSelect(null);
-    setError('');
-  };
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
-
   return (
-    <div className={cn('w-full', className)}>
-      {!selectedFile ? (
-        <div
-          {...getRootProps()}
-          className={cn(
-            'border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors',
-            isDragActive 
-              ? 'border-primary bg-primary/5' 
-              : 'border-border hover:border-primary/50 hover:bg-primary/5',
-            disabled && 'cursor-not-allowed opacity-50',
-            error && 'border-destructive'
-          )}
-        >
-          <input {...getInputProps()} />
-          <div className="flex flex-col items-center gap-4">
-            <div className={cn(
-              'w-12 h-12 rounded-full flex items-center justify-center',
-              isDragActive ? 'bg-primary text-primary-foreground' : 'bg-muted'
-            )}>
-              <Upload className="w-6 h-6" />
-            </div>
-            
-            <div className="space-y-2">
-              <p className="text-sm font-medium">
-                {isDragActive ? 'Drop your file here' : 'Drag & drop your pitch deck here'}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                or click to browse files
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Supports PDF, PPT, PPTX (max {maxSize / (1024 * 1024)}MB)
-              </p>
-            </div>
-          </div>
+    <div className="w-full" {...getRootProps()}>
+      <motion.div
+        onClick={handleClick}
+        whileHover="animate"
+        className="p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
+      >
+        <input
+          ref={fileInputRef}
+          id="file-upload-handle"
+          type="file"
+          accept=".pdf,.pptx"
+          onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
+          className="hidden"
+        />
+        <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
+          <GridPattern />
         </div>
-      ) : (
-        <div className="border rounded-lg p-4 bg-card">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <File className="w-5 h-5 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">{selectedFile.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  {formatFileSize(selectedFile.size)}
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={removeFile}
-                  className="h-8 w-8 p-0"
+        <div className="flex flex-col items-center justify-center">
+          <p className="relative z-20 font-sans font-bold text-neutral-700 dark:text-neutral-300 text-base">
+            Upload Pitch Deck (PDF or PPTX only)
+          </p>
+          <p className="relative z-20 font-sans font-normal text-neutral-400 dark:text-neutral-400 text-base mt-2">
+            Drag or drop your file here or click to upload
+          </p>
+          <div className="relative w-full mt-10 max-w-xl mx-auto">
+            {files.length > 0 &&
+              files.map((file, idx) => (
+                <motion.div
+                  key={"file" + idx}
+                  layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
+                  className={cn(
+                    "relative overflow-hidden z-40 bg-white dark:bg-neutral-900 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
+                    "shadow-sm"
+                  )}
                 >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
+                  <div className="flex justify-between w-full items-center gap-4">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      layout
+                      className="text-base text-neutral-700 dark:text-neutral-300 truncate max-w-xs"
+                    >
+                      {file.name}
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      layout
+                      className="rounded-lg px-2 py-1 w-fit shrink-0 text-sm text-neutral-600 dark:bg-neutral-800 dark:text-white shadow-input"
+                    >
+                      {(file.size / (1024 * 1024)).toFixed(2)} MB
+                    </motion.p>
+                  </div>
+
+                  <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-neutral-600 dark:text-neutral-400">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      layout
+                      className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 "
+                    >
+                      {file.type}
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      layout
+                    >
+                      modified{" "}
+                      {new Date(file.lastModified).toLocaleDateString()}
+                    </motion.p>
+                  </div>
+                </motion.div>
+              ))}
+            {!files.length && (
+              <motion.div
+                layoutId="file-upload"
+                variants={mainVariant}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+                className={cn(
+                  "relative group-hover/file:shadow-2xl z-40 bg-white dark:bg-neutral-900 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md",
+                  "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]"
+                )}
+              >
+                {isDragActive ? (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-neutral-600 flex flex-col items-center"
+                  >
+                    Drop it
+                    <IconUpload className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                  </motion.p>
+                ) : (
+                  <IconUpload className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
+                )}
+              </motion.div>
+            )}
+
+            {!files.length && (
+              <motion.div
+                variants={secondaryVariant}
+                className="absolute opacity-0 border border-dashed border-sky-400 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md"
+              ></motion.div>
+            )}
           </div>
         </div>
-      )}
-      
-      {error && (
-        <div className="flex items-center gap-2 mt-2 text-sm text-destructive">
-          <AlertCircle className="w-4 h-4" />
-          {error}
-        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export function GridPattern() {
+  const columns = 41;
+  const rows = 11;
+  return (
+    <div className="flex bg-gray-100 dark:bg-neutral-900 shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
+      {Array.from({ length: rows }).map((_, row) =>
+        Array.from({ length: columns }).map((_, col) => {
+          const index = row * columns + col;
+          return (
+            <div
+              key={`${col}-${row}`}
+              className={`w-10 h-10 flex shrink-0 rounded-[2px] ${index % 2 === 0
+                ? "bg-gray-50 dark:bg-neutral-950"
+                : "bg-gray-50 dark:bg-neutral-950 shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
+                }`}
+            />
+          );
+        })
       )}
     </div>
   );

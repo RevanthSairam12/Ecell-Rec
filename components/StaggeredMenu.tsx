@@ -313,7 +313,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   return (
     <div
-      className={`sm-scope z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full'}`}
+      className={`sm-scope z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none' : 'w-full h-full'}`}
     >
       <div
         className={
@@ -325,7 +325,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       >
         <div
           ref={preLayersRef}
-          className={`sm-prelayers absolute top-0 right-0 bottom-0 z-[40] overflow-hidden ${open ? 'opacity-100 w-[clamp(260px,38vw,420px)]' : 'opacity-0 w-0'
+          className={`sm-prelayers absolute top-0 right-0 bottom-0 z-[40] overflow-hidden ${open ? 'opacity-100 w-[clamp(260px,38vw,420px)]' : 'opacity-0 w-0 pointer-events-none'
             }`}
           aria-hidden="true"
         >
@@ -345,42 +345,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             ));
           })()}
         </div>
-
-        <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between px-6 py-6 md:px-8 md:py-8 bg-transparent pointer-events-none z-20"
-          aria-label="Main navigation header"
-        >
-          <button
-            id="staggered-menu-trigger"
-            ref={toggleBtnRef}
-            className="sm-toggle relative inline-flex items-center justify-center bg-transparent border-0 cursor-pointer overflow-visible pointer-events-auto w-10 h-10"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            aria-controls="staggered-menu-panel"
-            onClick={toggleMenu}
-            type="button"
-          >
-            {!open ? (
-              // Hamburger icon - only rendered when closed
-              <HiOutlineMenu
-                className="absolute text-white text-3xl drop-shadow-[0_0_4px_rgba(0,0,0,1)]"
-              />
-            ) : (
-              // X icon - only rendered when open
-              <span
-                className="absolute w-6 h-6 inline-flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <span
-                  className="absolute left-1/2 top-1/2 w-full h-[2px] bg-white rounded-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 drop-shadow-[0_0_4px_rgba(0,0,0,1)]"
-                />
-                <span
-                  className="absolute left-1/2 top-1/2 w-full h-[2px] bg-white rounded-[2px] -translate-x-1/2 -translate-y-1/2 -rotate-45 drop-shadow-[0_0_4px_rgba(0,0,0,1)]"
-                />
-              </span>
-            )}
-          </button>
-        </header>
 
         <aside
           id="staggered-menu-panel"
@@ -446,6 +410,57 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </div>
         </aside>
       </div>
+
+      <header
+        className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between px-6 py-6 md:px-8 md:py-8 bg-transparent z-[99999]"
+        aria-label="Main navigation header"
+      >
+        <button
+          id="staggered-menu-trigger"
+          ref={toggleBtnRef}
+          className="sm-toggle relative inline-flex items-center justify-center bg-transparent border-0 cursor-pointer overflow-visible pointer-events-auto w-10 h-10 z-[9999]"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="staggered-menu-panel"
+          onClick={toggleMenu}
+          type="button"
+        >
+          {!open ? (
+            // Hamburger icon - only rendered when closed
+            <HiOutlineMenu
+              className="absolute text-white text-3xl drop-shadow-[0_0_4px_rgba(0,0,0,1)]"
+            />
+          ) : (
+            // X icon - only rendered when open
+            <span
+              className="absolute w-6 h-6 inline-flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <span
+                className="absolute left-1/2 top-1/2 w-full h-[2px] bg-white rounded-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 drop-shadow-[0_0_4px_rgba(0,0,0,1)]"
+              />
+              <span
+                className="absolute left-1/2 top-1/2 w-full h-[2px] bg-white rounded-[2px] -translate-x-1/2 -translate-y-1/2 -rotate-45 drop-shadow-[0_0_4px_rgba(0,0,0,1)]"
+              />
+            </span>
+          )}
+        </button>
+      </header>
+
+      {/* Mobile-only close button - appears above menu panel when open */}
+      {open && (
+        <button
+          onClick={toggleMenu}
+          className="md:hidden absolute top-6 left-6 z-[999999] w-10 h-10 inline-flex items-center justify-center bg-transparent border-0 cursor-pointer pointer-events-auto"
+          aria-label="Close menu"
+          type="button"
+        >
+          <span className="absolute w-6 h-6 inline-flex items-center justify-center">
+            <span className="absolute left-1/2 top-1/2 w-full h-[2px] bg-white rounded-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 drop-shadow-[0_0_4px_rgba(0,0,0,1)]" />
+            <span className="absolute left-1/2 top-1/2 w-full h-[2px] bg-white rounded-[2px] -translate-x-1/2 -translate-y-1/2 -rotate-45 drop-shadow-[0_0_4px_rgba(0,0,0,1)]" />
+          </span>
+        </button>
+      )}
 
       <style>{`
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; pointer-events: none; }

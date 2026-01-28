@@ -6,8 +6,12 @@ import Image from "next/image";
 
 export default function AppNavbar() {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // Set mounted to true after hydration
+        setMounted(true);
+
         const handleScroll = () => {
             // Hide logos after scrolling down 100px
             setIsScrolled(window.scrollY > 100);
@@ -30,7 +34,7 @@ export default function AppNavbar() {
         <>
             {/* Logo Header - Fixed at top with gradient background matching hero */}
             <header
-                className={`fixed top-0 left-0 w-full z-[50] bg-gradient-to-br from-white/95 via-blue-50/40 to-indigo-50/50 backdrop-blur-lg border-b border-blue-100/30 transition-all duration-500 ease-in-out ${isScrolled
+                className={`fixed top-0 left-0 w-full z-[50] bg-gradient-to-br from-white/95 via-blue-50/40 to-indigo-50/50 backdrop-blur-lg border-b border-blue-100/30 transition-all duration-500 ease-in-out ${mounted && isScrolled
                     ? 'opacity-0 -translate-y-full pointer-events-none'
                     : 'opacity-100 translate-y-0'
                     }`}
@@ -38,7 +42,7 @@ export default function AppNavbar() {
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5">
                     <div className="flex items-center justify-between relative min-h-[48px]">
                         {/* Raghu Engineering College Logo - Left (Desktop Only) */}
-                        <div className={`hidden md:flex items-center transition-all duration-700 delay-100 ${isScrolled ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'
+                        <div className={`hidden md:flex items-center transition-all duration-700 delay-100 ${mounted && isScrolled ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'
                             }`}>
                             <Image
                                 src="/icons/raghu.png"
@@ -51,7 +55,7 @@ export default function AppNavbar() {
                         </div>
 
                         {/* E-CELL REC Logo - Always Centered */}
-                        <div className={`flex items-center absolute left-1/2 -translate-x-1/2 transition-all duration-700 delay-200 ${isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+                        <div className={`flex items-center absolute left-1/2 -translate-x-1/2 transition-all duration-700 delay-200 ${mounted && isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
                             }`}>
                             <Image
                                 src="/icons/ecellverynew.png"
@@ -64,7 +68,7 @@ export default function AppNavbar() {
                         </div>
 
                         {/* IIC Logo - Right (Desktop Only) */}
-                        <div className={`hidden md:flex items-center transition-all duration-700 delay-100 ${isScrolled ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'
+                        <div className={`hidden md:flex items-center transition-all duration-700 delay-100 ${mounted && isScrolled ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'
                             }`}>
                             <Image
                                 src="/icons/iic.png"

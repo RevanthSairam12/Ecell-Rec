@@ -11,6 +11,7 @@ import AppNavbar from "@/components/AppNavbar";
 import OurInitiatives from "@/components/OurIntiatives";
 import Image from "next/image";
 import latestInsights from "@/lib/latestInsights";
+import Link from "next/link";
 
 
 // Motion Text Roll Component
@@ -178,7 +179,7 @@ export default function EventsPage() {
               <div className="relative h-80 md:h-96 overflow-hidden">
                 <Image
                   src="/campusfounderGlimpse.png"
-                  alt="Campus Founder"
+                  alt="Ideathon 4.0"
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:brightness-110"
                 />
@@ -190,7 +191,7 @@ export default function EventsPage() {
               <div className="relative p-8 md:p-12 -mt-20">
                 {/* Title */}
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-                  Campus Founder
+                  Ideathon 4.0
                 </h2>
 
                 {/* Description */}
@@ -198,17 +199,15 @@ export default function EventsPage() {
                   An exclusive initiative bringing together aspiring entrepreneurs and industry leaders to transform campus ideas into real-world ventures.
                 </p>
 
-                {/* Stay Tuned Badge */}
-                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                  </span>
-                  <span>Stay Tuned for Updates!</span>
-                  <svg className="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                </div>
+                {/* Register Button */}
+                <Link href="https://www.ecellrec.app/ideathon" className="inline-block">
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <span>Register Now</span>
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

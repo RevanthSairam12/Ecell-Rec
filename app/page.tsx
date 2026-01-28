@@ -13,9 +13,12 @@ import Testimonials from "@/components/Testimonials";
 import TestimonialsData from "@/lib/testimonials-data";
 import ourIntiatives from "@/lib/ourIntiatives";
 
+import Popup from "@/components/Popup";
+
 export default function NewDesignHome() {
   return (
     <div className="min-h-screen bg-background">
+      <Popup />
       <Loader />
       <Hero />
       <AdvisoryBoardComponent />

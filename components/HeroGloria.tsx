@@ -5,6 +5,8 @@ import Image from "next/image"
 import { motion } from 'framer-motion'
 import { Inter, Whisper, Anton } from 'next/font/google'
 import { Button } from "@heroui/react"
+import Headlines from "./Headlines"
+import Announcement from "./Announcement"
 
 const UserIcon = ({ fill = "currentColor", size, height, width, ...props }: any) => {
   return (
@@ -193,10 +195,10 @@ const Hero = () => {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-20 min-h-screen flex flex-col pt-16">
+        <div className="relative z-20 min-h-screen flex flex-col pt-24 md:pt-36 pb-20">
           {/* Logo Bar - Mobile Only */}
           {/* Mobile layout: Shifted down 100px */}
-          <div className="md:hidden px-5 mt-[100px]">
+          <div className="md:hidden px-5 mt-4">
             <div className="flex justify-between items-center">
               <div className="relative w-28 h-16">
                 <Image src="/icons/raghu.png" alt="Raghu Engineering College" fill className="object-contain" priority />
@@ -242,6 +244,12 @@ const Hero = () => {
                     )}
                   </div>
                 ))}
+
+                {/* Headlines Ticker */}
+                <Headlines />
+
+                {/* Announcement Block */}
+                <Announcement />
 
                 {/* Fixed Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
