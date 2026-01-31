@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
@@ -9,6 +9,23 @@ const Prism = dynamic(() => import("@/components/Prism"), { ssr: false });
 const IdeathonForm = dynamic(() => import("@/components/ideathon-form"), { ssr: false });
 
 export default function IdeathonPage() {
+    const [showPrism, setShowPrism] = useState(false);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const canUseWebGL = (() => {
+            try {
+                const canvas = document.createElement("canvas");
+                return !!(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
+            } catch {
+                return false;
+            }
+        })();
+
+        setShowPrism(canUseWebGL && !prefersReducedMotion);
+    }, []);
+
     return (
         <div className="min-h-screen bg-black relative overflow-hidden dark">
 
@@ -17,19 +34,23 @@ export default function IdeathonPage() {
             <section className="relative w-full h-screen flex items-center justify-center overflow-hidden pointer-events-none">
                 {/* Prism Background */}
                 <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
-                    <Prism
-                        height={3.5}
-                        baseWidth={5.5}
-                        animationType="3drotate"
-                        glow={1.2}
-                        noise={0.3}
-                        transparent={true}
-                        scale={3.6}
-                        hueShift={0.5}
-                        colorFrequency={1}
-                        bloom={1.2}
-                        timeScale={0.5}
-                    />
+                    {showPrism ? (
+                        <Prism
+                            height={3.5}
+                            baseWidth={5.5}
+                            animationType="3drotate"
+                            glow={1.2}
+                            noise={0.3}
+                            transparent={true}
+                            scale={3.6}
+                            hueShift={0.5}
+                            colorFrequency={1}
+                            bloom={1.2}
+                            timeScale={0.5}
+                        />
+                    ) : (
+                        <div className="absolute inset-0 bg-black" />
+                    )}
                 </div>
 
                 {/* Logo Bar - Mobile Only */}

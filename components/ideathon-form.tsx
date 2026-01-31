@@ -120,8 +120,9 @@ export default function IdeathonForm() {
             // Show success animation instead of alert
             setShowSuccess(true);
         } catch (error) {
+            const message = error instanceof Error ? error.message : "Something went wrong. Please try again.";
             console.error("Error submitting:", error);
-            alert("Something went wrong. Please try again.");
+            alert(message);
         } finally {
             setIsSubmitting(false);
             setUploadProgress(0);
