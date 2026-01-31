@@ -91,7 +91,7 @@ const Popup = () => {
 
             {/* Button Group - matching home page button style */}
             <div className="flex justify-center mb-4">
-              <Link href="https://ecellrec.app/ideathon" onClick={closePopup} className="w-full sm:w-auto">
+              <Link href="/ideathon" onClick={closePopup} className="w-full sm:w-auto">
                 <Button
                   className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 text-sm"
                 >

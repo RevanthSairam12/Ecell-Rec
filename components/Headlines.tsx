@@ -10,7 +10,7 @@ const Headlines = () => {
         {
             type: "link",
             text: "Click here to Register Now!",
-            href: "https://www.ecellrec.app/ideathon",
+            href: "/ideathon",
         },
         "Open for all departments in Raghu Engineering College!",
     ];

@@ -46,7 +46,7 @@ const Announcement = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.5 }}
                 >
-                    <Link href="https://www.ecellrec.app/ideathon" className="inline-block">
+                    <Link href="/ideathon" className="inline-block">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}

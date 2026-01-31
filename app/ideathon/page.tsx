@@ -2,9 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
-import Prism from "@/components/Prism";
-import IdeathonForm from "@/components/ideathon-form";
+
+const Prism = dynamic(() => import("@/components/Prism"), { ssr: false });
+const IdeathonForm = dynamic(() => import("@/components/ideathon-form"), { ssr: false });
 
 export default function IdeathonPage() {
     return (

@@ -27,8 +27,16 @@ const secondaryVariant = {
 
 export const FileUpload = ({
   onChange,
+  onFileSelect,
+  accept,
+  maxSize,
+  className,
 }: {
   onChange?: (files: File[]) => void;
+  onFileSelect?: (file: File) => void;
+  accept?: string;
+  maxSize?: number;
+  className?: string;
 }) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -37,34 +45,48 @@ export const FileUpload = ({
     if (newFiles.length === 0) return;
 
     const file = newFiles[0];
-    const validExtensions = ['.pdf', '.pptx'];
+    
+    if (maxSize && file.size > maxSize) {
+      alert(`File size should be less than ${maxSize / (1024 * 1024)}MB`);
+      return;
+    }
+
+    const validExtensions = accept 
+      ? accept.split(',').map(x => x.trim().toLowerCase()) 
+      : ['.pdf', '.pptx'];
+      
     const fileName = file.name.toLowerCase();
     const isValid = validExtensions.some(ext => fileName.endsWith(ext));
 
     if (!isValid) {
-      alert('Please upload only PDF or PPTX files');
+      alert(`Please upload only ${validExtensions.join(', ')} files`);
       return;
     }
 
     setFiles([file]);
     onChange && onChange([file]);
+    onFileSelect && onFileSelect(file);
   };
 
   const handleClick = () => {
     fileInputRef.current?.click();
   };
 
+  // If consumer provides accept prop, we disable react-dropzone's internal accept
+  // and handle validation in onDrop (via handleFileChange)
+  const dropzoneAccept = accept ? undefined : {
+    'application/pdf': ['.pdf'],
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx']
+  };
+
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
-    accept: {
-      'application/pdf': ['.pdf'],
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx']
-    },
+    accept: dropzoneAccept,
     onDrop: handleFileChange,
     onDropRejected: (error) => {
       console.log(error);
-      alert('Please upload only PDF or PPTX files');
+      alert('File upload failed');
     },
   });
 
@@ -73,13 +95,16 @@ export const FileUpload = ({
       <motion.div
         onClick={handleClick}
         whileHover="animate"
-        className="p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
+        className={cn(
+          "p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden",
+          className
+        )}
       >
         <input
           ref={fileInputRef}
           id="file-upload-handle"
           type="file"
-          accept=".pdf,.pptx"
+          accept={accept || ".pdf,.pptx"}
           onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
           className="hidden"
         />

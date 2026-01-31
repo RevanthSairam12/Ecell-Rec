@@ -1,8 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { StaggeredMenu, StaggeredMenuItem } from "@/components/StaggeredMenu";
+import dynamic from "next/dynamic";
+import type { StaggeredMenuItem } from "@/components/StaggeredMenu";
 import Image from "next/image";
+
+const StaggeredMenu = dynamic(
+    () => import("@/components/StaggeredMenu").then((mod) => mod.StaggeredMenu),
+    { ssr: false }
+);
 
 export default function AppNavbar() {
     const [isScrolled, setIsScrolled] = useState(false);

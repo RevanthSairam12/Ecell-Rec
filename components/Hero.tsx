@@ -31,7 +31,7 @@ const EventsHero = ({
           alt="Background"
           fill
           priority
-          className="object-cover blur-[1px]"
+          className="object-cover"
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />

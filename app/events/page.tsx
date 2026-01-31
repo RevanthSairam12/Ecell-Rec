@@ -200,7 +200,7 @@ export default function EventsPage() {
                 </p>
 
                 {/* Register Button */}
-                <Link href="https://www.ecellrec.app/ideathon" className="inline-block">
+                <Link href="/ideathon" className="inline-block">
                   <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 cursor-pointer">
                     <span>Register Now</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
