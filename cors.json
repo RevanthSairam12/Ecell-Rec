@@ -3,7 +3,8 @@
         "origin": [
             "http://localhost:3000",
             "http://localhost:3001",
-            "https://ecellrec.app"
+            "https://ecellrec.app",
+            "https://www.ecellrec.app"
         ],
         "method": [
             "GET",
@@ -17,7 +18,8 @@
             "Authorization",
             "Content-Length",
             "User-Agent",
-            "X-Requested-With"
+            "X-Requested-With",
+            "x-goog-resumable"
         ],
         "maxAgeSeconds": 3600
     }
