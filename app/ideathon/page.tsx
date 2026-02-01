@@ -73,6 +73,21 @@ export default function IdeathonPage() {
                     <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 font-light max-w-3xl mx-auto drop-shadow-md">
                         Where Innovation Meets Excellence
                     </p>
+                    <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+                        <a
+                            href="/resources/Pitch_Deck_Template.pptx"
+                            download
+                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-blue-600 rounded-full hover:bg-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+                        >
+                            Download PPT FORMAT
+                        </a>
+                        <a
+                            href="/ideathon#what-is-ideathon"
+                            className="inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-white/5 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/10 hover:border-white/40"
+                        >
+                            What is ideathon?
+                        </a>
+                    </div>
                 </div>
             </section>
 

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { Inter, Whisper, Anton } from 'next/font/google'
 import { Button } from "@heroui/react"
 import Headlines from "./Headlines"
-import Announcement from "./Announcement"
+
 
 const UserIcon = ({ fill = "currentColor", size, height, width, ...props }: any) => {
   return (
@@ -247,9 +247,6 @@ const Hero = () => {
 
                 {/* Headlines Ticker */}
                 <Headlines />
-
-                {/* Announcement Block */}
-                <Announcement />
 
                 {/* Fixed Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">

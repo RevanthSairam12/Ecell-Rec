@@ -6,13 +6,13 @@ import React from "react";
 const Headlines = () => {
     const headlines = [
         "Registrations for Ideathon 4.0 are now OPEN!",
-        "Build, Innovate, Present — Win exciting prizes!",
+        "A Space to Think,Create & Grow Together",
         {
             type: "link",
             text: "Click here to Register Now!",
             href: "/ideathon",
         },
-        "Open for all departments in Raghu Engineering College!",
+        "Open for Everyone",
     ];
 
     // Duplicate headlines to ensure seamless scrolling
