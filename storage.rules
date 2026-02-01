@@ -1,23 +1,11 @@
 rules_version = '2';
 
-// Firebase Storage Security Rules for Ideathon
+// Firebase Storage Security Rules
+// Storage is no longer used - all uploads are blocked
 service firebase.storage {
   match /b/{bucket}/o {
     
-    // Allow anyone to upload pitch decks
-    match /pitchdecks/{fileName} {
-      // Allow uploads from anyone (for development)
-      // In production, you should add authentication checks
-      allow read, write: if true
-        && request.resource.size < 10 * 1024 * 1024 // 10MB max
-        && (
-          request.resource.contentType == 'application/pdf' ||
-          request.resource.contentType == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' ||
-          request.resource.contentType == 'application/vnd.ms-powerpoint'
-        );
-    }
-    
-    // Deny all other paths by default
+    // Deny all storage access
     match /{allPaths=**} {
       allow read, write: if false;
     }

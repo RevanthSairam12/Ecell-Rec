@@ -1,50 +1,89 @@
 "use client";
 
-import React, { useState } from "react";
-import { FileUpload } from "@/components/ui/file-upload";
+import React, { useState, useEffect, useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 
-import { uploadPitchDeck } from "@/lib/uploadPitchDeck";
 import { saveRegistration } from "@/lib/saveRegistration";
 
+// Team member interface
+interface TeamMember {
+    name: string;
+    phone: string;
+    email: string;
+    regdNumber: string;
+    department: string;
+    section: string;
+    skillsets: string;
+}
+
 export default function IdeathonForm() {
+    const formRef = useRef<HTMLDivElement>(null);
     const [currentStep, setCurrentStep] = useState(1);
     const [errors, setErrors] = useState<Record<string, boolean>>({});
     const [showSuccess, setShowSuccess] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [uploadProgress, setUploadProgress] = useState(0);
 
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        contact: "",
-        rollNumber: "",
-        department: "",
-        section: "",
         teamName: "",
-        pitchDeck: [] as File[],
+        teamSize: 3,
+        members: [] as TeamMember[],
     });
 
-    const handleInputChange = (field: string, value: string) => {
-        setFormData({ ...formData, [field]: value });
-        if (errors[field]) {
+    // Initialize members array when teamSize changes
+    useEffect(() => {
+        const newMembers: TeamMember[] = [];
+        for (let i = 0; i < formData.teamSize; i++) {
+            newMembers.push(
+                formData.members[i] || {
+                    name: "",
+                    phone: "",
+                    email: "",
+                    regdNumber: "",
+                    department: "",
+                    section: "",
+                    skillsets: "",
+                }
+            );
+        }
+        setFormData((prev) => ({ ...prev, members: newMembers }));
+    }, [formData.teamSize]);
+
+    const handleTeamNameChange = (value: string) => {
+        setFormData({ ...formData, teamName: value });
+        if (errors.teamName) {
             setErrors((prev) => {
                 const newErrors = { ...prev };
-                delete newErrors[field];
+                delete newErrors.teamName;
                 return newErrors;
             });
         }
     };
 
-    const handleFileChange = (files: File[]) => {
-        setFormData({ ...formData, pitchDeck: files });
-        if (errors.pitchDeck) {
+    const handleTeamSizeChange = (value: number) => {
+        setFormData({ ...formData, teamSize: value });
+        if (errors.teamSize) {
             setErrors((prev) => {
                 const newErrors = { ...prev };
-                delete newErrors.pitchDeck;
+                delete newErrors.teamSize;
+                return newErrors;
+            });
+        }
+    };
+
+    const handleMemberChange = (index: number, field: keyof TeamMember, value: string) => {
+        const newMembers = [...formData.members];
+        newMembers[index] = { ...newMembers[index], [field]: value };
+        setFormData({ ...formData, members: newMembers });
+
+        // Clear error for this specific field
+        const errorKey = `member${index}_${field}`;
+        if (errors[errorKey]) {
+            setErrors((prev) => {
+                const newErrors = { ...prev };
+                delete newErrors[errorKey];
                 return newErrors;
             });
         }
@@ -52,12 +91,10 @@ export default function IdeathonForm() {
 
     const validateStep1 = () => {
         const newErrors: Record<string, boolean> = {};
-        if (!formData.name.trim()) newErrors.name = true;
-        if (!formData.email.trim()) newErrors.email = true;
-        if (!formData.contact.trim()) newErrors.contact = true;
-        if (!formData.rollNumber.trim()) newErrors.rollNumber = true;
-        if (!formData.department.trim()) newErrors.department = true;
-        if (!formData.section.trim()) newErrors.section = true;
+        if (!formData.teamName.trim()) newErrors.teamName = true;
+        if (!formData.teamSize || formData.teamSize < 3 || formData.teamSize > 5) {
+            newErrors.teamSize = true;
+        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -65,8 +102,16 @@ export default function IdeathonForm() {
 
     const validateStep2 = () => {
         const newErrors: Record<string, boolean> = {};
-        if (!formData.teamName.trim()) newErrors.teamName = true;
-        if (!formData.pitchDeck || formData.pitchDeck.length === 0) newErrors.pitchDeck = true;
+
+        formData.members.forEach((member, index) => {
+            if (!member.name.trim()) newErrors[`member${index}_name`] = true;
+            if (!member.phone.trim()) newErrors[`member${index}_phone`] = true;
+            if (!member.email.trim()) newErrors[`member${index}_email`] = true;
+            if (!member.regdNumber.trim()) newErrors[`member${index}_regdNumber`] = true;
+            if (!member.department.trim()) newErrors[`member${index}_department`] = true;
+            if (!member.section.trim()) newErrors[`member${index}_section`] = true;
+            if (!member.skillsets.trim()) newErrors[`member${index}_skillsets`] = true;
+        });
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -78,18 +123,22 @@ export default function IdeathonForm() {
         }
     };
 
+    const handleBack = () => {
+        setCurrentStep(1);
+
+        // Smooth auto-scroll back to Step 1
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     const resetForm = () => {
         setShowSuccess(false);
         setCurrentStep(1);
         setFormData({
-            name: "",
-            email: "",
-            contact: "",
-            rollNumber: "",
-            department: "",
-            section: "",
             teamName: "",
-            pitchDeck: [],
+            teamSize: 3,
+            members: [],
         });
         setErrors({});
     };
@@ -104,20 +153,16 @@ export default function IdeathonForm() {
         }
 
         setIsSubmitting(true);
-        setUploadProgress(0);
 
         try {
-            const file = formData.pitchDeck[0];
-
-            // Upload pitch deck → Firebase
-            const pitchDeckUrl = await uploadPitchDeck(file, (progress) => {
-                setUploadProgress(progress);
+            // Save registration data to Firestore
+            await saveRegistration({
+                teamName: formData.teamName,
+                teamSize: formData.teamSize,
+                members: formData.members,
             });
 
-            // Save all details to Firestore
-            await saveRegistration(formData, pitchDeckUrl);
-
-            // Show success animation instead of alert
+            // Show success animation
             setShowSuccess(true);
         } catch (error) {
             const message = error instanceof Error ? error.message : "Something went wrong. Please try again.";
@@ -125,12 +170,11 @@ export default function IdeathonForm() {
             alert(message);
         } finally {
             setIsSubmitting(false);
-            setUploadProgress(0);
         }
     };
 
     return (
-        <div className="relative z-20 min-h-screen flex flex-col items-center justify-center px-4 py-12 pointer-events-auto">
+        <div id="ideathon-form" ref={formRef} className="relative z-20 min-h-screen flex flex-col items-center justify-center px-4 py-12 pointer-events-auto">
             {/* Success Animation Overlay */}
             <AnimatePresence>
                 {showSuccess && (
@@ -250,7 +294,7 @@ export default function IdeathonForm() {
                             1
                         </motion.div>
                         <p className="mt-2 text-sm text-gray-400 font-medium">
-                            Personal Details
+                            Team Details
                         </p>
                     </div>
 
@@ -268,7 +312,7 @@ export default function IdeathonForm() {
                             2
                         </motion.div>
                         <p className="mt-2 text-sm text-gray-400 font-medium">
-                            Team & Pitch Deck
+                            Team Members
                         </p>
                     </div>
                 </div>
@@ -286,9 +330,9 @@ export default function IdeathonForm() {
                         className="w-full max-w-2xl pointer-events-auto"
                     >
                         <div className="shadow-input mx-auto w-full max-w-2xl rounded-2xl bg-gradient-to-br from-gray-900 to-black p-6 border border-gray-700/50 pointer-events-auto">
-                            <h2 className="text-2xl font-bold text-white">Personal Details</h2>
+                            <h2 className="text-2xl font-bold text-white">Team Details</h2>
                             <p className="mt-1 text-xs text-gray-300">
-                                Enter your personal information to register for Ideathon 4.0
+                                Enter your team name and select team size
                             </p>
 
                             <form
@@ -298,105 +342,36 @@ export default function IdeathonForm() {
                                     handleNext();
                                 }}
                             >
-                                <LabelInputContainer className="mb-3">
-                                    <Label htmlFor="name">Full Name</Label>
+                                <LabelInputContainer className="mb-4">
+                                    <Label htmlFor="teamName">Team Name</Label>
                                     <Input
-                                        id="name"
-                                        placeholder="Enter your full name"
+                                        id="teamName"
+                                        placeholder="Enter your team name"
                                         type="text"
-                                        value={formData.name}
-                                        onChange={(e) => handleInputChange("name", e.target.value)}
-                                        className={cn(errors.name && "shake border-red-500")}
+                                        value={formData.teamName}
+                                        onChange={(e) => handleTeamNameChange(e.target.value)}
+                                        className={cn(errors.teamName && "shake border-red-500")}
                                     />
-                                    {errors.name && <span className="text-red-500 text-xs mt-1">Required</span>}
-                                </LabelInputContainer>
-
-                                <LabelInputContainer className="mb-3">
-                                    <Label htmlFor="email">Email Address</Label>
-                                    <Input
-                                        id="email"
-                                        placeholder="your.email@example.com"
-                                        type="email"
-                                        value={formData.email}
-                                        onChange={(e) => handleInputChange("email", e.target.value)}
-                                        className={cn(errors.email && "shake border-red-500")}
-                                    />
-                                    {errors.email && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                    {errors.teamName && <span className="text-red-500 text-xs mt-1">Required</span>}
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="mb-4">
-                                    <Label htmlFor="contact">Contact Number</Label>
-                                    <Input
-                                        id="contact"
-                                        placeholder="+91 XXXXX XXXXX"
-                                        type="text"
-                                        value={formData.contact}
-                                        onChange={(e) =>
-                                            handleInputChange("contact", e.target.value)
-                                        }
-                                        className={cn(errors.contact && "shake border-red-500")}
-                                    />
-                                    {errors.contact && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                    <Label htmlFor="teamSize">Team Size</Label>
+                                    <select
+                                        id="teamSize"
+                                        value={formData.teamSize}
+                                        onChange={(e) => handleTeamSizeChange(Number(e.target.value))}
+                                        className={cn(
+                                            "flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm",
+                                            errors.teamSize && "shake border border-red-500"
+                                        )}
+                                    >
+                                        <option value={3}>3 Members</option>
+                                        <option value={4}>4 Members</option>
+                                        <option value={5}>5 Members</option>
+                                    </select>
+                                    {errors.teamSize && <span className="text-red-500 text-xs mt-1">Required</span>}
                                 </LabelInputContainer>
-
-                                <LabelInputContainer className="mb-4">
-                                    <Label htmlFor="rollNumber">Roll Number</Label>
-                                    <Input
-                                        id="rollNumber"
-                                        placeholder="Enter your roll number"
-                                        type="text"
-                                        value={formData.rollNumber}
-                                        onChange={(e) =>
-                                            handleInputChange("rollNumber", e.target.value)
-                                        }
-                                        className={cn(errors.rollNumber && "shake border-red-500")}
-                                    />
-                                    {errors.rollNumber && <span className="text-red-500 text-xs mt-1">Required</span>}
-                                </LabelInputContainer>
-
-                                <div className="mb-3 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
-                                    <LabelInputContainer>
-                                        <Label htmlFor="department">Department</Label>
-                                        <select
-                                            id="department"
-                                            value={formData.department}
-                                            onChange={(e) =>
-                                                handleInputChange("department", e.target.value)
-                                            }
-                                            className={cn(
-                                                "flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm",
-                                                errors.department && "shake border border-red-500"
-                                            )}
-                                        >
-                                            <option value="">Select Department</option>
-                                            <option value="CSE">CSE</option>
-                                            <option value="CSM">CSM</option>
-                                            <option value="CSD">CSD</option>
-                                            <option value="CSC">CSC</option>
-                                            <option value="CSO">CSO</option>
-                                            <option value="ECE">ECE</option>
-                                            <option value="EEE">EEE</option>
-                                            <option value="Civil">Civil</option>
-                                            <option value="Mech">Mech</option>
-                                        </select>
-                                        {errors.department && <span className="text-red-500 text-xs mt-1">Required</span>}
-                                    </LabelInputContainer>
-
-                                    <LabelInputContainer>
-                                        <Label htmlFor="section">Section</Label>
-                                        <Input
-                                            id="section"
-                                            placeholder="e.g., A, B, C"
-                                            type="text"
-                                            value={formData.section}
-                                            onChange={(e) =>
-                                                handleInputChange("section", e.target.value)
-                                            }
-                                            className={cn(errors.section && "shake border-red-500")}
-                                        />
-                                        {errors.section && <span className="text-red-500 text-xs mt-1">Required</span>}
-                                    </LabelInputContainer>
-                                </div>
 
                                 <button
                                     className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 text-white font-medium"
@@ -420,41 +395,129 @@ export default function IdeathonForm() {
                         className="w-full max-w-2xl pointer-events-auto"
                     >
                         <div className="shadow-input mx-auto w-full max-w-2xl rounded-2xl bg-gradient-to-br from-gray-900 to-black p-6 border border-gray-700/50 pointer-events-auto">
-                            <h2 className="text-2xl font-bold text-white">Team & Pitch Deck</h2>
+                            <h2 className="text-2xl font-bold text-white">Team Members</h2>
                             <p className="mt-1 text-xs text-gray-300">
-                                Provide your team details and upload your pitch deck
+                                Provide details for all {formData.teamSize} team members
                             </p>
 
                             <form className="my-6" onSubmit={handleSubmit}>
-                                <LabelInputContainer className="mb-3">
-                                    <Label htmlFor="teamName">Team Name</Label>
-                                    <Input
-                                        id="teamName"
-                                        placeholder="Enter your team name"
-                                        type="text"
-                                        value={formData.teamName}
-                                        onChange={(e) =>
-                                            handleInputChange("teamName", e.target.value)
-                                        }
-                                        className={cn(errors.teamName && "shake border-red-500")}
-                                    />
-                                    {errors.teamName && <span className="text-red-500 text-xs mt-1">Required</span>}
-                                </LabelInputContainer>
+                                {/* Dynamic Member Inputs */}
+                                {formData.members.map((member, index) => (
+                                    <div key={index} className="mb-6 p-4 bg-black/30 border border-gray-700 rounded-lg">
+                                        <h3 className="text-lg font-semibold text-white mb-3">
+                                            Member {index + 1}
+                                        </h3>
 
-                                <LabelInputContainer className="mb-6">
-                                    <Label htmlFor="pitchDeck">Pitch Deck Upload</Label>
-                                    <div className={cn(
-                                        "bg-black/30 border border-gray-700 rounded-lg overflow-hidden mt-2",
-                                        errors.pitchDeck && "shake border-red-500"
-                                    )}>
-                                        <FileUpload onChange={handleFileChange} />
+                                        <LabelInputContainer className="mb-3">
+                                            <Label htmlFor={`member${index}_name`}>Full Name</Label>
+                                            <Input
+                                                id={`member${index}_name`}
+                                                placeholder="Enter full name"
+                                                type="text"
+                                                value={member.name}
+                                                onChange={(e) => handleMemberChange(index, "name", e.target.value)}
+                                                className={cn(errors[`member${index}_name`] && "shake border-red-500")}
+                                            />
+                                            {errors[`member${index}_name`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                        </LabelInputContainer>
+
+                                        <LabelInputContainer className="mb-3">
+                                            <Label htmlFor={`member${index}_phone`}>Phone Number</Label>
+                                            <Input
+                                                id={`member${index}_phone`}
+                                                placeholder="+91 XXXXX XXXXX"
+                                                type="text"
+                                                value={member.phone}
+                                                onChange={(e) => handleMemberChange(index, "phone", e.target.value)}
+                                                className={cn(errors[`member${index}_phone`] && "shake border-red-500")}
+                                            />
+                                            {errors[`member${index}_phone`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                        </LabelInputContainer>
+
+                                        <LabelInputContainer className="mb-3">
+                                            <Label htmlFor={`member${index}_email`}>Email Address</Label>
+                                            <Input
+                                                id={`member${index}_email`}
+                                                placeholder="email@example.com"
+                                                type="email"
+                                                value={member.email}
+                                                onChange={(e) => handleMemberChange(index, "email", e.target.value)}
+                                                className={cn(errors[`member${index}_email`] && "shake border-red-500")}
+                                            />
+                                            {errors[`member${index}_email`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                        </LabelInputContainer>
+
+                                        <LabelInputContainer className="mb-3">
+                                            <Label htmlFor={`member${index}_regdNumber`}>Registration Number</Label>
+                                            <Input
+                                                id={`member${index}_regdNumber`}
+                                                placeholder="Enter registration number"
+                                                type="text"
+                                                value={member.regdNumber}
+                                                onChange={(e) => handleMemberChange(index, "regdNumber", e.target.value)}
+                                                className={cn(errors[`member${index}_regdNumber`] && "shake border-red-500")}
+                                            />
+                                            {errors[`member${index}_regdNumber`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                        </LabelInputContainer>
+
+                                        <div className="mb-3 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+                                            <LabelInputContainer>
+                                                <Label htmlFor={`member${index}_department`}>Department</Label>
+                                                <select
+                                                    id={`member${index}_department`}
+                                                    value={member.department}
+                                                    onChange={(e) => handleMemberChange(index, "department", e.target.value)}
+                                                    className={cn(
+                                                        "flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm",
+                                                        errors[`member${index}_department`] && "shake border border-red-500"
+                                                    )}
+                                                >
+                                                    <option value="">Select Department</option>
+                                                    <option value="CSE">CSE</option>
+                                                    <option value="CSM">CSM</option>
+                                                    <option value="CSD">CSD</option>
+                                                    <option value="CSC">CSC</option>
+                                                    <option value="CSO">CSO</option>
+                                                    <option value="ECE">ECE</option>
+                                                    <option value="EEE">EEE</option>
+                                                    <option value="Civil">Civil</option>
+                                                    <option value="Mech">Mech</option>
+                                                </select>
+                                                {errors[`member${index}_department`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                            </LabelInputContainer>
+
+                                            <LabelInputContainer>
+                                                <Label htmlFor={`member${index}_section`}>Section</Label>
+                                                <Input
+                                                    id={`member${index}_section`}
+                                                    placeholder="e.g., A, B, C"
+                                                    type="text"
+                                                    value={member.section}
+                                                    onChange={(e) => handleMemberChange(index, "section", e.target.value)}
+                                                    className={cn(errors[`member${index}_section`] && "shake border-red-500")}
+                                                />
+                                                {errors[`member${index}_section`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                            </LabelInputContainer>
+                                        </div>
+
+                                        <LabelInputContainer className="mb-0">
+                                            <Label htmlFor={`member${index}_skillsets`}>Skillsets</Label>
+                                            <Input
+                                                id={`member${index}_skillsets`}
+                                                placeholder="e.g., React, Node.js, Python"
+                                                type="text"
+                                                value={member.skillsets}
+                                                onChange={(e) => handleMemberChange(index, "skillsets", e.target.value)}
+                                                className={cn(errors[`member${index}_skillsets`] && "shake border-red-500")}
+                                            />
+                                            {errors[`member${index}_skillsets`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                        </LabelInputContainer>
                                     </div>
-                                    {errors.pitchDeck && <span className="text-red-500 text-xs mt-1">Required</span>}
-                                </LabelInputContainer>
+                                ))}
 
                                 <div className="flex gap-4">
                                     <button
-                                        onClick={() => setCurrentStep(1)}
+                                        onClick={handleBack}
                                         type="button"
                                         className="h-10 flex-1 rounded-md bg-gray-700 text-white font-medium hover:bg-gray-600 transition-all"
                                     >
@@ -465,32 +528,16 @@ export default function IdeathonForm() {
                                         disabled={isSubmitting}
                                         className={cn(
                                             "group/btn relative block h-10 flex-1 rounded-md bg-gradient-to-br from-black to-neutral-600 text-white font-medium overflow-hidden",
-                                            isSubmitting && "cursor-not-allowed"
+                                            isSubmitting && "cursor-not-allowed opacity-50"
                                         )}
                                         type="submit"
                                     >
-                                        {/* Progress Bar Background */}
-                                        <motion.div
-                                            initial={{ width: "0%" }}
-                                            animate={{ width: `${uploadProgress}%` }}
-                                            transition={{ ease: "easeOut", duration: 0.3 }}
-                                            className="absolute inset-0 bg-blue-600/60 z-0"
-                                            style={{ left: 0, top: 0, height: '100%' }}
-                                        />
-
                                         <span className="relative z-10 flex items-center justify-center gap-2">
                                             {isSubmitting ? (
-                                                uploadProgress > 0 ? (
-                                                    <span className="flex items-center gap-2">
-                                                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                                        {`Uploading... ${Math.round(uploadProgress)}%`}
-                                                    </span>
-                                                ) : (
-                                                    <span className="flex items-center gap-2">
-                                                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                                        Submitting...
-                                                    </span>
-                                                )
+                                                <span className="flex items-center gap-2">
+                                                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                    Submitting...
+                                                </span>
                                             ) : (
                                                 "Submit"
                                             )}
@@ -503,6 +550,20 @@ export default function IdeathonForm() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Download Template Section */}
+            <div className="mt-8 text-center space-y-4 w-full max-w-2xl">
+                <p className="text-sm text-gray-400">
+                    To want a reference of Pitch Deck download this
+                </p>
+                <a
+                    href="/resources/Pitch_Deck_Template.pptx"
+                    download
+                    className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-blue-600 rounded-full hover:bg-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+                >
+                    Download PPT FORMAT
+                </a>
+            </div>
         </div>
     );
 }

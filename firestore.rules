@@ -3,11 +3,11 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Allow anyone to write to registrations collection
+    // Allow anyone to create and read registrations
     match /registrations/{docId} {
-      allow read, write: if true; // Open for development
-      // In production, add proper authentication:
-      // allow read, write: if request.auth != null;
+      allow create: if true;
+      allow read: if true;
+      allow update, delete: if false;
     }
     
     // Deny all other collections by default

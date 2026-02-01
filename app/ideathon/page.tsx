@@ -1,98 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React from "react";
 import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
+import NewHeroIllustration from "@/components/NewHeroIllustration";
+import AboutIdeathon from "@/components/AboutIdeathon";
 
-const Prism = dynamic(() => import("@/components/Prism"), { ssr: false });
 const IdeathonForm = dynamic(() => import("@/components/ideathon-form"), { ssr: false });
 
 export default function IdeathonPage() {
-    const [showPrism, setShowPrism] = useState(false);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const canUseWebGL = (() => {
-            try {
-                const canvas = document.createElement("canvas");
-                return !!(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
-            } catch {
-                return false;
-            }
-        })();
-
-        setShowPrism(canUseWebGL && !prefersReducedMotion);
-    }, []);
-
     return (
         <div className="min-h-screen bg-black relative overflow-hidden dark">
-
-
-            {/* Hero Section with Prism */}
-            <section className="relative w-full h-screen flex items-center justify-center overflow-hidden pointer-events-none">
-                {/* Prism Background */}
-                <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
-                    {showPrism ? (
-                        <Prism
-                            height={3.5}
-                            baseWidth={5.5}
-                            animationType="3drotate"
-                            glow={1.2}
-                            noise={0.3}
-                            transparent={true}
-                            scale={3.6}
-                            hueShift={0.5}
-                            colorFrequency={1}
-                            bloom={1.2}
-                            timeScale={0.5}
-                        />
-                    ) : (
-                        <div className="absolute inset-0 bg-black" />
-                    )}
-                </div>
-
-                {/* Logo Bar - Mobile Only */}
-                <div className="md:hidden absolute top-24 left-0 right-0 z-10 px-5">
-                    <div className="flex justify-between items-center">
-                        <div className="relative w-28 h-16" style={{ filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.4))' }}>
-                            <Image src="/icons/raghu.png" alt="Raghu Engineering College" fill className="object-contain" priority />
-                        </div>
-                        <div className="relative w-28 h-16" style={{ filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.4))' }}>
-                            <Image src="/icons/iic.png" alt="IIC" fill className="object-contain" priority />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Hero Content */}
-                <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 pointer-events-auto">
-                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
-                        Ideathon 4.0
-                    </h1>
-                    <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 font-light max-w-3xl mx-auto drop-shadow-md">
-                        Where Innovation Meets Excellence
-                    </p>
-                    <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-                        <a
-                            href="/resources/Pitch_Deck_Template.pptx"
-                            download
-                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-blue-600 rounded-full hover:bg-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
-                        >
-                            Download PPT FORMAT
-                        </a>
-                        <a
-                            href="/ideathon#what-is-ideathon"
-                            className="inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-white/5 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/10 hover:border-white/40"
-                        >
-                            What is ideathon?
-                        </a>
-                    </div>
-                </div>
-            </section>
-
+            <NewHeroIllustration />
+            <AboutIdeathon />
             <IdeathonForm />
-
             <Footer />
         </div>
     );

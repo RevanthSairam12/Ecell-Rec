@@ -1,27 +1,36 @@
 import { db } from "./firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 
-export async function saveRegistration(formData: any, pitchDeckUrl: string) {
+interface TeamMember {
+    name: string;
+    phone: string;
+    email: string;
+    regdNumber: string;
+    department: string;
+    section: string;
+    skillsets: string;
+}
+
+interface TeamRegistrationData {
+    teamName: string;
+    teamSize: number;
+    members: TeamMember[];
+}
+
+export async function saveRegistration(teamData: TeamRegistrationData) {
     console.log("💾 [saveRegistration] Starting Firestore save...");
-    console.log("📋 Form data:", {
-        name: formData.name,
-        email: formData.email,
-        department: formData.department,
-        teamName: formData.teamName
+    console.log("📋 Team data:", {
+        teamName: teamData.teamName,
+        teamSize: teamData.teamSize,
+        memberCount: teamData.members.length
     });
-    console.log("🔗 Pitch deck URL:", pitchDeckUrl);
 
     const registrationsRef = collection(db, "registrations");
 
     const dataToSave = {
-        name: formData.name,
-        email: formData.email,
-        contact: formData.contact,
-        rollNumber: formData.rollNumber,
-        department: formData.department,
-        section: formData.section,
-        teamName: formData.teamName,
-        pitchDeckUrl: pitchDeckUrl,
+        teamName: teamData.teamName,
+        teamSize: teamData.teamSize,
+        members: teamData.members,
         submittedAt: Timestamp.now(),
     };
 
