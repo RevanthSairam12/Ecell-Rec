@@ -81,14 +81,10 @@ export default function AboutIdeathon() {
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-slate-300">
-                                What is
-                            </span>
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 tracking-tight text-white">
+                            What is
                             <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 drop-shadow-[0_0_15px_rgba(129,140,248,0.5)]">
-                                Ideathon?
-                            </span>
+                            Ideathon?
                         </h2>
 
                         <div className="space-y-6 text-lg sm:text-xl text-slate-300 font-light leading-relaxed">
@@ -168,19 +164,8 @@ export default function AboutIdeathon() {
 
                         {/* Scrolling Container */}
                         <div className="overflow-hidden py-4">
-                            <motion.div
-                                className="flex gap-6 pl-4"
-                                animate={{
-                                    x: [0, "-50%"],
-                                }}
-                                transition={{
-                                    duration: 50,
-                                    repeat: Infinity,
-                                    ease: "linear",
-                                }}
-                                whileHover={{
-                                    animationPlayState: "paused",
-                                }}
+                            <div
+                                className="flex gap-6 pl-4 animate-scroll-gallery pause-on-hover"
                             >
                                 {duplicatedImages.map((src, index) => (
                                     <motion.div
@@ -206,7 +191,7 @@ export default function AboutIdeathon() {
                                         <div className="absolute inset-0 border border-white/5 group-hover:border-purple-500/50 transition-colors duration-300 rounded-xl" />
                                     </motion.div>
                                 ))}
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
