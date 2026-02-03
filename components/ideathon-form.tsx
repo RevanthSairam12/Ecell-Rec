@@ -15,6 +15,7 @@ interface TeamMember {
     email: string;
     regdNumber: string;
     department: string;
+    year: string;
     section: string;
     skillsets: string;
 }
@@ -43,6 +44,7 @@ export default function IdeathonForm() {
                     email: "",
                     regdNumber: "",
                     department: "",
+                    year: "",
                     section: "",
                     skillsets: "",
                 }
@@ -109,6 +111,7 @@ export default function IdeathonForm() {
             if (!member.email.trim()) newErrors[`member${index}_email`] = true;
             if (!member.regdNumber.trim()) newErrors[`member${index}_regdNumber`] = true;
             if (!member.department.trim()) newErrors[`member${index}_department`] = true;
+            if (!member.year.trim()) newErrors[`member${index}_year`] = true;
             if (!member.section.trim()) newErrors[`member${index}_section`] = true;
             if (!member.skillsets.trim()) newErrors[`member${index}_skillsets`] = true;
         });
@@ -472,7 +475,7 @@ export default function IdeathonForm() {
                                                         errors[`member${index}_department`] && "shake border border-red-500"
                                                     )}
                                                 >
-                                                    <option value="">Select Department</option>
+                                                    <option value="">Select Dept</option>
                                                     <option value="CSE">CSE</option>
                                                     <option value="CSM">CSM</option>
                                                     <option value="CSD">CSD</option>
@@ -484,6 +487,26 @@ export default function IdeathonForm() {
                                                     <option value="Mech">Mech</option>
                                                 </select>
                                                 {errors[`member${index}_department`] && <span className="text-red-500 text-xs mt-1">Required</span>}
+                                            </LabelInputContainer>
+
+                                            <LabelInputContainer>
+                                                <Label htmlFor={`member${index}_year`}>Year</Label>
+                                                <select
+                                                    id={`member${index}_year`}
+                                                    value={member.year}
+                                                    onChange={(e) => handleMemberChange(index, "year", e.target.value)}
+                                                    className={cn(
+                                                        "flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm",
+                                                        errors[`member${index}_year`] && "shake border border-red-500"
+                                                    )}
+                                                >
+                                                    <option value="">Select Year</option>
+                                                    <option value="1st year">1st year</option>
+                                                    <option value="2nd year">2nd year</option>
+                                                    <option value="3rd year">3rd year</option>
+                                                    <option value="4th year">4th year</option>
+                                                </select>
+                                                {errors[`member${index}_year`] && <span className="text-red-500 text-xs mt-1">Required</span>}
                                             </LabelInputContainer>
 
                                             <LabelInputContainer>

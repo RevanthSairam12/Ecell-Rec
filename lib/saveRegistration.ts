@@ -7,6 +7,7 @@ interface TeamMember {
     email: string;
     regdNumber: string;
     department: string;
+    year: string;
     section: string;
     skillsets: string;
 }
