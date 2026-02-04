@@ -174,15 +174,10 @@ const FirebaseResponsesPage = () => {
       try {
         setLoading(true);
         setError(null);
-        const registrationsRef = collection(db, "registrations");
-        const registrationsQuery = query(
-          registrationsRef,
-          orderBy("submittedAt", "desc")
+        const q = query(
+          collection(db, "registrations")
         );
-        const snapshot = await getDocs(registrationsQuery);
-
-        // Map Firestore docs to TeamRegistration interface
-        // Note: We are NOT fetching from Storage.
+        const snapshot = await getDocs(q);
         const data = snapshot.docs.map((doc) => {
           const d = doc.data();
           return {
@@ -194,7 +189,14 @@ const FirebaseResponsesPage = () => {
           } as TeamRegistration;
         });
 
-        setRows(data);
+        // Client-side Sort: Ascending (Oldest First)
+        const sorted = data.sort((a, b) => {
+          const timeA = a.submittedAt?.toMillis?.() ?? 0;
+          const timeB = b.submittedAt?.toMillis?.() ?? 0;
+          return timeA - timeB; // ASCENDING → oldest first
+        });
+
+        setRows(sorted);
       } catch (err) {
         console.error("Failed to load responses:", err);
         setError("Failed to load responses. Check Firebase permissions.");
