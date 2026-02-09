@@ -580,7 +580,7 @@ export default function IdeathonForm() {
                     To want a reference of Pitch Deck download this
                 </p>
                 <a
-                    href="/resources/Pitch_Deck_Template.pptx"
+                    href="/resources/pitchdeck_ecellrec.pptx"
                     download
                     className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-blue-600 rounded-full hover:bg-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
                 >
