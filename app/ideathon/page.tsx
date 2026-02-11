@@ -16,12 +16,6 @@ export default function IdeathonPage() {
             <NewHeroIllustration />
             <AboutIdeathon />
 
-            {/* NOTE:
-                When registrations < 30 → REGISTRATIONS_OPEN = true
-                When registrations >= 30 → REGISTRATIONS_OPEN = false
-                This is manually controlled for safety.
-            */}
-
             <section id="ideathon-form" className="relative z-20">
                 {REGISTRATIONS_OPEN ? (
                     <IdeathonForm />
