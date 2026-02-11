@@ -281,17 +281,43 @@ export default function NewHeroIllustration() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
                     >
+                        {/* Primary CTA - Upload Pitch Deck */}
                         <a
-                            href="#ideathon-form"
-                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-blue-600 rounded-full hover:bg-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+                            href="https://forms.gle/x35ZP1FkVSUeP5o3A"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-[#F2F2F2] transition-all duration-300 rounded-full shadow-lg hover:scale-105"
+                            style={{
+                                backgroundColor: '#3A7AFE',
+                                boxShadow: '0 10px 25px -5px rgba(58, 122, 254, 0.3), 0 8px 10px -6px rgba(58, 122, 254, 0.3)'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = '#5B92FF';
+                                e.currentTarget.style.boxShadow = '0 20px 35px -5px rgba(58, 122, 254, 0.5), 0 10px 15px -6px rgba(58, 122, 254, 0.5)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = '#3A7AFE';
+                                e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(58, 122, 254, 0.3), 0 8px 10px -6px rgba(58, 122, 254, 0.3)';
+                            }}
                         >
-                            Register for Ideathon
+                            Upload Pitch Deck
                         </a>
+
+                        {/* Secondary CTA - What is Ideathon? */}
                         <a
-                            href="/ideathon#what-is-ideathon"
-                            className="inline-flex items-center justify-center px-8 py-4 font-bold text-[#0F172A] transition-all duration-300 bg-white/70 backdrop-blur-md border-2 border-[#0F172A]/20 rounded-full hover:bg-white hover:border-[#0F172A]/40"
+                            href="#what-is-ideathon"
+                            className="inline-flex items-center justify-center px-8 py-4 font-bold text-[#F2F2F2] transition-all duration-300 bg-white/10 backdrop-blur-md border-2 border-[#F2F2F2]/30 rounded-full hover:bg-white/20 hover:border-[#F2F2F2]/50 hover:shadow-lg hover:shadow-white/20"
                         >
-                            What is ideathon?
+                            What is Ideathon?
+                        </a>
+
+                        {/* Secondary CTA - Download PPT Format */}
+                        <a
+                            href="/resources/pitchdeck_ecellrec.pptx"
+                            download
+                            className="inline-flex items-center justify-center px-8 py-4 font-bold text-[#F2F2F2] transition-all duration-300 bg-white/10 backdrop-blur-md border-2 border-[#F2F2F2]/30 rounded-full hover:bg-white/20 hover:border-[#F2F2F2]/50 hover:shadow-lg hover:shadow-white/20"
+                        >
+                            Download PPT Format
                         </a>
                     </motion.div>
                 </div>
