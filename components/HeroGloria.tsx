@@ -5,7 +5,6 @@ import Image from "next/image"
 import { motion } from 'framer-motion'
 import { Inter, Whisper, Anton } from 'next/font/google'
 import { Button } from "@heroui/react"
-import Headlines from "./Headlines"
 
 
 const UserIcon = ({ fill = "currentColor", size, height, width, ...props }: any) => {
@@ -244,9 +243,6 @@ const Hero = () => {
                     )}
                   </div>
                 ))}
-
-                {/* Headlines Ticker */}
-                <Headlines />
 
                 {/* Fixed Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
